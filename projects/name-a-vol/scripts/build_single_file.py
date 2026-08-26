@@ -3,6 +3,7 @@
 from pathlib import Path
 import json, re, subprocess, sys
 ROOT = Path(__file__).resolve().parents[1]
+subprocess.run([sys.executable, str(ROOT/'scripts'/'stamp_assets.py')], check=True)
 index = (ROOT/'index.html').read_text()
 css = (ROOT/'assets'/'styles.css').read_text()
 js = (ROOT/'src'/'app.js').read_text()
@@ -13,9 +14,9 @@ subprocess.run([sys.executable, str(ROOT/'scripts'/'bundle_data.py')], check=Tru
 seed_js = (ROOT/'data'/'rosters.seed.js').read_text()
 rosters = json.loads(seed_js[seed_js.index('window.VOL_ROSTERS =') + len('window.VOL_ROSTERS ='):].strip().rstrip(';'))
 html = index
-html = html.replace('<link rel="stylesheet" href="assets/styles.css">', '<style>'+css+'</style>')
-html = html.replace('<script src="data/rosters.seed.js"></script>', '<script>window.VOL_ROSTERS='+json.dumps(rosters, ensure_ascii=False)+';</script>')
-html = html.replace('<script src="src/app.js"></script>', '<script>'+js+'</script>')
+html = re.sub(r'<link rel="stylesheet" href="assets/styles\.css(?:\?v=[a-f0-9]+)?">', lambda m: '<style>'+css+'</style>', html)
+html = re.sub(r'<script src="data/rosters\.seed\.js(?:\?v=[a-f0-9]+)?"></script>', lambda m: '<script>window.VOL_ROSTERS='+json.dumps(rosters, ensure_ascii=False)+';</script>', html)
+html = re.sub(r'<script src="src/app\.js(?:\?v=[a-f0-9]+)?"></script>', lambda m: '<script>'+js+'</script>', html)
 out = ROOT/'dist'/'name-a-vol-single.html'
 out.parent.mkdir(exist_ok=True)
 out.write_text(html)

@@ -1,7 +1,11 @@
 (() => {
   // Every roster is bundled in the page (data/rosters.seed.js), so nothing is
   // fetched at runtime. window.VOL_ROSTERS is {sport: {season: [names]}}.
-  const DATA = window.VOL_ROSTERS || {};
+  let DATA = window.VOL_ROSTERS || {};
+  // Tolerate the pre-multi-sport shape ({season: [names]}) in case a cached
+  // copy of either file is a version behind: a hard crash here would freeze the
+  // whole page rather than degrade.
+  if (Object.values(DATA).some(Array.isArray)) DATA = {football: DATA};
 
   const SPORTS = {
     football:   {label: 'Football',   start: 1990, end: 2026, span: false, min: 20},
@@ -34,8 +38,7 @@
   const message = $('#message'), answer = $('#answer'), actions = $('#actions');
   const streakEl = $('#streak'), scoreEl = $('#score'), seasonCountEl = $('#seasonCount');
   const suggestionsEl = $('#suggestions'), indexStatus = $('#indexStatus'), submitBtn = $('#submitBtn');
-  const nameInput = $('#playerName'), boardList = $('#boardList');
-  const importBox = $('#importBox'), importBtn = $('#importBtn'), importNote = $('#importNote');
+  const shareHint = $('#shareHint');
 
   function normalize(s) {
     return String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
@@ -74,71 +77,13 @@
   const saveUsed = () => { try { localStorage.setItem(key('used'), JSON.stringify([...used])); } catch {} };
   const unusedIn = y => (rosters()[y] || []).filter(n => !used.has(playerKey(n)));
 
-  // ---- leaderboard ----------------------------------------------------------
-  // A static page has no server, so the board is built from this browser's own
-  // bests plus results friends paste in. Share text carries a NAV1 line the
-  // import box reads back.
-  const loadBoard = () => { try { return JSON.parse(localStorage.getItem('nav_board') || '{}'); } catch { return {}; } };
-  const saveBoard = b => { try { localStorage.setItem('nav_board', JSON.stringify(b)); } catch {} };
-  const cleanName = n => String(n || '').replace(/[|\r\n]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 24);
-  const myName = () => cleanName(localStorage.getItem('nav_name') || '');
-
-  function recordBest() {
-    const nm = myName();
-    if (!nm) return;
-    const b = loadBoard(), k = normalize(nm) + '|' + sport;
-    const cur = b[k];
-    if (!cur || stats.streak > cur.streak || (stats.streak === cur.streak && stats.score > cur.score)) {
-      b[k] = {name: nm, sport, streak: stats.streak, score: stats.score};
-      saveBoard(b);
-    }
-    renderBoard();
-  }
-
-  function renderBoard() {
-    if (!boardList) return;
-    const rows = Object.values(loadBoard()).filter(e => e.sport === sport)
-      .sort((a, b) => b.streak - a.streak || b.score - a.score || a.name.localeCompare(b.name));
-    if (!rows.length) {
-      boardList.innerHTML = '<li class="board-empty">No results yet. Win a round to get on the board.</li>';
-      return;
-    }
-    const me = normalize(myName());
-    boardList.innerHTML = rows.map((e, i) => {
-      const mine = normalize(e.name) === me && me;
-      return `<li class="${mine ? 'is-me' : ''}"><span class="rank">${i + 1}</span>` +
-             `<span class="who">${escapeHtml(e.name)}${mine ? ' (you)' : ''}</span>` +
-             `<span class="streak">${e.streak}</span></li>`;
-    }).join('');
-  }
-
+  // Results are shared by copying text and pasting it wherever you talk to your
+  // friends; a static page has no server to hold a shared board.
   function shareText() {
-    const nm = myName() || 'Anonymous';
-    const b = loadBoard()[normalize(nm) + '|' + sport] || {streak: stats.streak, score: stats.score};
-    return `Name a Vol — ${cfg().label}\n${nm}: best streak ${b.streak}, score ${b.score}\n` +
-           `NAV1|${sport}|${nm}|${b.streak}|${b.score}`;
-  }
-
-  function importResults(text) {
-    const b = loadBoard();
-    let added = 0;
-    for (const line of String(text || '').split(/\r?\n/)) {
-      const m = line.trim().match(/^NAV1\|([a-z]+)\|([^|]{1,24})\|(\d{1,4})\|(\d{1,6})$/i);
-      if (!m) continue;
-      const [, sp, nm, st, sc] = m;
-      if (!SPORTS[sp]) continue;
-      const name = cleanName(nm);
-      if (!name) continue;
-      const k = normalize(name) + '|' + sp;
-      const cur = b[k], streak = Number(st), score = Number(sc);
-      if (!cur || streak > cur.streak || (streak === cur.streak && score > cur.score)) {
-        b[k] = {name, sport: sp, streak, score};
-        added++;
-      }
-    }
-    saveBoard(b);
-    renderBoard();
-    return added;
+    const won = message.className.includes('good');
+    const mark = won ? '🟧' : '⬛';
+    const line = won ? `${mark} ${attempts}/${maxAttempts}` : `${mark} missed`;
+    return `Name a Vol — ${cfg().label}\n${displayYear(currentYear)} ${line}\nStreak: ${stats.streak}\n${location.href}`;
   }
 
   // ---- search index ---------------------------------------------------------
@@ -323,7 +268,7 @@
       answer.textContent = `One answer: ${reveal}`;
       answer.style.display = 'block';
     }
-    saveStats(); renderStats(); recordBest(); updateIndexStatus();
+    saveStats(); renderStats(); updateIndexStatus();
     actions.style.display = 'flex';
   }
 
@@ -332,7 +277,7 @@
     sport = next;
     localStorage.setItem('nav_sport', sport);
     document.querySelectorAll('.sport-btn').forEach(b => b.classList.toggle('active', b.dataset.sport === sport));
-    loadStats(); loadUsed(); rebuildPlayerIndex(); renderStats(); renderBoard();
+    loadStats(); loadUsed(); rebuildPlayerIndex(); renderStats();
     currentYear = null;
     startRound();
   }
@@ -378,11 +323,21 @@
   $('#nextBtn').addEventListener('click', startRound);
   $('#shareBtn').addEventListener('click', async () => {
     const text = shareText();
+    const done = msg => {
+      $('#shareBtn').textContent = 'Copied — paste to share';
+      if (shareHint) shareHint.textContent = msg;
+      setTimeout(() => {
+        $('#shareBtn').textContent = 'Copy result';
+        if (shareHint) shareHint.textContent = '';
+      }, 4000);
+    };
     try {
       await navigator.clipboard.writeText(text);
-      $('#shareBtn').textContent = 'Copied!';
-      setTimeout(() => { $('#shareBtn').textContent = 'Share result'; }, 1200);
-    } catch { alert(text); }
+      done('Paste it into your group chat to share.');
+    } catch {
+      // Clipboard access can be refused; select the text so it can be copied by hand.
+      window.prompt('Copy this, then paste to share:', text);
+    }
   });
 
   document.querySelectorAll('.mode-btn').forEach(btn => btn.addEventListener('click', () => {
@@ -394,27 +349,9 @@
   document.querySelectorAll('.sport-btn').forEach(btn =>
     btn.addEventListener('click', () => switchSport(btn.dataset.sport)));
 
-  if (nameInput) {
-    nameInput.value = myName();
-    const commit = () => {
-      const v = cleanName(nameInput.value);
-      nameInput.value = v;
-      localStorage.setItem('nav_name', v);
-      recordBest(); renderBoard();
-    };
-    nameInput.addEventListener('change', commit);
-    nameInput.addEventListener('blur', commit);
-  }
-  if (importBtn) importBtn.addEventListener('click', () => {
-    const n = importResults(importBox.value);
-    importNote.textContent = n ? `Added ${n} result${n === 1 ? '' : 's'}.` : 'No results found in that text.';
-    if (n) importBox.value = '';
-    setTimeout(() => { importNote.textContent = ''; }, 4000);
-  });
-
   // ---- boot -----------------------------------------------------------------
   document.querySelectorAll('.sport-btn').forEach(b => b.classList.toggle('active', b.dataset.sport === sport));
   document.querySelectorAll('.mode-btn').forEach(b => b.classList.toggle('active', b.dataset.mode === mode));
-  loadStats(); loadUsed(); rebuildPlayerIndex(); renderStats(); renderBoard();
+  loadStats(); loadUsed(); rebuildPlayerIndex(); renderStats();
   startRound();
 })();
