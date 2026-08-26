@@ -22,3 +22,6 @@ __pycache__/
 # Build output
 dist/
 build/
+
+# Keep the built single-file build of Name a Vol (it is a deliverable, not build noise)
+!projects/name-a-vol/dist/

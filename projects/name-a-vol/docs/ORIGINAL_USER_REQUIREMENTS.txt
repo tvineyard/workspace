@@ -1,0 +1,6 @@
+Original direction captured from the conversation:
+
+- Build a Tennessee Volunteers football version of the That Guy Rocked roster game concept.
+- Add all Tennessee seasons from 1990 through the current 2026 season.
+- When someone starts typing, immediately search player names to choose from across all years.
+- Do not show years in autocomplete results because that reveals whether the name belongs to the displayed season.

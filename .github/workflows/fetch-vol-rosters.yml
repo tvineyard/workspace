@@ -1,0 +1,74 @@
+name: Fetch Vol rosters
+
+# Runs on GitHub's runners, which have open internet access, and commits the
+# scraped roster data back to the branch. Historical rosters never change, so
+# this is meant to be run a handful of times and then left alone.
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [claude/github-repo-setup-fk0u3k]
+    paths:
+      - projects/name-a-vol/scripts/fetch_rosters.py
+      - .github/workflows/fetch-vol-rosters.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fetch-vol-rosters
+  cancel-in-progress: true
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Fetch rosters
+        working-directory: projects/name-a-vol
+        run: python scripts/fetch_rosters.py
+
+      - name: Summarize
+        if: always()
+        working-directory: projects/name-a-vol
+        run: |
+          python - <<'PY'
+          import json, pathlib
+          p = pathlib.Path('data/rosters.full.json')
+          if p.exists():
+              d = json.loads(p.read_text())
+              print('seasons captured:', len(d))
+              for y in sorted(d):
+                  print(f'  {y}: {len(d[y])}')
+          else:
+              print('no output file produced')
+          PY
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: roster-data
+          path: |
+            projects/name-a-vol/data/rosters.full.json
+            projects/name-a-vol/data/fetch-report.json
+          if-no-files-found: warn
+
+      - name: Commit data
+        if: always()
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A projects/name-a-vol/data/rosters.full.json projects/name-a-vol/data/fetch-report.json || true
+          if git diff --staged --quiet; then
+            echo "no roster changes to commit"
+          else
+            git commit -m "Add fetched Tennessee roster data [skip ci]"
+            git push origin HEAD:${{ github.ref_name }}
+          fi
