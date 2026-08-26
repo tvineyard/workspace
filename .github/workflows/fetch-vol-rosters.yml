@@ -33,6 +33,8 @@ jobs:
 
       - name: Fetch rosters
         working-directory: projects/name-a-vol
+        env:
+          VERIFY_YEARS: ${{ vars.VERIFY_YEARS || '2022,2015,1990,2026' }}
         run: python scripts/fetch_rosters.py
 
       - name: Summarize

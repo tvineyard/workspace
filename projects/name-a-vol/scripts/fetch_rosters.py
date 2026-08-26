@@ -9,6 +9,7 @@ and prints diagnostics for every season it cannot parse so the parser can be fix
 from pathlib import Path
 import html
 import json
+import os
 import re
 import sys
 import time
@@ -247,8 +248,26 @@ def fetch_year(year, log):
     return [], {"source": None, "strategy": None, "attempts": attempts}
 
 
+def verify(years):
+    """Re-fetch specific seasons and dump them for eyeball/diff checking."""
+    OUT.parent.mkdir(parents=True, exist_ok=True)
+    got = {}
+    for y in years:
+        names, meta = fetch_year(int(y), print)
+        got[str(y)] = sorted(names)
+        print(f"\n===== {y}: {len(names)} via {meta.get('strategy')} <- {meta.get('source')}")
+        for i in range(0, len(names), 6):
+            print("   " + " | ".join(sorted(names)[i:i+6]))
+    (ROOT / "data" / "rosters.verify.json").write_text(
+        json.dumps(got, indent=2, ensure_ascii=False, sort_keys=True) + "\n")
+    return 0
+
+
 def main():
     OUT.parent.mkdir(parents=True, exist_ok=True)
+    vy = os.environ.get("VERIFY_YEARS", "").strip()
+    if vy:
+        return verify([y.strip() for y in vy.split(",") if y.strip()])
     seed_path = ROOT / "data" / "rosters.seed.json"
     rosters = json.loads(seed_path.read_text()) if seed_path.exists() else {}
     if OUT.exists():
