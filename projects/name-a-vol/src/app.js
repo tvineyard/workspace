@@ -30,6 +30,7 @@
   let finished = false;
   let roundLoading = false;
   const maxAttempts = 3;
+  const MIN_QUERY_LETTERS = 5;   // letters (spaces ignored) required before suggesting
   let indexStarted = false;
   let indexPromise = null;
   let activeSuggestion = -1;
@@ -160,8 +161,9 @@
     return escapeHtml(name.slice(0,idx))+'<mark>'+escapeHtml(name.slice(idx,idx+raw.length))+'</mark>'+escapeHtml(name.slice(idx+raw.length));
   }
   function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
+  function queryLetters(q){return normalize(q).replace(/ /g,'').length}
   function searchPlayers(q){
-    const nq=normalize(q); if(nq.length<1)return [];
+    const nq=normalize(q); if(!nq||queryLetters(q)<MIN_QUERY_LETTERS)return [];
     const terms=nq.split(' ');
     return playerIndex.map(p=>{
       const n=normalize(p.name), tokens=n.split(' ');let score=99;
@@ -174,9 +176,17 @@
   }
   function renderSuggestions(){
     const q=input.value.trim(); if(!q){closeSuggestions();return}
+    const need=MIN_QUERY_LETTERS-queryLetters(q);
+    if(need>0){
+      suggestionsEl.innerHTML=`<div class="no-match">Type ${need} more character${need===1?'':'s'} to search.</div>`;
+      suggestionsEl.classList.add('open');visibleSuggestions=[];activeSuggestion=-1;return;
+    }
     visibleSuggestions=searchPlayers(q);activeSuggestion=-1;
-    if(!visibleSuggestions.length){suggestionsEl.innerHTML='<div class="no-match">No matching Tennessee player loaded yet.</div>';suggestionsEl.classList.add('open');return}
-    suggestionsEl.innerHTML=visibleSuggestions.map((p,i)=>`<button type="button" class="suggestion" data-i="${i}">${highlightName(p.name,q)}</button>`).join('');
+    if(!visibleSuggestions.length){suggestionsEl.innerHTML='<div class="no-match">No matching Tennessee player.</div>';suggestionsEl.classList.add('open');return}
+    // The name is wrapped in one element because .suggestion is a flex container:
+    // bare text nodes around <mark> would each become a flex item and the spaces
+    // between them would be stripped, rendering "Al Wilson" as "AlWilson".
+    suggestionsEl.innerHTML=visibleSuggestions.map((p,i)=>`<button type="button" class="suggestion" data-i="${i}"><span class="s-name">${highlightName(p.name,q)}</span></button>`).join('');
     suggestionsEl.classList.add('open');
   }
   function selectSuggestion(i){const p=visibleSuggestions[i];if(!p)return;input.value=p.name;closeSuggestions();input.focus()}
