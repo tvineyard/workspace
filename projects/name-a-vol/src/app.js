@@ -138,7 +138,37 @@
   }
 
   function levenshtein(a,b){const dp=Array.from({length:a.length+1},()=>Array(b.length+1).fill(0));for(let i=0;i<=a.length;i++)dp[i][0]=i;for(let j=0;j<=b.length;j++)dp[0][j]=j;for(let i=1;i<=a.length;i++)for(let j=1;j<=b.length;j++)dp[i][j]=Math.min(dp[i-1][j]+1,dp[i][j-1]+1,dp[i-1][j-1]+(a[i-1]===b[j-1]?0:1));return dp[a.length][b.length]}
-  function matchGuess(guess,roster){const g=normalize(guess);if(!g||g.length<3)return null;for(const player of roster){const p=normalize(player);if(g===p)return player;const tolerance=p.length>=14?2:1;if(Math.abs(g.length-p.length)<=tolerance&&levenshtein(g,p)<=tolerance)return player}return null}
+  function tokensOf(s){return normalize(s).split(' ').filter(Boolean)}
+  // Typo tolerance scaled to length. Anything under five characters must be exact,
+  // so short surnames like "Lee" don't sweep up unrelated players.
+  function fuzzyEq(a,b){
+    if(a===b)return true;
+    const n=Math.min(a.length,b.length);
+    if(n<5)return false;
+    const tol=n>=12?2:1;
+    return Math.abs(a.length-b.length)<=tol&&levenshtein(a,b)<=tol;
+  }
+  // The prompt asks for ANY player on the roster, so a surname that lands on a
+  // real player is a correct answer even when several share it. Candidates are
+  // ranked by how exact the match is, and an unused player is preferred so a
+  // surname guess doesn't resolve onto someone already spent this run.
+  function matchGuess(guess,roster){
+    const g=normalize(guess); if(!g||g.length<3)return null;
+    const gt=tokensOf(guess), gSorted=[...gt].sort().join(' ');
+    const cands=[];
+    for(const player of roster){
+      const p=normalize(player), pt=tokensOf(player);
+      if(g===p){cands.push({player,rank:0});continue}
+      if(fuzzyEq(g,p)){cands.push({player,rank:1});continue}
+      if(gt.length>1&&gt.length===pt.length&&gSorted===[...pt].sort().join(' ')){cands.push({player,rank:2});continue}
+      if(gt.length===1&&pt.length>1&&fuzzyEq(gt[0],pt[pt.length-1])){cands.push({player,rank:3});continue}
+    }
+    if(!cands.length)return null;
+    cands.sort((a,b)=>a.rank-b.rank);
+    const best=cands[0].rank;
+    const tied=cands.filter(c=>c.rank===best);
+    return (tied.find(c=>!used.has(playerKey(c.player)))||tied[0]).player;
+  }
   function easternDateKey(){const s=new Intl.DateTimeFormat('en-CA',{timeZone:'America/New_York',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());return Number(s.replace(/-/g,''))}
   function seededDailyYear(){const pool=SEED_YEARS.length?SEED_YEARS:playableYears();return pool.length?pool[easternDateKey()%pool.length]:null}
   function chooseYear(){
