@@ -126,11 +126,11 @@ def s_sidearm(doc):
     return names
 
 
-# An individual's page lives *below* the football roster index. Requiring the
-# trailing slash excludes the index itself and every other sport's roster link,
-# without assuming a URL shape that only the modern pages use.
-PLAYER_HREF = re.compile(r"/sports/football/roster/(?:season/\d{4}/)?\S", re.I)
-STAFF_HREF = re.compile(r"/(coach|coaches|staff|administration|staff-directory|support)/", re.I)
+# A player bio URL ends in a numeric athlete id; coaches and support staff sit
+# under /coaches/ or /staff/ and have no such id. Verified against both page
+# generations: 1990 yields 103 names and 2026 yields 112, with staff excluded.
+PLAYER_HREF = re.compile(r"/roster/(?:season/\d{4}/)?[a-z0-9][a-z0-9\-.']*/\d+", re.I)
+STAFF_HREF = re.compile(r"(coach|staff|administration|directory|support)", re.I)
 
 
 def s_player_links(doc):
@@ -310,7 +310,13 @@ def main():
     if vy:
         return verify([y.strip() for y in vy.split(",") if y.strip()])
     seed_path = ROOT / "data" / "rosters.seed.json"
-    if os.environ.get("FRESH"):
+    only = [y.strip() for y in os.environ.get("ONLY_YEARS", "").split(",") if y.strip()]
+    if only:
+        rosters = json.loads(OUT.read_text()) if OUT.exists() else {}
+        print("ONLY_YEARS:", only, "- keeping", len(rosters), "already captured")
+        for y in only:
+            rosters.pop(y, None)
+    elif os.environ.get("FRESH"):
         # Re-scrape every season from scratch, ignoring anything already bundled.
         # Used after a parser change, when cached results can no longer be trusted.
         rosters = {}

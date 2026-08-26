@@ -35,7 +35,7 @@ jobs:
         working-directory: projects/name-a-vol
         env:
           VERIFY_YEARS: ${{ vars.VERIFY_YEARS }}
-          FRESH: '1'
+          ONLY_YEARS: ${{ vars.ONLY_YEARS || '2024,2025,2026' }}
         run: python scripts/fetch_rosters.py
 
       - name: Summarize
