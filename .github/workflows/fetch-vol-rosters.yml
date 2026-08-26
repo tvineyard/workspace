@@ -34,9 +34,8 @@ jobs:
       - name: Fetch rosters
         working-directory: projects/name-a-vol
         env:
-          SPORT: ${{ vars.SPORT || 'mens-basketball' }}
-          VERIFY_YEARS: ${{ vars.VERIFY_YEARS }}
-          FRESH: '1'
+          SPORT: ${{ vars.SPORT || 'football' }}
+          VERIFY_YEARS: ${{ vars.VERIFY_YEARS || '2015,1995' }}
         run: python scripts/fetch_rosters.py
 
       - name: Summarize

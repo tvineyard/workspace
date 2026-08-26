@@ -180,6 +180,26 @@ def s_player_links(doc):
     return names
 
 
+def sample_player_markup(doc, limit=4, window=500):
+    """Dump the markup around the first few player links.
+
+    Position is not in the anchor text, so this shows where it actually lives
+    before a parser is written against a guess.
+    """
+    out = []
+    for m in re.finditer(r'<a[^>]+href="([^"]+)"[^>]*>', doc, re.I):
+        href = m.group(1)
+        if STAFF_HREF.search(href) or not PLAYER_HREF.search(href):
+            continue
+        start = max(0, m.start() - window)
+        chunk = doc[start:m.end() + window]
+        chunk = re.sub(r"\s+", " ", chunk)
+        out.append(chunk)
+        if len(out) >= limit:
+            break
+    return out
+
+
 def sample_hrefs(doc, limit=25):
     """Diagnostic: what roster-ish links does this page actually contain?"""
     seen, out = set(), []
@@ -326,7 +346,7 @@ def fetch_year(year, log):
 def verify(years):
     """Re-fetch specific seasons and dump them for eyeball/diff checking."""
     OUT.parent.mkdir(parents=True, exist_ok=True)
-    got, diag = {}, {}
+    got, diag, diag_markup = {}, {}, {}
     for y in years:
         names, meta = fetch_year(int(y), print)
         got[str(y)] = sorted(names)
@@ -337,10 +357,12 @@ def verify(years):
             print(f"       {'error=' + str(a.get('error')) if a.get('error') else 'bytes=' + str(a.get('bytes')) + ' found=' + str(a.get('found')) + ' ' + str(a.get('per_strategy'))}")
         if meta.get("source"):
             try:
-                for line in sample_hrefs(get(str(meta.get("source")))):
+                doc = get(str(meta.get("source")))
+                diag_markup[str(y)] = sample_player_markup(doc)
+                for line in sample_hrefs(doc):
                     print("   href " + line)
             except Exception as exc:
-                print("   (href sample unavailable:", exc, ")")
+                print("   (sample unavailable:", exc, ")")
         shown = sorted(names)[:18]
         for i in range(0, len(shown), 6):
             print("   " + " | ".join(shown[i:i+6]))
@@ -351,6 +373,8 @@ def verify(years):
     # Also persist the per-URL attempts; CI log tails truncate, a committed file does not.
     (ROOT / "data" / "verify-report.json").write_text(
         json.dumps(diag, indent=2, ensure_ascii=False, sort_keys=True) + "\n")
+    (ROOT / "data" / "player-markup-sample.json").write_text(
+        json.dumps(diag_markup, indent=2, ensure_ascii=False, sort_keys=True) + "\n")
     return 0
 
 
