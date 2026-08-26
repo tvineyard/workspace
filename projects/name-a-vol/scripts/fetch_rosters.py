@@ -72,7 +72,7 @@ def dedupe(names):
     return list(out.values())
 
 
-def get(url, timeout=45):
+def get(url, timeout=20):
     req = urllib.request.Request(url, headers={
         "User-Agent": UA,
         "Accept": "text/html,application/xhtml+xml,application/json;q=0.9,*/*;q=0.8",
@@ -126,8 +126,11 @@ def s_sidearm(doc):
     return names
 
 
-PLAYER_HREF = re.compile(r"/roster/(?:season/\d{4}/)?[a-z0-9][a-z0-9\-.']*/\d+", re.I)
-STAFF_HREF = re.compile(r"(coach|staff|administration|directory|support)", re.I)
+# An individual's page lives *below* the football roster index. Requiring the
+# trailing slash excludes the index itself and every other sport's roster link,
+# without assuming a URL shape that only the modern pages use.
+PLAYER_HREF = re.compile(r"/sports/football/roster/(?:season/\d{4}/)?\S", re.I)
+STAFF_HREF = re.compile(r"/(coach|coaches|staff|administration|staff-directory|support)/", re.I)
 
 
 def s_player_links(doc):
@@ -267,7 +270,7 @@ def fetch_year(year, log):
 
     # Fallback: Jina Reader text proxy.
     try:
-        md = get("https://r.jina.ai/https://utsports.com/sports/football/roster/%d" % year, timeout=60)
+        md = get("https://r.jina.ai/https://utsports.com/sports/football/roster/%d" % year, timeout=25)
         names = dedupe(s_table(md)) or dedupe(s_aria_bio(md))
         attempts.append({"url": "jina", "found": len(names)})
         if len(names) >= MIN_PLAYERS:
