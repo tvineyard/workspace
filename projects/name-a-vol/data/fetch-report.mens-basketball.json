@@ -2,7 +2,7 @@
   "1990": {
     "attempts": [
       {
-        "bytes": 659626,
+        "bytes": 659625,
         "found": 11,
         "per_strategy": {
           "aria_bio": 0,
@@ -25,7 +25,7 @@
   "1991": {
     "attempts": [
       {
-        "bytes": 717849,
+        "bytes": 717848,
         "found": 15,
         "per_strategy": {
           "aria_bio": 0,
@@ -71,7 +71,7 @@
   "1993": {
     "attempts": [
       {
-        "bytes": 641438,
+        "bytes": 641437,
         "found": 10,
         "per_strategy": {
           "aria_bio": 0,
@@ -94,7 +94,7 @@
   "1994": {
     "attempts": [
       {
-        "bytes": 685068,
+        "bytes": 685071,
         "found": 13,
         "per_strategy": {
           "aria_bio": 0,
@@ -117,7 +117,7 @@
   "1995": {
     "attempts": [
       {
-        "bytes": 685956,
+        "bytes": 685913,
         "found": 13,
         "per_strategy": {
           "aria_bio": 0,
@@ -140,7 +140,7 @@
   "1996": {
     "attempts": [
       {
-        "bytes": 700597,
+        "bytes": 700598,
         "found": 14,
         "per_strategy": {
           "aria_bio": 0,
@@ -163,7 +163,7 @@
   "1997": {
     "attempts": [
       {
-        "bytes": 685772,
+        "bytes": 685773,
         "found": 13,
         "per_strategy": {
           "aria_bio": 0,
@@ -186,7 +186,7 @@
   "1998": {
     "attempts": [
       {
-        "bytes": 656731,
+        "bytes": 656733,
         "found": 11,
         "per_strategy": {
           "aria_bio": 0,
@@ -232,7 +232,7 @@
   "2000": {
     "attempts": [
       {
-        "bytes": 703806,
+        "bytes": 703807,
         "found": 13,
         "per_strategy": {
           "aria_bio": 0,
@@ -255,7 +255,7 @@
   "2001": {
     "attempts": [
       {
-        "bytes": 689390,
+        "bytes": 689433,
         "found": 12,
         "per_strategy": {
           "aria_bio": 0,
@@ -278,7 +278,7 @@
   "2002": {
     "attempts": [
       {
-        "bytes": 762948,
+        "bytes": 762949,
         "found": 18,
         "per_strategy": {
           "aria_bio": 0,
@@ -301,7 +301,7 @@
   "2003": {
     "attempts": [
       {
-        "bytes": 715327,
+        "bytes": 715285,
         "found": 15,
         "per_strategy": {
           "aria_bio": 0,
@@ -347,7 +347,7 @@
   "2005": {
     "attempts": [
       {
-        "bytes": 895387,
+        "bytes": 895388,
         "found": 17,
         "per_strategy": {
           "aria_bio": 0,
@@ -370,7 +370,7 @@
   "2006": {
     "attempts": [
       {
-        "bytes": 715033,
+        "bytes": 715034,
         "found": 15,
         "per_strategy": {
           "aria_bio": 0,
@@ -393,7 +393,7 @@
   "2007": {
     "attempts": [
       {
-        "bytes": 746166,
+        "bytes": 746165,
         "found": 17,
         "per_strategy": {
           "aria_bio": 0,
@@ -416,7 +416,7 @@
   "2008": {
     "attempts": [
       {
-        "bytes": 866216,
+        "bytes": 866217,
         "found": 15,
         "per_strategy": {
           "aria_bio": 0,
@@ -439,7 +439,7 @@
   "2009": {
     "attempts": [
       {
-        "bytes": 918799,
+        "bytes": 918843,
         "found": 16,
         "per_strategy": {
           "aria_bio": 0,
@@ -462,7 +462,7 @@
   "2010": {
     "attempts": [
       {
-        "bytes": 947566,
+        "bytes": 947568,
         "found": 17,
         "per_strategy": {
           "aria_bio": 0,
@@ -485,7 +485,7 @@
   "2011": {
     "attempts": [
       {
-        "bytes": 956110,
+        "bytes": 956111,
         "found": 19,
         "per_strategy": {
           "aria_bio": 0,
@@ -508,7 +508,7 @@
   "2012": {
     "attempts": [
       {
-        "bytes": 879860,
+        "bytes": 879818,
         "found": 15,
         "per_strategy": {
           "aria_bio": 0,
@@ -554,7 +554,7 @@
   "2014": {
     "attempts": [
       {
-        "bytes": 880362,
+        "bytes": 880404,
         "found": 14,
         "per_strategy": {
           "aria_bio": 0,
@@ -761,7 +761,7 @@
   "2023": {
     "attempts": [
       {
-        "bytes": 1136775,
+        "bytes": 1136734,
         "found": 15,
         "per_strategy": {
           "aria_bio": 0,
@@ -807,7 +807,7 @@
   "2025": {
     "attempts": [
       {
-        "bytes": 1213258,
+        "bytes": 1213282,
         "found": 16,
         "per_strategy": {
           "aria_bio": 0,
