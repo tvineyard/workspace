@@ -2,64 +2,91 @@
   "1995": {
     "attempts": [
       {
-        "bytes": 685914,
-        "found": 13,
+        "bytes": 664936,
+        "found": 9,
+        "markers": {
+          "__next_data__": 0,
+          "full bio": 36,
+          "person__name": 0,
+          "roster-card": 0,
+          "roster/player": 0,
+          "s-person": 288,
+          "sidearm-roster-player": 0
+        },
         "per_strategy": {
           "aria_bio": 0,
           "next_data": 0,
-          "player_links": 13,
+          "player_links": 9,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "sample": " Mason Chen - Women&#x27;s Golf - University of Tennessee Athletics Skip to main content Pause All Rotators All Rotators Playing Skip Ad Sports Baseball Schedule Roster News Men&#39;s Basketball Schedule Roster News Women&#39;s Basketball Schedule Roster News Cross Country Schedule Roster News Football Schedule Roster News Men&#39;s Golf Schedule Roster News Women&#39;s Golf Schedule Roster News Rowing Schedule Roster News Soccer Schedule Roster News Softball Schedule Roster News Swimming &amp; Diving Schedule Roster News Men&#39;s Tennis Schedule Roster News Women&#39;s Tennis Schedule Roster",
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/season/1995"
+      },
+      {
+        "bytes": 1847534,
+        "found": 91,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 91,
           "sidearm": 0,
           "sr_roster": 0,
           "table": 0
         },
         "strategy": "player_links",
-        "url": "https://utsports.com/sports/mens-basketball/roster/1995-96"
+        "url": "https://utsports.com/sports/football/roster/1995"
       }
     ],
-    "ids_captured": 13,
-    "source": "https://utsports.com/sports/mens-basketball/roster/1995-96",
+    "ids_captured": 91,
+    "source": "https://utsports.com/sports/football/roster/1995",
     "strategy": "player_links"
   },
-  "2010": {
+  "2015": {
     "attempts": [
       {
-        "bytes": 947567,
-        "found": 17,
+        "bytes": 650403,
+        "found": 8,
+        "markers": {
+          "__next_data__": 0,
+          "full bio": 32,
+          "person__name": 0,
+          "roster-card": 0,
+          "roster/player": 0,
+          "s-person": 256,
+          "sidearm-roster-player": 0
+        },
         "per_strategy": {
           "aria_bio": 0,
           "next_data": 0,
-          "player_links": 17,
+          "player_links": 8,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "sample": " Leigh Henderson - Women&#x27;s Golf - University of Tennessee Athletics Skip to main content Pause All Rotators All Rotators Playing Skip Ad Sports Baseball Schedule Roster News Men&#39;s Basketball Schedule Roster News Women&#39;s Basketball Schedule Roster News Cross Country Schedule Roster News Football Schedule Roster News Men&#39;s Golf Schedule Roster News Women&#39;s Golf Schedule Roster News Rowing Schedule Roster News Soccer Schedule Roster News Softball Schedule Roster News Swimming &amp; Diving Schedule Roster News Men&#39;s Tennis Schedule Roster News Women&#39;s Tennis Schedule R",
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/season/2015"
+      },
+      {
+        "bytes": 2831925,
+        "found": 113,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 113,
           "sidearm": 0,
           "sr_roster": 0,
           "table": 0
         },
         "strategy": "player_links",
-        "url": "https://utsports.com/sports/mens-basketball/roster/2010-11"
+        "url": "https://utsports.com/sports/football/roster/2015"
       }
     ],
-    "ids_captured": 17,
-    "source": "https://utsports.com/sports/mens-basketball/roster/2010-11",
-    "strategy": "player_links"
-  },
-  "2024": {
-    "attempts": [
-      {
-        "bytes": 1176553,
-        "found": 14,
-        "per_strategy": {
-          "aria_bio": 0,
-          "next_data": 0,
-          "player_links": 14,
-          "sidearm": 0,
-          "sr_roster": 0,
-          "table": 0
-        },
-        "strategy": "player_links",
-        "url": "https://utsports.com/sports/mens-basketball/roster/2024-25"
-      }
-    ],
-    "ids_captured": 14,
-    "source": "https://utsports.com/sports/mens-basketball/roster/2024-25",
+    "ids_captured": 113,
+    "source": "https://utsports.com/sports/football/roster/2015",
     "strategy": "player_links"
   }
 }
