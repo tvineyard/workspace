@@ -159,7 +159,16 @@ def s_table(doc_or_md):
     return names
 
 
+def s_sr_roster(doc):
+    """Sports Reference college-football roster table: <a href="/cfb/players/...">Name</a>."""
+    names = []
+    for m in re.finditer(r'<a[^>]+href="/cfb/players/[^"]+"[^>]*>([^<]+)</a>', doc, re.I):
+        names.append(m.group(1))
+    return names
+
+
 STRATEGIES = [
+    ("sr_roster", s_sr_roster),
     ("next_data", s_next_data),
     ("sidearm", s_sidearm),
     ("aria_bio", s_aria_bio),
@@ -186,11 +195,16 @@ def extract(doc):
 
 def candidate_urls(year):
     base = "https://utsports.com/sports/football/roster"
-    return [
+    urls = [
         f"{base}/season/{year}",
         f"{base}/{year}",
         f"{base}?season={year}",
-    ] + ([base] if year == END_YEAR else [])
+    ]
+    if year == END_YEAR:
+        urls.append(base)
+    # UT's current site has no pages for the older seasons; Sports Reference does.
+    urls.append(f"https://www.sports-reference.com/cfb/schools/tennessee/{year}-roster.html")
+    return urls
 
 
 def fetch_year(year, log):
