@@ -4,6 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#ff8200">
+<!-- Best-effort hint to revalidate the page itself. GitHub Pages does not allow
+     custom response headers, so the real guarantee is that its HTML cache is
+     short-lived and every asset URL carries a content hash. -->
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
   <title>Name a Vol</title>
   <link rel="stylesheet" href="assets/styles.css?v=5075670c5c">
 </head>
