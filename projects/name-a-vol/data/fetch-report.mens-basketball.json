@@ -1,0 +1,830 @@
+{
+  "1990": {
+    "attempts": [
+      {
+        "bytes": 659625,
+        "found": 11,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 11,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/mens-basketball/roster/1990-91"
+      }
+    ],
+    "count": 11,
+    "ids_captured": 11,
+    "source": "https://utsports.com/sports/mens-basketball/roster/1990-91",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "1991": {
+    "attempts": [
+      {
+        "bytes": 717848,
+        "found": 15,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 15,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/mens-basketball/roster/1991-92"
+      }
+    ],
+    "count": 15,
+    "ids_captured": 15,
+    "source": "https://utsports.com/sports/mens-basketball/roster/1991-92",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "1992": {
+    "attempts": [
+      {
+        "bytes": 747164,
+        "found": 17,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 17,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/mens-basketball/roster/1992-93"
+      }
+    ],
+    "count": 17,
+    "ids_captured": 17,
+    "source": "https://utsports.com/sports/mens-basketball/roster/1992-93",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "1993": {
+    "attempts": [
+      {
+        "bytes": 641437,
+        "found": 10,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 10,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/mens-basketball/roster/1993-94"
+      }
+    ],
+    "count": 10,
+    "ids_captured": 10,
+    "source": "https://utsports.com/sports/mens-basketball/roster/1993-94",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "1994": {
+    "attempts": [
+      {
+        "bytes": 685071,
+        "found": 13,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 13,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/mens-basketball/roster/1994-95"
+      }
+    ],
+    "count": 13,
+    "ids_captured": 13,
+    "source": "https://utsports.com/sports/mens-basketball/roster/1994-95",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "1995": {
+    "attempts": [
+      {
+        "bytes": 685913,
+        "found": 13,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 13,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/mens-basketball/roster/1995-96"
+      }
+    ],
+    "count": 13,
+    "ids_captured": 13,
+    "source": "https://utsports.com/sports/mens-basketball/roster/1995-96",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "1996": {
+    "attempts": [
+      {
+        "bytes": 700598,
+        "found": 14,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 14,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/mens-basketball/roster/1996-97"
+      }
+    ],
+    "count": 14,
+    "ids_captured": 14,
+    "source": "https://utsports.com/sports/mens-basketball/roster/1996-97",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "1997": {
+    "attempts": [
+      {
+        "bytes": 685773,
+        "found": 13,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 13,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/mens-basketball/roster/1997-98"
+      }
+    ],
+    "count": 13,
+    "ids_captured": 13,
+    "source": "https://utsports.com/sports/mens-basketball/roster/1997-98",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "1998": {
+    "attempts": [
+      {
+        "bytes": 656733,
+        "found": 11,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 11,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/mens-basketball/roster/1998-99"
+      }
+    ],
+    "count": 11,
+    "ids_captured": 11,
+    "source": "https://utsports.com/sports/mens-basketball/roster/1998-99",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "1999": {
+    "attempts": [
+      {
+        "bytes": 689248,
+        "found": 12,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 12,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/mens-basketball/roster/1999-00"
+      }
+    ],
+    "count": 12,
+    "ids_captured": 12,
+    "source": "https://utsports.com/sports/mens-basketball/roster/1999-00",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "2000": {
+    "attempts": [
+      {
+        "bytes": 703807,
+        "found": 13,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 13,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/mens-basketball/roster/2000-01"
+      }
+    ],
+    "count": 13,
+    "ids_captured": 13,
+    "source": "https://utsports.com/sports/mens-basketball/roster/2000-01",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "2001": {
+    "attempts": [
+      {
+        "bytes": 689433,
+        "found": 12,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 12,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/mens-basketball/roster/2001-02"
+      }
+    ],
+    "count": 12,
+    "ids_captured": 12,
+    "source": "https://utsports.com/sports/mens-basketball/roster/2001-02",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "2002": {
+    "attempts": [
+      {
+        "bytes": 762949,
+        "found": 18,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 18,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/mens-basketball/roster/2002-03"
+      }
+    ],
+    "count": 18,
+    "ids_captured": 18,
+    "source": "https://utsports.com/sports/mens-basketball/roster/2002-03",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "2003": {
+    "attempts": [
+      {
+        "bytes": 715285,
+        "found": 15,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 15,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/mens-basketball/roster/2003-04"
+      }
+    ],
+    "count": 15,
+    "ids_captured": 15,
+    "source": "https://utsports.com/sports/mens-basketball/roster/2003-04",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "2004": {
+    "attempts": [
+      {
+        "bytes": 697793,
+        "found": 13,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 13,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/mens-basketball/roster/2004-05"
+      }
+    ],
+    "count": 13,
+    "ids_captured": 13,
+    "source": "https://utsports.com/sports/mens-basketball/roster/2004-05",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "2005": {
+    "attempts": [
+      {
+        "bytes": 895388,
+        "found": 17,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 17,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/mens-basketball/roster/2005-06"
+      }
+    ],
+    "count": 17,
+    "ids_captured": 17,
+    "source": "https://utsports.com/sports/mens-basketball/roster/2005-06",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "2006": {
+    "attempts": [
+      {
+        "bytes": 715034,
+        "found": 15,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 15,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/mens-basketball/roster/2006-07"
+      }
+    ],
+    "count": 15,
+    "ids_captured": 15,
+    "source": "https://utsports.com/sports/mens-basketball/roster/2006-07",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "2007": {
+    "attempts": [
+      {
+        "bytes": 746165,
+        "found": 17,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 17,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/mens-basketball/roster/2007-08"
+      }
+    ],
+    "count": 17,
+    "ids_captured": 17,
+    "source": "https://utsports.com/sports/mens-basketball/roster/2007-08",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "2008": {
+    "attempts": [
+      {
+        "bytes": 866217,
+        "found": 15,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 15,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/mens-basketball/roster/2008-09"
+      }
+    ],
+    "count": 15,
+    "ids_captured": 15,
+    "source": "https://utsports.com/sports/mens-basketball/roster/2008-09",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "2009": {
+    "attempts": [
+      {
+        "bytes": 918843,
+        "found": 16,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 16,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/mens-basketball/roster/2009-10"
+      }
+    ],
+    "count": 16,
+    "ids_captured": 16,
+    "source": "https://utsports.com/sports/mens-basketball/roster/2009-10",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "2010": {
+    "attempts": [
+      {
+        "bytes": 947568,
+        "found": 17,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 17,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/mens-basketball/roster/2010-11"
+      }
+    ],
+    "count": 17,
+    "ids_captured": 17,
+    "source": "https://utsports.com/sports/mens-basketball/roster/2010-11",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "2011": {
+    "attempts": [
+      {
+        "bytes": 956111,
+        "found": 19,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 19,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/mens-basketball/roster/2011-12"
+      }
+    ],
+    "count": 19,
+    "ids_captured": 19,
+    "source": "https://utsports.com/sports/mens-basketball/roster/2011-12",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "2012": {
+    "attempts": [
+      {
+        "bytes": 879818,
+        "found": 15,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 15,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/mens-basketball/roster/2012-13"
+      }
+    ],
+    "count": 15,
+    "ids_captured": 15,
+    "source": "https://utsports.com/sports/mens-basketball/roster/2012-13",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "2013": {
+    "attempts": [
+      {
+        "bytes": 868029,
+        "found": 15,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 15,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/mens-basketball/roster/2013-14"
+      }
+    ],
+    "count": 15,
+    "ids_captured": 15,
+    "source": "https://utsports.com/sports/mens-basketball/roster/2013-14",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "2014": {
+    "attempts": [
+      {
+        "bytes": 880404,
+        "found": 14,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 14,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/mens-basketball/roster/2014-15"
+      }
+    ],
+    "count": 14,
+    "ids_captured": 14,
+    "source": "https://utsports.com/sports/mens-basketball/roster/2014-15",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "2015": {
+    "attempts": [
+      {
+        "bytes": 941322,
+        "found": 13,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 13,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/mens-basketball/roster/2015-16"
+      }
+    ],
+    "count": 13,
+    "ids_captured": 13,
+    "source": "https://utsports.com/sports/mens-basketball/roster/2015-16",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "2016": {
+    "attempts": [
+      {
+        "bytes": 947673,
+        "found": 15,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 15,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/mens-basketball/roster/2016-17"
+      }
+    ],
+    "count": 15,
+    "ids_captured": 15,
+    "source": "https://utsports.com/sports/mens-basketball/roster/2016-17",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "2017": {
+    "attempts": [
+      {
+        "bytes": 1056133,
+        "found": 16,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 16,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/mens-basketball/roster/2017-18"
+      }
+    ],
+    "count": 16,
+    "ids_captured": 16,
+    "source": "https://utsports.com/sports/mens-basketball/roster/2017-18",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "2018": {
+    "attempts": [
+      {
+        "bytes": 1063621,
+        "found": 16,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 16,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/mens-basketball/roster/2018-19"
+      }
+    ],
+    "count": 16,
+    "ids_captured": 16,
+    "source": "https://utsports.com/sports/mens-basketball/roster/2018-19",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "2019": {
+    "attempts": [
+      {
+        "bytes": 1047327,
+        "found": 14,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 14,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/mens-basketball/roster/2019-20"
+      }
+    ],
+    "count": 14,
+    "ids_captured": 14,
+    "source": "https://utsports.com/sports/mens-basketball/roster/2019-20",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "2020": {
+    "attempts": [
+      {
+        "bytes": 1097227,
+        "found": 17,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 17,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/mens-basketball/roster/2020-21"
+      }
+    ],
+    "count": 17,
+    "ids_captured": 17,
+    "source": "https://utsports.com/sports/mens-basketball/roster/2020-21",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "2021": {
+    "attempts": [
+      {
+        "bytes": 1133289,
+        "found": 17,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 17,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/mens-basketball/roster/2021-22"
+      }
+    ],
+    "count": 17,
+    "ids_captured": 17,
+    "source": "https://utsports.com/sports/mens-basketball/roster/2021-22",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "2022": {
+    "attempts": [
+      {
+        "bytes": 1179328,
+        "found": 18,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 18,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/mens-basketball/roster/2022-23"
+      }
+    ],
+    "count": 18,
+    "ids_captured": 18,
+    "source": "https://utsports.com/sports/mens-basketball/roster/2022-23",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "2023": {
+    "attempts": [
+      {
+        "bytes": 1136734,
+        "found": 15,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 15,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/mens-basketball/roster/2023-24"
+      }
+    ],
+    "count": 15,
+    "ids_captured": 15,
+    "source": "https://utsports.com/sports/mens-basketball/roster/2023-24",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "2024": {
+    "attempts": [
+      {
+        "bytes": 1176595,
+        "found": 14,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 14,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/mens-basketball/roster/2024-25"
+      }
+    ],
+    "count": 14,
+    "ids_captured": 14,
+    "source": "https://utsports.com/sports/mens-basketball/roster/2024-25",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "2025": {
+    "attempts": [
+      {
+        "bytes": 1213282,
+        "found": 16,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 16,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/mens-basketball/roster/2025-26"
+      }
+    ],
+    "count": 16,
+    "ids_captured": 16,
+    "source": "https://utsports.com/sports/mens-basketball/roster/2025-26",
+    "status": "ok",
+    "strategy": "player_links"
+  }
+}

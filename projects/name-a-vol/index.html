@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#ff8200">
+<!-- Best-effort hint to revalidate the page itself. GitHub Pages does not allow
+     custom response headers, so the real guarantee is that its HTML cache is
+     short-lived and every asset URL carries a content hash. -->
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+  <title>Name a Vol</title>
+  <link rel="stylesheet" href="assets/styles.css?v=0521cffcfb">
+</head>
+<body>
+<main class="shell">
+<header><div class="brand"><div class="badge">V</div><div><h1>Name a Vol</h1><div class="subbrand">Tennessee roster trivia</div></div></div><div class="stats"><div class="stat"><strong id="t1v">0</strong><span id="t1l">Streak</span></div><div class="stat"><strong id="t2v">0</strong><span id="t2l">Longest</span></div><div class="stat"><strong id="t3v">—</strong><span id="t3l">Score</span></div></div></header>
+<section class="card"><div class="topbar"></div><div class="content"><div class="sport-row"><button class="sport-btn" data-sport="football" type="button">Football</button><button class="sport-btn" data-sport="basketball" type="button">Basketball</button></div><div class="settings-row">
+  <button id="settingsBtn" class="settings-btn" type="button" aria-expanded="false">⚙ Seasons: <span id="rangeLabel">all</span></button>
+</div>
+<div id="settingsPanel" class="settings-panel" hidden>
+  <p class="settings-hint">Only ask about seasons in this range.</p>
+  <div class="settings-fields">
+    <label>From <select id="fromYear"></select></label>
+    <label>To <select id="toYear"></select></label>
+    <button id="resetRange" type="button">All seasons</button>
+  </div>
+</div>
+<div class="mode-row"><button class="mode-btn" data-mode="classic" type="button">Classic</button><button class="mode-btn" data-mode="position" type="button">By position</button><button class="mode-btn" data-mode="howmany" type="button">How many</button></div><div class="eyebrow" id="eyebrow">Name one player</div><p class="prompt" id="prompt"></p><div class="help" id="help"></div>
+<form id="guessForm" autocomplete="off"><div class="input-wrap"><input id="player" type="text" placeholder="Name a player from this season…" aria-label="Player name" aria-autocomplete="list" aria-controls="suggestions"><span class="search-icon">⌕</span><div id="suggestions" class="suggestions" role="listbox"></div></div><button id="submitBtn" class="primary" type="submit">Submit</button></form>
+<div id="foundList" class="found-list"></div><div id="attempts" class="attempts" aria-label="Attempts"></div><div id="message" class="message" aria-live="polite"></div><div id="answer" class="answer"></div><div id="actions" class="actions"><button id="nextBtn" class="next" type="button">Next round</button></div>
+<div class="share-row"><button id="shareBtn" type="button">Copy streak</button><span id="shareHint" class="share-hint"></span></div></div></section>
+
+<details class="sources"><summary>How it works</summary><p><strong>Classic</strong> — name anyone on that season's roster. <strong>By position</strong> — only players at the position named count. <strong>How many</strong> — name as many as you can at that position before three wrong guesses.</p><p>Small spelling mistakes are fine, and a last name on its own counts. In Classic and By position, a player you've used is spent for the rest of your run, and three misses resets the streak.</p><p>Football covers 1990&ndash;2026, basketball 1990&ndash;91 through 2025&ndash;26. Rosters come from the University of Tennessee Athletics archive.</p></details><div class="footer">Independent fan project. Not affiliated with or endorsed by the University of Tennessee, NCAA, or SEC.</div></main>
+<script src="data/rosters.seed.js?v=488254616b"></script>
+<script src="data/positions.js?v=29fbb2c70b"></script>
+<script src="src/app.js?v=987f04bcea"></script>
+</body>
+</html>
