@@ -27,7 +27,9 @@ SPORT_PATH = f"/sports/{SPORT}/roster"
 OUT = ROOT / "data" / (f"rosters.full.json" if SPORT == "football" else f"rosters.{SPORT}.json")
 REPORT = ROOT / "data" / (f"fetch-report.json" if SPORT == "football" else f"fetch-report.{SPORT}.json")
 START_YEAR, END_YEAR = 1990, 2026
-MIN_PLAYERS = 20
+# A football roster runs 90-130; a basketball roster is 13-18. Using the football
+# threshold for basketball rejected every correct page.
+MIN_PLAYERS = 20 if SPORT == "football" else 8
 
 UA = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/125.0 Safari/537.36")
@@ -255,13 +257,17 @@ def candidate_urls(year):
     # Basketball seasons span two calendar years, so the site may key them either
     # way; try both forms rather than assuming one.
     span = f"{year}-{str(year + 1)[-2:]}"
+    if SPORT != "football":
+        # Only the span form is season-specific. /roster/season/<year> and
+        # ?season=<year> return byte-identical pages for 1995, 2010 and 2024 -
+        # they serve the current roster whatever year is asked for, so including
+        # them would silently file today's team under every season.
+        return [f"{base}/{span}"]
     urls = [
         f"{base}/season/{year}",
         f"{base}/{year}",
         f"{base}?season={year}",
     ]
-    if SPORT != "football":
-        urls = [f"{base}/season/{span}", f"{base}/{span}"] + urls
     if year == END_YEAR:
         urls.append(base)
     if SPORT == "football":
