@@ -18,8 +18,14 @@ import urllib.error
 import urllib.request
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "data" / "rosters.full.json"
-REPORT = ROOT / "data" / "fetch-report.json"
+
+# Which team to scrape. The roster pages share one layout across sports, so only
+# the path segment changes. SPORT=mens-basketball scrapes basketball instead.
+SPORT = os.environ.get("SPORT", "football").strip() or "football"
+SPORT_PATH = f"/sports/{SPORT}/roster"
+
+OUT = ROOT / "data" / (f"rosters.full.json" if SPORT == "football" else f"rosters.{SPORT}.json")
+REPORT = ROOT / "data" / (f"fetch-report.json" if SPORT == "football" else f"fetch-report.{SPORT}.json")
 START_YEAR, END_YEAR = 1990, 2026
 MIN_PLAYERS = 20
 
@@ -129,7 +135,7 @@ def s_sidearm(doc):
 # A player bio URL ends in a numeric athlete id; coaches and support staff sit
 # under /coaches/ or /staff/ and have no such id. Verified against both page
 # generations: 1990 yields 103 names and 2026 yields 112, with staff excluded.
-PLAYER_HREF = re.compile(r"/roster/(?:season/\d{4}/)?[a-z0-9][a-z0-9\-.']*/\d+", re.I)
+PLAYER_HREF = re.compile(r"/roster/(?:season/[\d-]{4,9}/)?[a-z0-9][a-z0-9\-.']*/\d+", re.I)
 STAFF_HREF = re.compile(r"(coach|staff|administration|directory|support)", re.I)
 
 
@@ -245,16 +251,22 @@ def extract(doc):
 
 
 def candidate_urls(year):
-    base = "https://utsports.com/sports/football/roster"
+    base = "https://utsports.com" + SPORT_PATH
+    # Basketball seasons span two calendar years, so the site may key them either
+    # way; try both forms rather than assuming one.
+    span = f"{year}-{str(year + 1)[-2:]}"
     urls = [
         f"{base}/season/{year}",
         f"{base}/{year}",
         f"{base}?season={year}",
     ]
+    if SPORT != "football":
+        urls = [f"{base}/season/{span}", f"{base}/{span}"] + urls
     if year == END_YEAR:
         urls.append(base)
-    # UT's current site has no pages for the older seasons; Sports Reference does.
-    urls.append(f"https://www.sports-reference.com/cfb/schools/tennessee/{year}-roster.html")
+    if SPORT == "football":
+        # UT's current site has no pages for the older seasons; Sports Reference does.
+        urls.append(f"https://www.sports-reference.com/cfb/schools/tennessee/{year}-roster.html")
     return urls
 
 
@@ -365,7 +377,7 @@ def main():
             report[key] = {"status": "failed", "count": 0, **meta}
         OUT.write_text(json.dumps(rosters, indent=2, ensure_ascii=False, sort_keys=True) + "\n")
         REPORT.write_text(json.dumps(report, indent=2, ensure_ascii=False, sort_keys=True) + "\n")
-        (ROOT / "data" / "athlete-ids.json").write_text(
+        (ROOT / "data" / ("athlete-ids.json" if SPORT == "football" else f"athlete-ids.{SPORT}.json")).write_text(
             json.dumps(IDS, indent=2, ensure_ascii=False, sort_keys=True) + "\n")
         time.sleep(1.0)
 

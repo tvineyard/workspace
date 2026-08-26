@@ -34,8 +34,8 @@ jobs:
       - name: Fetch rosters
         working-directory: projects/name-a-vol
         env:
-          VERIFY_YEARS: ${{ vars.VERIFY_YEARS }}
-          FRESH: '1'
+          SPORT: ${{ vars.SPORT || 'mens-basketball' }}
+          VERIFY_YEARS: ${{ vars.VERIFY_YEARS || '2024,2010,1995' }}
         run: python scripts/fetch_rosters.py
 
       - name: Summarize
@@ -44,7 +44,8 @@ jobs:
         run: |
           python - <<'PY'
           import json, pathlib
-          p = pathlib.Path('data/rosters.full.json')
+          import glob
+          p = pathlib.Path(sorted(glob.glob('data/rosters*.json'))[-1])
           if p.exists():
               d = json.loads(p.read_text())
               print('seasons captured:', len(d))
@@ -59,9 +60,7 @@ jobs:
         with:
           name: roster-data
           path: |
-            projects/name-a-vol/data/rosters.full.json
-            projects/name-a-vol/data/fetch-report.json
-            projects/name-a-vol/data/athlete-ids.json
+            projects/name-a-vol/data/*.json
           if-no-files-found: warn
 
       - name: Commit data
@@ -69,7 +68,7 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A projects/name-a-vol/data/rosters.full.json projects/name-a-vol/data/fetch-report.json projects/name-a-vol/data/athlete-ids.json || true
+          git add -A projects/name-a-vol/data/ || true
           if git diff --staged --quiet; then
             echo "no roster changes to commit"
           else
