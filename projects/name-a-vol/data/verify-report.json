@@ -47,7 +47,7 @@
   "2015": {
     "attempts": [
       {
-        "bytes": 650403,
+        "bytes": 650402,
         "found": 8,
         "markers": {
           "__next_data__": 0,
@@ -71,7 +71,7 @@
         "url": "https://utsports.com/sports/football/roster/season/2015"
       },
       {
-        "bytes": 2831925,
+        "bytes": 2831924,
         "found": 113,
         "per_strategy": {
           "aria_bio": 0,
