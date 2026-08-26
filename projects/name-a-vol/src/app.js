@@ -80,10 +80,16 @@
   // Results are shared by copying text and pasting it wherever you talk to your
   // friends; a static page has no server to hold a shared board.
   function shareText() {
-    const won = message.className.includes('good');
-    const mark = won ? '🟧' : '⬛';
-    const line = won ? `${mark} ${attempts}/${maxAttempts}` : `${mark} missed`;
-    return `Name a Vol — ${cfg().label}\n${displayYear(currentYear)} ${line}\nStreak: ${stats.streak}\n${location.href}`;
+    const lines = [`Name a Vol — ${cfg().label}`];
+    // Include the round line only once a round is actually over, so the button
+    // still works mid-round when someone just wants to post their streak.
+    if (finished) {
+      const won = message.className.includes('good');
+      lines.push(`${displayYear(currentYear)} ` + (won ? `🟧 ${attempts}/${maxAttempts}` : '⬛ missed'));
+    }
+    lines.push(`Streak: ${stats.streak}`);
+    lines.push(location.href.split('?')[0]);   // drop any cache-busting query
+    return lines.join('\n');
   }
 
   // ---- search index ---------------------------------------------------------
@@ -327,7 +333,7 @@
       $('#shareBtn').textContent = 'Copied — paste to share';
       if (shareHint) shareHint.textContent = msg;
       setTimeout(() => {
-        $('#shareBtn').textContent = 'Copy result';
+        $('#shareBtn').textContent = 'Copy streak';
         if (shareHint) shareHint.textContent = '';
       }, 4000);
     };

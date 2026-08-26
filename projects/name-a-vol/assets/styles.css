@@ -12,4 +12,7 @@ button.primary{border:0;background:var(--orange);color:white;border-radius:14px;
 .sport-row{display:flex;gap:8px;margin-bottom:14px}
 .sport-btn{flex:1;border:1px solid var(--line);background:white;border-radius:12px;padding:10px 12px;font-weight:900;cursor:pointer;font-size:15px}
 .sport-btn.active{background:var(--orange);color:white;border-color:var(--orange)}
-.share-hint{color:var(--muted);font-size:12px;align-self:center}
+.share-row{display:flex;align-items:center;gap:10px;margin-top:16px;flex-wrap:wrap}
+.share-row button{border:1px solid var(--line);background:white;border-radius:12px;padding:9px 13px;font-weight:850;cursor:pointer}
+.share-row button:hover{border-color:var(--orange)}
+.share-hint{color:var(--muted);font-size:12px}
