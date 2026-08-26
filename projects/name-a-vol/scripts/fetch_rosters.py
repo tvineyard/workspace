@@ -133,6 +133,23 @@ PLAYER_HREF = re.compile(r"/roster/(?:season/\d{4}/)?[a-z0-9][a-z0-9\-.']*/\d+",
 STAFF_HREF = re.compile(r"(coach|staff|administration|directory|support)", re.I)
 
 
+ATHLETE_ID = re.compile(r"/roster/(?:season/\d{4}/)?[a-z0-9][a-z0-9\-.']*/(\d+)", re.I)
+IDS = {}   # year -> {athlete_id: name}, filled as pages are parsed
+
+
+def s_player_ids(doc, year=None):
+    """Map athlete id -> name for every player link on the page."""
+    found = {}
+    for m in re.finditer(r'<a[^>]+href="([^"]+)"[^>]*>(.*?)</a>', doc, re.S | re.I):
+        href, txt = m.group(1), clean(m.group(2))
+        if STAFF_HREF.search(href):
+            continue
+        hit = ATHLETE_ID.search(href)
+        if hit and plausible(txt):
+            found.setdefault(hit.group(1), txt)
+    return found
+
+
 def s_player_links(doc):
     """Anchors pointing at an individual player's roster bio page.
 
@@ -256,7 +273,11 @@ def fetch_year(year, log):
         attempts.append({"url": url, "bytes": len(doc), "strategy": strat,
                          "found": len(names), "per_strategy": counts})
         if len(names) >= MIN_PLAYERS:
-            return names, {"source": url, "strategy": strat, "attempts": attempts}
+            ids = s_player_ids(doc)
+            if ids:
+                IDS[str(year)] = ids
+            return names, {"source": url, "strategy": strat, "attempts": attempts,
+                           "ids_captured": len(ids)}
         # Keep a sample of the page so the parser can be corrected next run.
         if len(doc) > 400 and "sample" not in attempts[-1]:
             body = re.sub(r"<(script|style)[^>]*>.*?</\1>", " ", doc, flags=re.S | re.I)
@@ -344,6 +365,8 @@ def main():
             report[key] = {"status": "failed", "count": 0, **meta}
         OUT.write_text(json.dumps(rosters, indent=2, ensure_ascii=False, sort_keys=True) + "\n")
         REPORT.write_text(json.dumps(report, indent=2, ensure_ascii=False, sort_keys=True) + "\n")
+        (ROOT / "data" / "athlete-ids.json").write_text(
+            json.dumps(IDS, indent=2, ensure_ascii=False, sort_keys=True) + "\n")
         time.sleep(1.0)
 
     ok = sorted(int(y) for y, v in report.items() if v["status"] in ("ok", "cached"))
