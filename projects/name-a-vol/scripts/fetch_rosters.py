@@ -45,6 +45,9 @@ def clean(s):
     s = re.sub(r"<[^>]+>", " ", s)
     s = re.sub(r"^\[([^\]]+)\]\([^)]+\)$", r"\1", s.strip())
     s = s.replace("**", "")
+    # Roster pages render each player twice: once as the name, once as a
+    # "Full Bio for <name>" link. Collapse them onto the same person.
+    s = re.sub(r"^(?:View\s+)?Full Bio(?:\s+for)?\s+", "", s, flags=re.I)
     return re.sub(r"\s+", " ", s).strip(" \t\r\n-–—|")
 
 
@@ -123,15 +126,42 @@ def s_sidearm(doc):
     return names
 
 
+PLAYER_HREF = re.compile(r"/roster/(?:season/\d{4}/)?[a-z0-9][a-z0-9\-.']*/\d+", re.I)
+STAFF_HREF = re.compile(r"(coach|staff|administration|directory|support)", re.I)
+
+
 def s_player_links(doc):
-    """Anchors that point at an individual player's roster bio page."""
+    """Anchors pointing at an individual player's roster bio page.
+
+    A player bio URL ends in a numeric athlete id; coaches and support staff
+    live under /coaches/ or /staff-directory/ and have no such id. Modern
+    roster pages list the full football staff alongside the team, so filtering
+    on the URL shape is what keeps the head coach out of the player list.
+    """
     names = []
-    pat = re.compile(r'<a[^>]+href="[^"]*/(?:roster|player)[^"]*"[^>]*>(.*?)</a>', re.S | re.I)
+    pat = re.compile(r'<a[^>]+href="([^"]+)"[^>]*>(.*?)</a>', re.S | re.I)
     for m in pat.finditer(doc):
-        txt = clean(m.group(1))
+        href, txt = m.group(1), clean(m.group(2))
+        if STAFF_HREF.search(href) or not PLAYER_HREF.search(href):
+            continue
         if plausible(txt):
             names.append(txt)
     return names
+
+
+def sample_hrefs(doc, limit=25):
+    """Diagnostic: what roster-ish links does this page actually contain?"""
+    seen, out = set(), []
+    for m in re.finditer(r'<a[^>]+href="([^"]*roster[^"]*)"[^>]*>(.*?)</a>', doc, re.S | re.I):
+        href, txt = m.group(1), clean(m.group(2))
+        key = re.sub(r"[a-z0-9\-.']+/(\d+)$", "<slug>/<id>", href, flags=re.I)
+        if key in seen:
+            continue
+        seen.add(key)
+        out.append(f"{href}   ->   {txt[:40]}")
+        if len(out) >= limit:
+            break
+    return out
 
 
 def s_aria_bio(doc):
@@ -256,8 +286,16 @@ def verify(years):
         names, meta = fetch_year(int(y), print)
         got[str(y)] = sorted(names)
         print(f"\n===== {y}: {len(names)} via {meta.get('strategy')} <- {meta.get('source')}")
-        for i in range(0, len(names), 6):
-            print("   " + " | ".join(sorted(names)[i:i+6]))
+        try:
+            for line in sample_hrefs(get(str(meta.get("source")))):
+                print("   href " + line)
+        except Exception as exc:
+            print("   (href sample unavailable:", exc, ")")
+        shown = sorted(names)[:18]
+        for i in range(0, len(shown), 6):
+            print("   " + " | ".join(shown[i:i+6]))
+        if len(names) > 18:
+            print(f"   ... and {len(names)-18} more")
     (ROOT / "data" / "rosters.verify.json").write_text(
         json.dumps(got, indent=2, ensure_ascii=False, sort_keys=True) + "\n")
     return 0
