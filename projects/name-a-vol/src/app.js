@@ -30,7 +30,31 @@
   // Basketball seasons straddle two calendar years and are named that way.
   const displayYear = y => cfg().span ? `${y}-${String(Number(y) + 1).slice(-2)}` : y;
   const hasRoster = y => { const r = rosters()[y]; return Array.isArray(r) && r.length >= cfg().min; };
-  const playableYears = () => allYears().filter(hasRoster);
+  // Every season this sport actually has data for, ignoring the user's range.
+  const seasonsWithData = () => allYears().filter(hasRoster);
+
+  // Season range, per sport. Someone who does not remember the nineties can cut
+  // the game down to the years they lived through.
+  let range = {from: null, to: null};
+  function loadRange() {
+    const have = seasonsWithData();
+    const get = k => localStorage.getItem(key(k));
+    const from = get('from'), to = get('to');
+    range = {
+      from: have.includes(from) ? from : (have[0] || null),
+      to:   have.includes(to)   ? to   : (have[have.length - 1] || null),
+    };
+    if (range.from && range.to && Number(range.from) > Number(range.to)) {
+      range = {from: range.to, to: range.from};
+    }
+  }
+  function saveRange() {
+    localStorage.setItem(key('from'), range.from);
+    localStorage.setItem(key('to'), range.to);
+  }
+  const playableYears = () => seasonsWithData().filter(y =>
+    (!range.from || Number(y) >= Number(range.from)) &&
+    (!range.to   || Number(y) <= Number(range.to)));
   const playersAt = (y, g) => {
     const table = positions()[y] || {};
     return (rosters()[y] || []).filter(n => table[n] === g);
@@ -63,6 +87,8 @@
   const eyebrowEl = $('#eyebrow'), helpEl = $('#help');
   const t1v = $('#t1v'), t1l = $('#t1l'), t2v = $('#t2v'), t2l = $('#t2l'), t3v = $('#t3v'), t3l = $('#t3l');
   const suggestionsEl = $('#suggestions'), submitBtn = $('#submitBtn'), shareHint = $('#shareHint');
+  const settingsBtn = $('#settingsBtn'), settingsPanel = $('#settingsPanel'), rangeLabel = $('#rangeLabel');
+  const fromSel = $('#fromYear'), toSel = $('#toYear'), resetRange = $('#resetRange');
 
   function normalize(s) {
     return String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
@@ -282,9 +308,13 @@
   function startRound() {
     const r = chooseRound();
     if (!r) {
-      message.textContent = `No ${cfg().label.toLowerCase()} rounds available for this mode.`;
+      const narrowed = playableYears().length < seasonsWithData().length;
+      message.textContent = narrowed
+        ? 'No rounds in this season range for this mode — widen it in Seasons.'
+        : `No ${cfg().label.toLowerCase()} rounds available for this mode.`;
       message.className = 'message bad';
-      promptEl.textContent = '';
+      promptEl.textContent = ''; eyebrowEl.textContent = ''; helpEl.textContent = '';
+      actions.style.display = 'none';
       return;
     }
     currentYear = r.year; currentGroup = r.group;
@@ -366,7 +396,7 @@
     if (!SPORTS[next] || next === sport) return;
     sport = next; localStorage.setItem('nav_sport', sport);
     document.querySelectorAll('.sport-btn').forEach(b => b.classList.toggle('active', b.dataset.sport === sport));
-    loadStats(); loadUsed(); rebuildPlayerIndex();
+    loadStats(); loadUsed(); loadRange(); renderRange(); rebuildPlayerIndex();
     currentYear = null; currentGroup = null;
     startRound();
   }
@@ -377,6 +407,34 @@
     currentYear = null; currentGroup = null;
     startRound();
   }
+
+  // ---- settings -------------------------------------------------------------
+  function renderRange() {
+    const have = seasonsWithData();
+    if (!have.length) return;
+    const opts = sel => have.map(y =>
+      `<option value="${y}"${y === sel ? ' selected' : ''}>${displayYear(y)}</option>`).join('');
+    fromSel.innerHTML = opts(range.from);
+    toSel.innerHTML = opts(range.to);
+    const whole = range.from === have[0] && range.to === have[have.length - 1];
+    rangeLabel.textContent = whole ? 'all' : `${displayYear(range.from)}–${displayYear(range.to)}`;
+  }
+  function applyRange(from, to) {
+    range = {from, to};
+    if (Number(range.from) > Number(range.to)) range = {from: to, to: from};
+    saveRange(); renderRange(); startRound();
+  }
+  settingsBtn.addEventListener('click', () => {
+    const open = settingsPanel.hasAttribute('hidden');
+    settingsPanel.toggleAttribute('hidden', !open);
+    settingsBtn.setAttribute('aria-expanded', String(open));
+  });
+  fromSel.addEventListener('change', () => applyRange(fromSel.value, toSel.value));
+  toSel.addEventListener('change', () => applyRange(fromSel.value, toSel.value));
+  resetRange.addEventListener('click', () => {
+    const have = seasonsWithData();
+    applyRange(have[0], have[have.length - 1]);
+  });
 
   // ---- wiring ---------------------------------------------------------------
   input.addEventListener('input', renderSuggestions);
@@ -461,6 +519,6 @@
   // ---- boot -----------------------------------------------------------------
   document.querySelectorAll('.sport-btn').forEach(b => b.classList.toggle('active', b.dataset.sport === sport));
   document.querySelectorAll('.mode-btn').forEach(b => b.classList.toggle('active', b.dataset.mode === mode));
-  loadStats(); loadUsed(); rebuildPlayerIndex(); renderStats();
+  loadStats(); loadUsed(); loadRange(); renderRange(); rebuildPlayerIndex(); renderStats();
   startRound();
 })();
