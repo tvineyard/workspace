@@ -1,145 +1,573 @@
 {
   "1990": {
-    "count": 103,
-    "status": "cached"
-  },
-  "1991": {
-    "count": 93,
-    "status": "cached"
-  },
-  "1992": {
-    "count": 84,
-    "status": "cached"
-  },
-  "1993": {
-    "count": 70,
-    "status": "cached"
-  },
-  "1994": {
-    "count": 91,
-    "status": "cached"
-  },
-  "1995": {
-    "count": 91,
-    "status": "cached"
-  },
-  "1996": {
-    "count": 87,
-    "status": "cached"
-  },
-  "1997": {
-    "count": 99,
-    "status": "cached"
-  },
-  "1998": {
-    "count": 82,
-    "status": "cached"
-  },
-  "1999": {
-    "count": 93,
-    "status": "cached"
-  },
-  "2000": {
-    "count": 98,
-    "status": "cached"
-  },
-  "2001": {
-    "count": 95,
-    "status": "cached"
-  },
-  "2002": {
-    "count": 103,
-    "status": "cached"
-  },
-  "2003": {
-    "count": 100,
-    "status": "cached"
-  },
-  "2004": {
-    "count": 94,
-    "status": "cached"
-  },
-  "2005": {
-    "count": 97,
-    "status": "cached"
-  },
-  "2006": {
-    "count": 89,
-    "status": "cached"
-  },
-  "2007": {
-    "count": 94,
-    "status": "cached"
-  },
-  "2008": {
-    "count": 92,
-    "status": "cached"
-  },
-  "2009": {
-    "count": 104,
-    "status": "cached"
-  },
-  "2010": {
-    "count": 119,
-    "status": "cached"
-  },
-  "2011": {
-    "count": 115,
-    "status": "cached"
-  },
-  "2012": {
-    "count": 110,
-    "status": "cached"
-  },
-  "2013": {
-    "count": 119,
-    "status": "cached"
-  },
-  "2014": {
-    "count": 115,
-    "status": "cached"
-  },
-  "2015": {
-    "count": 113,
-    "status": "cached"
-  },
-  "2016": {
-    "count": 112,
-    "status": "cached"
-  },
-  "2017": {
-    "count": 119,
-    "status": "cached"
-  },
-  "2018": {
-    "count": 116,
-    "status": "cached"
-  },
-  "2019": {
-    "count": 117,
-    "status": "cached"
-  },
-  "2020": {
-    "count": 121,
-    "status": "cached"
-  },
-  "2021": {
-    "count": 117,
-    "status": "cached"
-  },
-  "2022": {
-    "count": 117,
-    "status": "cached"
-  },
-  "2023": {
-    "count": 126,
-    "status": "cached"
-  },
-  "2024": {
     "attempts": [
       {
-        "bytes": 671981,
-        "found": 7,
+        "bytes": 701914,
+        "found": 11,
+        "markers": {
+          "__next_data__": 0,
+          "full bio": 44,
+          "person__name": 0,
+          "roster-card": 0,
+          "roster/player": 0,
+          "s-person": 352,
+          "sidearm-roster-player": 0
+        },
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 11,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "sample": " Hannah Pietila - Women&#x27;s Golf - University of Tennessee Athletics Skip to main content Pause All Rotators All Rotators Playing Skip Ad Sports Baseball Schedule Roster News Men&#39;s Basketball Schedule Roster News Women&#39;s Basketball Schedule Roster News Cross Country Schedule Roster News Football Schedule Roster News Men&#39;s Golf Schedule Roster News Women&#39;s Golf Schedule Roster News Rowing Schedule Roster News Soccer Schedule Roster News Softball Schedule Roster News Swimming &amp; Diving Schedule Roster News Men&#39;s Tennis Schedule Roster News Women&#39;s Tennis Schedule Ro",
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/season/1990"
+      },
+      {
+        "bytes": 2025213,
+        "found": 103,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 103,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/1990"
+      }
+    ],
+    "count": 103,
+    "ids_captured": 103,
+    "source": "https://utsports.com/sports/football/roster/1990",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "1991": {
+    "attempts": [
+      {
+        "bytes": 705678,
+        "found": 11,
+        "markers": {
+          "__next_data__": 0,
+          "full bio": 44,
+          "person__name": 0,
+          "roster-card": 0,
+          "roster/player": 0,
+          "s-person": 352,
+          "sidearm-roster-player": 0
+        },
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 11,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "sample": " Lucia Polo - Women&#x27;s Golf - University of Tennessee Athletics Skip to main content Pause All Rotators All Rotators Playing Skip Ad Sports Baseball Schedule Roster News Men&#39;s Basketball Schedule Roster News Women&#39;s Basketball Schedule Roster News Cross Country Schedule Roster News Football Schedule Roster News Men&#39;s Golf Schedule Roster News Women&#39;s Golf Schedule Roster News Rowing Schedule Roster News Soccer Schedule Roster News Softball Schedule Roster News Swimming &amp; Diving Schedule Roster News Men&#39;s Tennis Schedule Roster News Women&#39;s Tennis Schedule Roster",
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/season/1991"
+      },
+      {
+        "bytes": 1874658,
+        "found": 93,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 93,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/1991"
+      }
+    ],
+    "count": 93,
+    "ids_captured": 93,
+    "source": "https://utsports.com/sports/football/roster/1991",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "1992": {
+    "attempts": [
+      {
+        "bytes": 699295,
+        "found": 10,
+        "markers": {
+          "__next_data__": 0,
+          "full bio": 40,
+          "person__name": 0,
+          "roster-card": 0,
+          "roster/player": 0,
+          "s-person": 320,
+          "sidearm-roster-player": 0
+        },
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 10,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "sample": " Haley Wagner - Women&#x27;s Golf - University of Tennessee Athletics Skip to main content Pause All Rotators All Rotators Playing Skip Ad Sports Baseball Schedule Roster News Men&#39;s Basketball Schedule Roster News Women&#39;s Basketball Schedule Roster News Cross Country Schedule Roster News Football Schedule Roster News Men&#39;s Golf Schedule Roster News Women&#39;s Golf Schedule Roster News Rowing Schedule Roster News Soccer Schedule Roster News Softball Schedule Roster News Swimming &amp; Diving Schedule Roster News Men&#39;s Tennis Schedule Roster News Women&#39;s Tennis Schedule Rost",
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/season/1992"
+      },
+      {
+        "bytes": 1727964,
+        "found": 84,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 84,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/1992"
+      }
+    ],
+    "count": 84,
+    "ids_captured": 84,
+    "source": "https://utsports.com/sports/football/roster/1992",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "1993": {
+    "attempts": [
+      {
+        "bytes": 703128,
+        "found": 9,
+        "markers": {
+          "__next_data__": 0,
+          "full bio": 36,
+          "person__name": 0,
+          "roster-card": 0,
+          "roster/player": 0,
+          "s-person": 288,
+          "sidearm-roster-player": 0
+        },
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 9,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "sample": " Blakesly Warren - Women&#x27;s Golf - University of Tennessee Athletics Skip to main content Pause All Rotators All Rotators Playing Skip Ad Sports Baseball Schedule Roster News Men&#39;s Basketball Schedule Roster News Women&#39;s Basketball Schedule Roster News Cross Country Schedule Roster News Football Schedule Roster News Men&#39;s Golf Schedule Roster News Women&#39;s Golf Schedule Roster News Rowing Schedule Roster News Soccer Schedule Roster News Softball Schedule Roster News Swimming &amp; Diving Schedule Roster News Men&#39;s Tennis Schedule Roster News Women&#39;s Tennis Schedule R",
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/season/1993"
+      },
+      {
+        "bytes": 1535198,
+        "found": 70,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 70,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/1993"
+      }
+    ],
+    "count": 70,
+    "ids_captured": 70,
+    "source": "https://utsports.com/sports/football/roster/1993",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "1994": {
+    "attempts": [
+      {
+        "bytes": 702973,
+        "found": 9,
+        "markers": {
+          "__next_data__": 0,
+          "full bio": 36,
+          "person__name": 0,
+          "roster-card": 0,
+          "roster/player": 0,
+          "s-person": 288,
+          "sidearm-roster-player": 0
+        },
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 9,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "sample": " Micheala Williams-Luck - Women&#x27;s Golf - University of Tennessee Athletics Skip to main content Pause All Rotators All Rotators Playing Skip Ad Sports Baseball Schedule Roster News Men&#39;s Basketball Schedule Roster News Women&#39;s Basketball Schedule Roster News Cross Country Schedule Roster News Football Schedule Roster News Men&#39;s Golf Schedule Roster News Women&#39;s Golf Schedule Roster News Rowing Schedule Roster News Soccer Schedule Roster News Softball Schedule Roster News Swimming &amp; Diving Schedule Roster News Men&#39;s Tennis Schedule Roster News Women&#39;s Tennis Sch",
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/season/1994"
+      },
+      {
+        "bytes": 1847637,
+        "found": 91,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 91,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/1994"
+      }
+    ],
+    "count": 91,
+    "ids_captured": 91,
+    "source": "https://utsports.com/sports/football/roster/1994",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "1995": {
+    "attempts": [
+      {
+        "bytes": 664936,
+        "found": 9,
+        "markers": {
+          "__next_data__": 0,
+          "full bio": 36,
+          "person__name": 0,
+          "roster-card": 0,
+          "roster/player": 0,
+          "s-person": 288,
+          "sidearm-roster-player": 0
+        },
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 9,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "sample": " Mason Chen - Women&#x27;s Golf - University of Tennessee Athletics Skip to main content Pause All Rotators All Rotators Playing Skip Ad Sports Baseball Schedule Roster News Men&#39;s Basketball Schedule Roster News Women&#39;s Basketball Schedule Roster News Cross Country Schedule Roster News Football Schedule Roster News Men&#39;s Golf Schedule Roster News Women&#39;s Golf Schedule Roster News Rowing Schedule Roster News Soccer Schedule Roster News Softball Schedule Roster News Swimming &amp; Diving Schedule Roster News Men&#39;s Tennis Schedule Roster News Women&#39;s Tennis Schedule Roster",
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/season/1995"
+      },
+      {
+        "bytes": 1847623,
+        "found": 91,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 91,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/1995"
+      }
+    ],
+    "count": 91,
+    "ids_captured": 91,
+    "source": "https://utsports.com/sports/football/roster/1995",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "1996": {
+    "attempts": [
+      {
+        "bytes": 694452,
+        "found": 11,
+        "markers": {
+          "__next_data__": 0,
+          "full bio": 44,
+          "person__name": 0,
+          "roster-card": 0,
+          "roster/player": 0,
+          "s-person": 352,
+          "sidearm-roster-player": 0
+        },
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 11,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "sample": " Teleri Hughes - Women&#x27;s Golf - University of Tennessee Athletics Skip to main content Pause All Rotators All Rotators Playing Skip Ad Sports Baseball Schedule Roster News Men&#39;s Basketball Schedule Roster News Women&#39;s Basketball Schedule Roster News Cross Country Schedule Roster News Football Schedule Roster News Men&#39;s Golf Schedule Roster News Women&#39;s Golf Schedule Roster News Rowing Schedule Roster News Soccer Schedule Roster News Softball Schedule Roster News Swimming &amp; Diving Schedule Roster News Men&#39;s Tennis Schedule Roster News Women&#39;s Tennis Schedule Ros",
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/season/1996"
+      },
+      {
+        "bytes": 1790621,
+        "found": 87,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 87,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/1996"
+      }
+    ],
+    "count": 87,
+    "ids_captured": 87,
+    "source": "https://utsports.com/sports/football/roster/1996",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "1997": {
+    "attempts": [
+      {
+        "bytes": 682630,
+        "found": 9,
+        "markers": {
+          "__next_data__": 0,
+          "full bio": 36,
+          "person__name": 0,
+          "roster-card": 0,
+          "roster/player": 0,
+          "s-person": 288,
+          "sidearm-roster-player": 0
+        },
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 9,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "sample": " AJ Newell - Women&#x27;s Golf - University of Tennessee Athletics Skip to main content Pause All Rotators All Rotators Playing Skip Ad Sports Baseball Schedule Roster News Men&#39;s Basketball Schedule Roster News Women&#39;s Basketball Schedule Roster News Cross Country Schedule Roster News Football Schedule Roster News Men&#39;s Golf Schedule Roster News Women&#39;s Golf Schedule Roster News Rowing Schedule Roster News Soccer Schedule Roster News Softball Schedule Roster News Swimming &amp; Diving Schedule Roster News Men&#39;s Tennis Schedule Roster News Women&#39;s Tennis Schedule Roster ",
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/season/1997"
+      },
+      {
+        "bytes": 1980300,
+        "found": 99,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 99,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/1997"
+      }
+    ],
+    "count": 99,
+    "ids_captured": 99,
+    "source": "https://utsports.com/sports/football/roster/1997",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "1998": {
+    "attempts": [
+      {
+        "bytes": 697874,
+        "found": 11,
+        "markers": {
+          "__next_data__": 0,
+          "full bio": 44,
+          "person__name": 0,
+          "roster-card": 0,
+          "roster/player": 0,
+          "s-person": 352,
+          "sidearm-roster-player": 0
+        },
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 11,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "sample": " Emmie Pietila - Women&#x27;s Golf - University of Tennessee Athletics Skip to main content Pause All Rotators All Rotators Playing Skip Ad Sports Baseball Schedule Roster News Men&#39;s Basketball Schedule Roster News Women&#39;s Basketball Schedule Roster News Cross Country Schedule Roster News Football Schedule Roster News Men&#39;s Golf Schedule Roster News Women&#39;s Golf Schedule Roster News Rowing Schedule Roster News Soccer Schedule Roster News Softball Schedule Roster News Swimming &amp; Diving Schedule Roster News Men&#39;s Tennis Schedule Roster News Women&#39;s Tennis Schedule Ros",
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/season/1998"
+      },
+      {
+        "bytes": 1717986,
+        "found": 82,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 82,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/1998"
+      }
+    ],
+    "count": 82,
+    "ids_captured": 82,
+    "source": "https://utsports.com/sports/football/roster/1998",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "1999": {
+    "attempts": [
+      {
+        "bytes": 701915,
+        "found": 11,
+        "markers": {
+          "__next_data__": 0,
+          "full bio": 44,
+          "person__name": 0,
+          "roster-card": 0,
+          "roster/player": 0,
+          "s-person": 352,
+          "sidearm-roster-player": 0
+        },
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 11,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "sample": " Hannah Pietila - Women&#x27;s Golf - University of Tennessee Athletics Skip to main content Pause All Rotators All Rotators Playing Skip Ad Sports Baseball Schedule Roster News Men&#39;s Basketball Schedule Roster News Women&#39;s Basketball Schedule Roster News Cross Country Schedule Roster News Football Schedule Roster News Men&#39;s Golf Schedule Roster News Women&#39;s Golf Schedule Roster News Rowing Schedule Roster News Soccer Schedule Roster News Softball Schedule Roster News Swimming &amp; Diving Schedule Roster News Men&#39;s Tennis Schedule Roster News Women&#39;s Tennis Schedule Ro",
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/season/1999"
+      },
+      {
+        "bytes": 1888587,
+        "found": 93,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 93,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/1999"
+      }
+    ],
+    "count": 93,
+    "ids_captured": 93,
+    "source": "https://utsports.com/sports/football/roster/1999",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "2000": {
+    "attempts": [
+      {
+        "bytes": 705678,
+        "found": 11,
+        "markers": {
+          "__next_data__": 0,
+          "full bio": 44,
+          "person__name": 0,
+          "roster-card": 0,
+          "roster/player": 0,
+          "s-person": 352,
+          "sidearm-roster-player": 0
+        },
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 11,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "sample": " Lucia Polo - Women&#x27;s Golf - University of Tennessee Athletics Skip to main content Pause All Rotators All Rotators Playing Skip Ad Sports Baseball Schedule Roster News Men&#39;s Basketball Schedule Roster News Women&#39;s Basketball Schedule Roster News Cross Country Schedule Roster News Football Schedule Roster News Men&#39;s Golf Schedule Roster News Women&#39;s Golf Schedule Roster News Rowing Schedule Roster News Soccer Schedule Roster News Softball Schedule Roster News Swimming &amp; Diving Schedule Roster News Men&#39;s Tennis Schedule Roster News Women&#39;s Tennis Schedule Roster",
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/season/2000"
+      },
+      {
+        "bytes": 2073716,
+        "found": 98,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 98,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/2000"
+      }
+    ],
+    "count": 98,
+    "ids_captured": 98,
+    "source": "https://utsports.com/sports/football/roster/2000",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "2001": {
+    "attempts": [
+      {
+        "bytes": 668496,
+        "found": 9,
+        "markers": {
+          "__next_data__": 0,
+          "full bio": 36,
+          "person__name": 0,
+          "roster-card": 0,
+          "roster/player": 0,
+          "s-person": 288,
+          "sidearm-roster-player": 0
+        },
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 9,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "sample": " Daeun Song - Women&#x27;s Golf - University of Tennessee Athletics Skip to main content Pause All Rotators All Rotators Playing Skip Ad Sports Baseball Schedule Roster News Men&#39;s Basketball Schedule Roster News Women&#39;s Basketball Schedule Roster News Cross Country Schedule Roster News Football Schedule Roster News Men&#39;s Golf Schedule Roster News Women&#39;s Golf Schedule Roster News Rowing Schedule Roster News Soccer Schedule Roster News Softball Schedule Roster News Swimming &amp; Diving Schedule Roster News Men&#39;s Tennis Schedule Roster News Women&#39;s Tennis Schedule Roster",
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/season/2001"
+      },
+      {
+        "bytes": 2030527,
+        "found": 95,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 95,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/2001"
+      }
+    ],
+    "count": 95,
+    "ids_captured": 95,
+    "source": "https://utsports.com/sports/football/roster/2001",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "2002": {
+    "attempts": [
+      {
+        "bytes": 673780,
+        "found": 8,
         "markers": {
           "__next_data__": 0,
           "full bio": 32,
@@ -152,39 +580,604 @@
         "per_strategy": {
           "aria_bio": 0,
           "next_data": 0,
+          "player_links": 8,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "sample": " Chessey Thomas - Women&#x27;s Golf - University of Tennessee Athletics Skip to main content Pause All Rotators All Rotators Playing Skip Ad Sports Baseball Schedule Roster News Men&#39;s Basketball Schedule Roster News Women&#39;s Basketball Schedule Roster News Cross Country Schedule Roster News Football Schedule Roster News Men&#39;s Golf Schedule Roster News Women&#39;s Golf Schedule Roster News Rowing Schedule Roster News Soccer Schedule Roster News Softball Schedule Roster News Swimming &amp; Diving Schedule Roster News Men&#39;s Tennis Schedule Roster News Women&#39;s Tennis Schedule Ro",
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/season/2002"
+      },
+      {
+        "bytes": 2157185,
+        "found": 103,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 103,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/2002"
+      }
+    ],
+    "count": 103,
+    "ids_captured": 103,
+    "source": "https://utsports.com/sports/football/roster/2002",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "2003": {
+    "attempts": [
+      {
+        "bytes": 664936,
+        "found": 9,
+        "markers": {
+          "__next_data__": 0,
+          "full bio": 36,
+          "person__name": 0,
+          "roster-card": 0,
+          "roster/player": 0,
+          "s-person": 288,
+          "sidearm-roster-player": 0
+        },
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 9,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "sample": " Mason Chen - Women&#x27;s Golf - University of Tennessee Athletics Skip to main content Pause All Rotators All Rotators Playing Skip Ad Sports Baseball Schedule Roster News Men&#39;s Basketball Schedule Roster News Women&#39;s Basketball Schedule Roster News Cross Country Schedule Roster News Football Schedule Roster News Men&#39;s Golf Schedule Roster News Women&#39;s Golf Schedule Roster News Rowing Schedule Roster News Soccer Schedule Roster News Softball Schedule Roster News Swimming &amp; Diving Schedule Roster News Men&#39;s Tennis Schedule Roster News Women&#39;s Tennis Schedule Roster",
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/season/2003"
+      },
+      {
+        "bytes": 2095747,
+        "found": 100,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 100,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/2003"
+      }
+    ],
+    "count": 100,
+    "ids_captured": 100,
+    "source": "https://utsports.com/sports/football/roster/2003",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "2004": {
+    "attempts": [
+      {
+        "bytes": 664574,
+        "found": 7,
+        "markers": {
+          "__next_data__": 0,
+          "full bio": 28,
+          "person__name": 0,
+          "roster-card": 0,
+          "roster/player": 0,
+          "s-person": 224,
+          "sidearm-roster-player": 0
+        },
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
           "player_links": 7,
           "sidearm": 0,
           "sr_roster": 0,
           "table": 0
         },
-        "sample": " Diana Cantú - Women&#x27;s Golf - University of Tennessee Athletics Skip to main content Pause All Rotators All Rotators Playing Skip Ad Sports Baseball Schedule Roster News Men&#39;s Basketball Schedule Roster News Women&#39;s Basketball Schedule Roster News Cross Country Schedule Roster News Football Schedule Roster News Men&#39;s Golf Schedule Roster News Women&#39;s Golf Schedule Roster News Rowing Schedule Roster News Soccer Schedule Roster News Softball Schedule Roster News Swimming &amp; Diving Schedule Roster News Men&#39;s Tennis Schedule Roster News Women&#39;s Tennis Schedule Roste",
+        "sample": " Sara Monberg - Women&#x27;s Golf - University of Tennessee Athletics Skip to main content Pause All Rotators All Rotators Playing Skip Ad Sports Baseball Schedule Roster News Men&#39;s Basketball Schedule Roster News Women&#39;s Basketball Schedule Roster News Cross Country Schedule Roster News Football Schedule Roster News Men&#39;s Golf Schedule Roster News Women&#39;s Golf Schedule Roster News Rowing Schedule Roster News Soccer Schedule Roster News Softball Schedule Roster News Swimming &amp; Diving Schedule Roster News Men&#39;s Tennis Schedule Roster News Women&#39;s Tennis Schedule Rost",
         "strategy": "player_links",
-        "url": "https://utsports.com/sports/football/roster/season/2024"
+        "url": "https://utsports.com/sports/football/roster/season/2004"
       },
       {
-        "bytes": 4008340,
-        "found": 123,
+        "bytes": 1999908,
+        "found": 94,
         "per_strategy": {
           "aria_bio": 0,
           "next_data": 0,
-          "player_links": 123,
+          "player_links": 94,
           "sidearm": 0,
           "sr_roster": 0,
           "table": 0
         },
         "strategy": "player_links",
-        "url": "https://utsports.com/sports/football/roster/2024"
+        "url": "https://utsports.com/sports/football/roster/2004"
       }
     ],
-    "count": 123,
-    "source": "https://utsports.com/sports/football/roster/2024",
+    "count": 94,
+    "ids_captured": 94,
+    "source": "https://utsports.com/sports/football/roster/2004",
     "status": "ok",
     "strategy": "player_links"
   },
-  "2025": {
+  "2005": {
     "attempts": [
       {
-        "bytes": 650403,
+        "bytes": 682631,
+        "found": 9,
+        "markers": {
+          "__next_data__": 0,
+          "full bio": 36,
+          "person__name": 0,
+          "roster-card": 0,
+          "roster/player": 0,
+          "s-person": 288,
+          "sidearm-roster-player": 0
+        },
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 9,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "sample": " AJ Newell - Women&#x27;s Golf - University of Tennessee Athletics Skip to main content Pause All Rotators All Rotators Playing Skip Ad Sports Baseball Schedule Roster News Men&#39;s Basketball Schedule Roster News Women&#39;s Basketball Schedule Roster News Cross Country Schedule Roster News Football Schedule Roster News Men&#39;s Golf Schedule Roster News Women&#39;s Golf Schedule Roster News Rowing Schedule Roster News Soccer Schedule Roster News Softball Schedule Roster News Swimming &amp; Diving Schedule Roster News Men&#39;s Tennis Schedule Roster News Women&#39;s Tennis Schedule Roster ",
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/season/2005"
+      },
+      {
+        "bytes": 2046110,
+        "found": 97,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 97,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/2005"
+      }
+    ],
+    "count": 97,
+    "ids_captured": 97,
+    "source": "https://utsports.com/sports/football/roster/2005",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "2006": {
+    "attempts": [
+      {
+        "bytes": 697874,
+        "found": 11,
+        "markers": {
+          "__next_data__": 0,
+          "full bio": 44,
+          "person__name": 0,
+          "roster-card": 0,
+          "roster/player": 0,
+          "s-person": 352,
+          "sidearm-roster-player": 0
+        },
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 11,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "sample": " Emmie Pietila - Women&#x27;s Golf - University of Tennessee Athletics Skip to main content Pause All Rotators All Rotators Playing Skip Ad Sports Baseball Schedule Roster News Men&#39;s Basketball Schedule Roster News Women&#39;s Basketball Schedule Roster News Cross Country Schedule Roster News Football Schedule Roster News Men&#39;s Golf Schedule Roster News Women&#39;s Golf Schedule Roster News Rowing Schedule Roster News Soccer Schedule Roster News Softball Schedule Roster News Swimming &amp; Diving Schedule Roster News Men&#39;s Tennis Schedule Roster News Women&#39;s Tennis Schedule Ros",
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/season/2006"
+      },
+      {
+        "bytes": 1932855,
+        "found": 89,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 89,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/2006"
+      }
+    ],
+    "count": 89,
+    "ids_captured": 90,
+    "source": "https://utsports.com/sports/football/roster/2006",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "2007": {
+    "attempts": [
+      {
+        "bytes": 670545,
+        "found": 7,
+        "markers": {
+          "__next_data__": 0,
+          "full bio": 28,
+          "person__name": 0,
+          "roster-card": 0,
+          "roster/player": 0,
+          "s-person": 224,
+          "sidearm-roster-player": 0
+        },
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 7,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "sample": " Erica Popson - Women&#x27;s Golf - University of Tennessee Athletics Skip to main content Pause All Rotators All Rotators Playing Skip Ad Sports Baseball Schedule Roster News Men&#39;s Basketball Schedule Roster News Women&#39;s Basketball Schedule Roster News Cross Country Schedule Roster News Football Schedule Roster News Men&#39;s Golf Schedule Roster News Women&#39;s Golf Schedule Roster News Rowing Schedule Roster News Soccer Schedule Roster News Softball Schedule Roster News Swimming &amp; Diving Schedule Roster News Men&#39;s Tennis Schedule Roster News Women&#39;s Tennis Schedule Rost",
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/season/2007"
+      },
+      {
+        "bytes": 1996837,
+        "found": 94,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 94,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/2007"
+      }
+    ],
+    "count": 94,
+    "ids_captured": 94,
+    "source": "https://utsports.com/sports/football/roster/2007",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "2008": {
+    "attempts": [
+      {
+        "bytes": 668496,
+        "found": 9,
+        "markers": {
+          "__next_data__": 0,
+          "full bio": 36,
+          "person__name": 0,
+          "roster-card": 0,
+          "roster/player": 0,
+          "s-person": 288,
+          "sidearm-roster-player": 0
+        },
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 9,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "sample": " Daeun Song - Women&#x27;s Golf - University of Tennessee Athletics Skip to main content Pause All Rotators All Rotators Playing Skip Ad Sports Baseball Schedule Roster News Men&#39;s Basketball Schedule Roster News Women&#39;s Basketball Schedule Roster News Cross Country Schedule Roster News Football Schedule Roster News Men&#39;s Golf Schedule Roster News Women&#39;s Golf Schedule Roster News Rowing Schedule Roster News Soccer Schedule Roster News Softball Schedule Roster News Swimming &amp; Diving Schedule Roster News Men&#39;s Tennis Schedule Roster News Women&#39;s Tennis Schedule Roster",
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/season/2008"
+      },
+      {
+        "bytes": 1967609,
+        "found": 92,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 92,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/2008"
+      }
+    ],
+    "count": 92,
+    "ids_captured": 92,
+    "source": "https://utsports.com/sports/football/roster/2008",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "2009": {
+    "attempts": [
+      {
+        "bytes": 673779,
+        "found": 8,
+        "markers": {
+          "__next_data__": 0,
+          "full bio": 32,
+          "person__name": 0,
+          "roster-card": 0,
+          "roster/player": 0,
+          "s-person": 256,
+          "sidearm-roster-player": 0
+        },
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 8,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "sample": " Chessey Thomas - Women&#x27;s Golf - University of Tennessee Athletics Skip to main content Pause All Rotators All Rotators Playing Skip Ad Sports Baseball Schedule Roster News Men&#39;s Basketball Schedule Roster News Women&#39;s Basketball Schedule Roster News Cross Country Schedule Roster News Football Schedule Roster News Men&#39;s Golf Schedule Roster News Women&#39;s Golf Schedule Roster News Rowing Schedule Roster News Soccer Schedule Roster News Softball Schedule Roster News Swimming &amp; Diving Schedule Roster News Men&#39;s Tennis Schedule Roster News Women&#39;s Tennis Schedule Ro",
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/season/2009"
+      },
+      {
+        "bytes": 2076858,
+        "found": 104,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 104,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/2009"
+      }
+    ],
+    "count": 104,
+    "ids_captured": 104,
+    "source": "https://utsports.com/sports/football/roster/2009",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "2010": {
+    "attempts": [
+      {
+        "bytes": 647302,
+        "found": 5,
+        "markers": {
+          "__next_data__": 0,
+          "full bio": 20,
+          "person__name": 0,
+          "roster-card": 0,
+          "roster/player": 0,
+          "s-person": 160,
+          "sidearm-roster-player": 0
+        },
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 5,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "sample": " Nathalie Mansson - Women&#x27;s Golf - University of Tennessee Athletics Skip to main content Pause All Rotators All Rotators Playing Skip Ad Sports Baseball Schedule Roster News Men&#39;s Basketball Schedule Roster News Women&#39;s Basketball Schedule Roster News Cross Country Schedule Roster News Football Schedule Roster News Men&#39;s Golf Schedule Roster News Women&#39;s Golf Schedule Roster News Rowing Schedule Roster News Soccer Schedule Roster News Softball Schedule Roster News Swimming &amp; Diving Schedule Roster News Men&#39;s Tennis Schedule Roster News Women&#39;s Tennis Schedule ",
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/season/2010"
+      },
+      {
+        "bytes": 2293867,
+        "found": 119,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 119,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/2010"
+      }
+    ],
+    "count": 119,
+    "ids_captured": 119,
+    "source": "https://utsports.com/sports/football/roster/2010",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "2011": {
+    "attempts": [
+      {
+        "bytes": 664574,
+        "found": 7,
+        "markers": {
+          "__next_data__": 0,
+          "full bio": 28,
+          "person__name": 0,
+          "roster-card": 0,
+          "roster/player": 0,
+          "s-person": 224,
+          "sidearm-roster-player": 0
+        },
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 7,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "sample": " Sara Monberg - Women&#x27;s Golf - University of Tennessee Athletics Skip to main content Pause All Rotators All Rotators Playing Skip Ad Sports Baseball Schedule Roster News Men&#39;s Basketball Schedule Roster News Women&#39;s Basketball Schedule Roster News Cross Country Schedule Roster News Football Schedule Roster News Men&#39;s Golf Schedule Roster News Women&#39;s Golf Schedule Roster News Rowing Schedule Roster News Soccer Schedule Roster News Softball Schedule Roster News Swimming &amp; Diving Schedule Roster News Men&#39;s Tennis Schedule Roster News Women&#39;s Tennis Schedule Rost",
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/season/2011"
+      },
+      {
+        "bytes": 2407321,
+        "found": 115,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 115,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/2011"
+      }
+    ],
+    "count": 115,
+    "ids_captured": 115,
+    "source": "https://utsports.com/sports/football/roster/2011",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "2012": {
+    "attempts": [
+      {
+        "bytes": 682630,
+        "found": 9,
+        "markers": {
+          "__next_data__": 0,
+          "full bio": 36,
+          "person__name": 0,
+          "roster-card": 0,
+          "roster/player": 0,
+          "s-person": 288,
+          "sidearm-roster-player": 0
+        },
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 9,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "sample": " AJ Newell - Women&#x27;s Golf - University of Tennessee Athletics Skip to main content Pause All Rotators All Rotators Playing Skip Ad Sports Baseball Schedule Roster News Men&#39;s Basketball Schedule Roster News Women&#39;s Basketball Schedule Roster News Cross Country Schedule Roster News Football Schedule Roster News Men&#39;s Golf Schedule Roster News Women&#39;s Golf Schedule Roster News Rowing Schedule Roster News Soccer Schedule Roster News Softball Schedule Roster News Swimming &amp; Diving Schedule Roster News Men&#39;s Tennis Schedule Roster News Women&#39;s Tennis Schedule Roster ",
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/season/2012"
+      },
+      {
+        "bytes": 2350009,
+        "found": 110,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 110,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/2012"
+      }
+    ],
+    "count": 110,
+    "ids_captured": 110,
+    "source": "https://utsports.com/sports/football/roster/2012",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "2013": {
+    "attempts": [
+      {
+        "bytes": 670544,
+        "found": 7,
+        "markers": {
+          "__next_data__": 0,
+          "full bio": 28,
+          "person__name": 0,
+          "roster-card": 0,
+          "roster/player": 0,
+          "s-person": 224,
+          "sidearm-roster-player": 0
+        },
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 7,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "sample": " Erica Popson - Women&#x27;s Golf - University of Tennessee Athletics Skip to main content Pause All Rotators All Rotators Playing Skip Ad Sports Baseball Schedule Roster News Men&#39;s Basketball Schedule Roster News Women&#39;s Basketball Schedule Roster News Cross Country Schedule Roster News Football Schedule Roster News Men&#39;s Golf Schedule Roster News Women&#39;s Golf Schedule Roster News Rowing Schedule Roster News Soccer Schedule Roster News Softball Schedule Roster News Swimming &amp; Diving Schedule Roster News Men&#39;s Tennis Schedule Roster News Women&#39;s Tennis Schedule Rost",
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/season/2013"
+      },
+      {
+        "bytes": 2881494,
+        "found": 119,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 119,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/2013"
+      }
+    ],
+    "count": 119,
+    "ids_captured": 119,
+    "source": "https://utsports.com/sports/football/roster/2013",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "2014": {
+    "attempts": [
+      {
+        "bytes": 673780,
+        "found": 8,
+        "markers": {
+          "__next_data__": 0,
+          "full bio": 32,
+          "person__name": 0,
+          "roster-card": 0,
+          "roster/player": 0,
+          "s-person": 256,
+          "sidearm-roster-player": 0
+        },
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 8,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "sample": " Chessey Thomas - Women&#x27;s Golf - University of Tennessee Athletics Skip to main content Pause All Rotators All Rotators Playing Skip Ad Sports Baseball Schedule Roster News Men&#39;s Basketball Schedule Roster News Women&#39;s Basketball Schedule Roster News Cross Country Schedule Roster News Football Schedule Roster News Men&#39;s Golf Schedule Roster News Women&#39;s Golf Schedule Roster News Rowing Schedule Roster News Soccer Schedule Roster News Softball Schedule Roster News Swimming &amp; Diving Schedule Roster News Men&#39;s Tennis Schedule Roster News Women&#39;s Tennis Schedule Ro",
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/season/2014"
+      },
+      {
+        "bytes": 2856214,
+        "found": 115,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 115,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/2014"
+      }
+    ],
+    "count": 115,
+    "ids_captured": 115,
+    "source": "https://utsports.com/sports/football/roster/2014",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "2015": {
+    "attempts": [
+      {
+        "bytes": 650404,
         "found": 8,
         "markers": {
           "__next_data__": 0,
@@ -205,29 +1198,30 @@
         },
         "sample": " Leigh Henderson - Women&#x27;s Golf - University of Tennessee Athletics Skip to main content Pause All Rotators All Rotators Playing Skip Ad Sports Baseball Schedule Roster News Men&#39;s Basketball Schedule Roster News Women&#39;s Basketball Schedule Roster News Cross Country Schedule Roster News Football Schedule Roster News Men&#39;s Golf Schedule Roster News Women&#39;s Golf Schedule Roster News Rowing Schedule Roster News Soccer Schedule Roster News Softball Schedule Roster News Swimming &amp; Diving Schedule Roster News Men&#39;s Tennis Schedule Roster News Women&#39;s Tennis Schedule R",
         "strategy": "player_links",
-        "url": "https://utsports.com/sports/football/roster/season/2025"
+        "url": "https://utsports.com/sports/football/roster/season/2015"
       },
       {
-        "bytes": 3712330,
-        "found": 110,
+        "bytes": 2831925,
+        "found": 113,
         "per_strategy": {
           "aria_bio": 0,
           "next_data": 0,
-          "player_links": 110,
+          "player_links": 113,
           "sidearm": 0,
           "sr_roster": 0,
           "table": 0
         },
         "strategy": "player_links",
-        "url": "https://utsports.com/sports/football/roster/2025"
+        "url": "https://utsports.com/sports/football/roster/2015"
       }
     ],
-    "count": 110,
-    "source": "https://utsports.com/sports/football/roster/2025",
+    "count": 113,
+    "ids_captured": 113,
+    "source": "https://utsports.com/sports/football/roster/2015",
     "status": "ok",
     "strategy": "player_links"
   },
-  "2026": {
+  "2016": {
     "attempts": [
       {
         "bytes": 647300,
@@ -251,10 +1245,480 @@
         },
         "sample": " Nathalie Mansson - Women&#x27;s Golf - University of Tennessee Athletics Skip to main content Pause All Rotators All Rotators Playing Skip Ad Sports Baseball Schedule Roster News Men&#39;s Basketball Schedule Roster News Women&#39;s Basketball Schedule Roster News Cross Country Schedule Roster News Football Schedule Roster News Men&#39;s Golf Schedule Roster News Women&#39;s Golf Schedule Roster News Rowing Schedule Roster News Soccer Schedule Roster News Softball Schedule Roster News Swimming &amp; Diving Schedule Roster News Men&#39;s Tennis Schedule Roster News Women&#39;s Tennis Schedule ",
         "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/season/2016"
+      },
+      {
+        "bytes": 2444955,
+        "found": 112,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 112,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/2016"
+      }
+    ],
+    "count": 112,
+    "ids_captured": 112,
+    "source": "https://utsports.com/sports/football/roster/2016",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "2017": {
+    "attempts": [
+      {
+        "bytes": 664574,
+        "found": 7,
+        "markers": {
+          "__next_data__": 0,
+          "full bio": 28,
+          "person__name": 0,
+          "roster-card": 0,
+          "roster/player": 0,
+          "s-person": 224,
+          "sidearm-roster-player": 0
+        },
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 7,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "sample": " Sara Monberg - Women&#x27;s Golf - University of Tennessee Athletics Skip to main content Pause All Rotators All Rotators Playing Skip Ad Sports Baseball Schedule Roster News Men&#39;s Basketball Schedule Roster News Women&#39;s Basketball Schedule Roster News Cross Country Schedule Roster News Football Schedule Roster News Men&#39;s Golf Schedule Roster News Women&#39;s Golf Schedule Roster News Rowing Schedule Roster News Soccer Schedule Roster News Softball Schedule Roster News Swimming &amp; Diving Schedule Roster News Men&#39;s Tennis Schedule Roster News Women&#39;s Tennis Schedule Rost",
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/season/2017"
+      },
+      {
+        "bytes": 2725787,
+        "found": 119,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 119,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/2017"
+      }
+    ],
+    "count": 119,
+    "ids_captured": 119,
+    "source": "https://utsports.com/sports/football/roster/2017",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "2018": {
+    "attempts": [
+      {
+        "bytes": 670544,
+        "found": 7,
+        "markers": {
+          "__next_data__": 0,
+          "full bio": 28,
+          "person__name": 0,
+          "roster-card": 0,
+          "roster/player": 0,
+          "s-person": 224,
+          "sidearm-roster-player": 0
+        },
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 7,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "sample": " Erica Popson - Women&#x27;s Golf - University of Tennessee Athletics Skip to main content Pause All Rotators All Rotators Playing Skip Ad Sports Baseball Schedule Roster News Men&#39;s Basketball Schedule Roster News Women&#39;s Basketball Schedule Roster News Cross Country Schedule Roster News Football Schedule Roster News Men&#39;s Golf Schedule Roster News Women&#39;s Golf Schedule Roster News Rowing Schedule Roster News Soccer Schedule Roster News Softball Schedule Roster News Swimming &amp; Diving Schedule Roster News Men&#39;s Tennis Schedule Roster News Women&#39;s Tennis Schedule Rost",
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/season/2018"
+      },
+      {
+        "bytes": 3051370,
+        "found": 116,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 116,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/2018"
+      }
+    ],
+    "count": 116,
+    "ids_captured": 116,
+    "source": "https://utsports.com/sports/football/roster/2018",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "2019": {
+    "attempts": [
+      {
+        "bytes": 660850,
+        "found": 8,
+        "markers": {
+          "__next_data__": 0,
+          "full bio": 32,
+          "person__name": 0,
+          "roster-card": 0,
+          "roster/player": 0,
+          "s-person": 256,
+          "sidearm-roster-player": 0
+        },
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 8,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "sample": " Kaitlyn Rohrback - Women&#x27;s Golf - University of Tennessee Athletics Skip to main content Pause All Rotators All Rotators Playing Skip Ad Sports Baseball Schedule Roster News Men&#39;s Basketball Schedule Roster News Women&#39;s Basketball Schedule Roster News Cross Country Schedule Roster News Football Schedule Roster News Men&#39;s Golf Schedule Roster News Women&#39;s Golf Schedule Roster News Rowing Schedule Roster News Soccer Schedule Roster News Softball Schedule Roster News Swimming &amp; Diving Schedule Roster News Men&#39;s Tennis Schedule Roster News Women&#39;s Tennis Schedule ",
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/season/2019"
+      },
+      {
+        "bytes": 3248452,
+        "found": 117,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 117,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/2019"
+      }
+    ],
+    "count": 117,
+    "ids_captured": 117,
+    "source": "https://utsports.com/sports/football/roster/2019",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "2020": {
+    "attempts": [
+      {
+        "bytes": 661591,
+        "found": 8,
+        "markers": {
+          "__next_data__": 0,
+          "full bio": 32,
+          "person__name": 0,
+          "roster-card": 0,
+          "roster/player": 0,
+          "s-person": 256,
+          "sidearm-roster-player": 0
+        },
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 8,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "sample": " Lauren Spurlock - Women&#x27;s Golf - University of Tennessee Athletics Skip to main content Pause All Rotators All Rotators Playing Skip Ad Sports Baseball Schedule Roster News Men&#39;s Basketball Schedule Roster News Women&#39;s Basketball Schedule Roster News Cross Country Schedule Roster News Football Schedule Roster News Men&#39;s Golf Schedule Roster News Women&#39;s Golf Schedule Roster News Rowing Schedule Roster News Soccer Schedule Roster News Softball Schedule Roster News Swimming &amp; Diving Schedule Roster News Men&#39;s Tennis Schedule Roster News Women&#39;s Tennis Schedule R",
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/season/2020"
+      },
+      {
+        "bytes": 3114537,
+        "found": 121,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 121,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/2020"
+      }
+    ],
+    "count": 121,
+    "ids_captured": 121,
+    "source": "https://utsports.com/sports/football/roster/2020",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "2021": {
+    "attempts": [
+      {
+        "bytes": 673780,
+        "found": 8,
+        "markers": {
+          "__next_data__": 0,
+          "full bio": 32,
+          "person__name": 0,
+          "roster-card": 0,
+          "roster/player": 0,
+          "s-person": 256,
+          "sidearm-roster-player": 0
+        },
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 8,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "sample": " Chessey Thomas - Women&#x27;s Golf - University of Tennessee Athletics Skip to main content Pause All Rotators All Rotators Playing Skip Ad Sports Baseball Schedule Roster News Men&#39;s Basketball Schedule Roster News Women&#39;s Basketball Schedule Roster News Cross Country Schedule Roster News Football Schedule Roster News Men&#39;s Golf Schedule Roster News Women&#39;s Golf Schedule Roster News Rowing Schedule Roster News Soccer Schedule Roster News Softball Schedule Roster News Swimming &amp; Diving Schedule Roster News Men&#39;s Tennis Schedule Roster News Women&#39;s Tennis Schedule Ro",
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/season/2021"
+      },
+      {
+        "bytes": 3962119,
+        "found": 117,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 117,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/2021"
+      }
+    ],
+    "count": 117,
+    "ids_captured": 117,
+    "source": "https://utsports.com/sports/football/roster/2021",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "2022": {
+    "attempts": [
+      {
+        "bytes": 657209,
+        "found": 8,
+        "markers": {
+          "__next_data__": 0,
+          "full bio": 32,
+          "person__name": 0,
+          "roster-card": 0,
+          "roster/player": 0,
+          "s-person": 256,
+          "sidearm-roster-player": 0
+        },
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 8,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "sample": " Rebecca Watson - Women&#x27;s Golf - University of Tennessee Athletics Skip to main content Pause All Rotators All Rotators Playing Skip Ad Sports Baseball Schedule Roster News Men&#39;s Basketball Schedule Roster News Women&#39;s Basketball Schedule Roster News Cross Country Schedule Roster News Football Schedule Roster News Men&#39;s Golf Schedule Roster News Women&#39;s Golf Schedule Roster News Rowing Schedule Roster News Soccer Schedule Roster News Softball Schedule Roster News Swimming &amp; Diving Schedule Roster News Men&#39;s Tennis Schedule Roster News Women&#39;s Tennis Schedule Ro",
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/season/2022"
+      },
+      {
+        "bytes": 4100872,
+        "found": 117,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 117,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/2022"
+      }
+    ],
+    "count": 117,
+    "ids_captured": 117,
+    "source": "https://utsports.com/sports/football/roster/2022",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "2023": {
+    "attempts": [
+      {
+        "bytes": 663965,
+        "found": 7,
+        "markers": {
+          "__next_data__": 0,
+          "full bio": 32,
+          "person__name": 0,
+          "roster-card": 0,
+          "roster/player": 0,
+          "s-person": 256,
+          "sidearm-roster-player": 0
+        },
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 7,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "sample": " Ginny Brown - Women&#x27;s Golf - University of Tennessee Athletics Skip to main content Pause All Rotators All Rotators Playing Skip Ad Sports Baseball Schedule Roster News Men&#39;s Basketball Schedule Roster News Women&#39;s Basketball Schedule Roster News Cross Country Schedule Roster News Football Schedule Roster News Men&#39;s Golf Schedule Roster News Women&#39;s Golf Schedule Roster News Rowing Schedule Roster News Soccer Schedule Roster News Softball Schedule Roster News Swimming &amp; Diving Schedule Roster News Men&#39;s Tennis Schedule Roster News Women&#39;s Tennis Schedule Roste",
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/season/2023"
+      },
+      {
+        "bytes": 4037168,
+        "found": 126,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 126,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/2023"
+      }
+    ],
+    "count": 126,
+    "ids_captured": 126,
+    "source": "https://utsports.com/sports/football/roster/2023",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "2024": {
+    "attempts": [
+      {
+        "bytes": 671982,
+        "found": 7,
+        "markers": {
+          "__next_data__": 0,
+          "full bio": 32,
+          "person__name": 0,
+          "roster-card": 0,
+          "roster/player": 0,
+          "s-person": 256,
+          "sidearm-roster-player": 0
+        },
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 7,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "sample": " Diana Cantú - Women&#x27;s Golf - University of Tennessee Athletics Skip to main content Pause All Rotators All Rotators Playing Skip Ad Sports Baseball Schedule Roster News Men&#39;s Basketball Schedule Roster News Women&#39;s Basketball Schedule Roster News Cross Country Schedule Roster News Football Schedule Roster News Men&#39;s Golf Schedule Roster News Women&#39;s Golf Schedule Roster News Rowing Schedule Roster News Soccer Schedule Roster News Softball Schedule Roster News Swimming &amp; Diving Schedule Roster News Men&#39;s Tennis Schedule Roster News Women&#39;s Tennis Schedule Roste",
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/season/2024"
+      },
+      {
+        "bytes": 4008342,
+        "found": 123,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 123,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/2024"
+      }
+    ],
+    "count": 123,
+    "ids_captured": 123,
+    "source": "https://utsports.com/sports/football/roster/2024",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "2025": {
+    "attempts": [
+      {
+        "bytes": 650269,
+        "found": 8,
+        "markers": {
+          "__next_data__": 0,
+          "full bio": 32,
+          "person__name": 0,
+          "roster-card": 0,
+          "roster/player": 0,
+          "s-person": 256,
+          "sidearm-roster-player": 0
+        },
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 8,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "sample": " Leigh Henderson - Women&#x27;s Golf - University of Tennessee Athletics Skip to main content Pause All Rotators All Rotators Playing Skip Ad Sports Baseball Schedule Roster News Men&#39;s Basketball Schedule Roster News Women&#39;s Basketball Schedule Roster News Cross Country Schedule Roster News Football Schedule Roster News Men&#39;s Golf Schedule Roster News Women&#39;s Golf Schedule Roster News Rowing Schedule Roster News Soccer Schedule Roster News Softball Schedule Roster News Swimming &amp; Diving Schedule Roster News Men&#39;s Tennis Schedule Roster News Women&#39;s Tennis Schedule R",
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/season/2025"
+      },
+      {
+        "bytes": 3712196,
+        "found": 110,
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 110,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/football/roster/2025"
+      }
+    ],
+    "count": 110,
+    "ids_captured": 110,
+    "source": "https://utsports.com/sports/football/roster/2025",
+    "status": "ok",
+    "strategy": "player_links"
+  },
+  "2026": {
+    "attempts": [
+      {
+        "bytes": 647168,
+        "found": 5,
+        "markers": {
+          "__next_data__": 0,
+          "full bio": 20,
+          "person__name": 0,
+          "roster-card": 0,
+          "roster/player": 0,
+          "s-person": 160,
+          "sidearm-roster-player": 0
+        },
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 5,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "sample": " Nathalie Mansson - Women&#x27;s Golf - University of Tennessee Athletics Skip to main content Pause All Rotators All Rotators Playing Skip Ad Sports Baseball Schedule Roster News Men&#39;s Basketball Schedule Roster News Women&#39;s Basketball Schedule Roster News Cross Country Schedule Roster News Football Schedule Roster News Men&#39;s Golf Schedule Roster News Women&#39;s Golf Schedule Roster News Rowing Schedule Roster News Soccer Schedule Roster News Softball Schedule Roster News Swimming &amp; Diving Schedule Roster News Men&#39;s Tennis Schedule Roster News Women&#39;s Tennis Schedule ",
+        "strategy": "player_links",
         "url": "https://utsports.com/sports/football/roster/season/2026"
       },
       {
-        "bytes": 3769618,
+        "bytes": 3769485,
         "found": 112,
         "per_strategy": {
           "aria_bio": 0,
@@ -269,6 +1733,7 @@
       }
     ],
     "count": 112,
+    "ids_captured": 112,
     "source": "https://utsports.com/sports/football/roster/2026",
     "status": "ok",
     "strategy": "player_links"
