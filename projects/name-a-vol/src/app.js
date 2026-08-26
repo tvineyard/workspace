@@ -36,7 +36,8 @@
   const $ = s => document.querySelector(s);
   const yearEl = $('#year'), input = $('#player'), form = $('#guessForm');
   const message = $('#message'), answer = $('#answer'), actions = $('#actions');
-  const streakEl = $('#streak'), bestEl = $('#best'), seasonCountEl = $('#seasonCount');
+  const streakEl = $('#streak'), bestEl = $('#best'), scoreEl = $('#score');
+  const seasonCountEl = $('#seasonCount');
   const suggestionsEl = $('#suggestions'), indexStatus = $('#indexStatus'), submitBtn = $('#submitBtn');
   const shareHint = $('#shareHint');
 
@@ -49,20 +50,21 @@
 
   // ---- per-sport progress ---------------------------------------------------
   const key = k => `nav_${k}_${sport}`;
-  // Current run, and the longest run ever reached in this sport. The longest
-  // survives a loss - that is the number worth bragging about.
-  let stats = {streak: 0, best: 0};
+  // streak: the run in progress. best: longest run ever, survives a loss.
+  // wins/rounds: lifetime totals, which give the score as a hit rate.
+  let stats = {streak: 0, best: 0, wins: 0, rounds: 0};
   function loadStats() {
-    stats = {
-      streak: Number(localStorage.getItem(key('streak')) || 0),
-      best:   Number(localStorage.getItem(key('best'))   || 0),
-    };
+    const num = k => Number(localStorage.getItem(key(k)) || 0);
+    stats = {streak: num('streak'), best: num('best'), wins: num('wins'), rounds: num('rounds')};
     if (stats.streak > stats.best) stats.best = stats.streak;
   }
   function saveStats() {
-    localStorage.setItem(key('streak'), stats.streak);
-    localStorage.setItem(key('best'), stats.best);
+    ['streak', 'best', 'wins', 'rounds'].forEach(k => localStorage.setItem(key(k), stats[k]));
   }
+  // Percentage of rounds won over the lifetime of play. Shown as a dash until a
+  // round has actually finished, so an untouched sport does not read as 0%.
+  const scorePct = () => stats.rounds ? Math.round(stats.wins / stats.rounds * 100) : null;
+  const scoreLabel = () => { const p = scorePct(); return p === null ? '—' : p + '%'; };
 
   // Player identity for the no-repeat rule is the normalized name. utsports
   // publishes an athlete id per bio URL, but those ids are not stable across
@@ -92,6 +94,7 @@
     }
     lines.push(`Current streak: ${stats.streak}`);
     lines.push(`Longest streak: ${stats.best}`);
+    if (stats.rounds) lines.push(`Score: ${scoreLabel()} (${stats.wins}/${stats.rounds})`);
     lines.push(location.href.split('?')[0]);   // drop any cache-busting query
     return lines.join('\n');
   }
@@ -109,6 +112,7 @@
   function updateIndexStatus() {
     const n = playableYears().length, total = allYears().length;
     if (seasonCountEl) seasonCountEl.textContent = n;
+    void total;
     let html = n === total
       ? `Player search: <strong>${playerIndex.length.toLocaleString()} names</strong> across all ${total} seasons.`
       : `Playing <strong>${n} of ${total} seasons</strong> — searching ${playerIndex.length.toLocaleString()} players.`;
@@ -179,7 +183,11 @@
   }
 
   const escapeHtml = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
-  function renderStats() { streakEl.textContent = stats.streak; bestEl.textContent = stats.best; }
+  function renderStats() {
+    streakEl.textContent = stats.streak;
+    bestEl.textContent = stats.best;
+    scoreEl.textContent = scoreLabel();
+  }
   function renderDots() {
     const wrap = $('#attempts'); wrap.innerHTML = '';
     for (let i = 0; i < maxAttempts; i++) {
@@ -263,7 +271,9 @@
   function endRound(win, matchedPlayer = null) {
     finished = true; input.disabled = true; closeSuggestions();
     const roster = rosters()[currentYear] || [];
+    stats.rounds++;
     if (win) {
+      stats.wins++;
       stats.streak++;
       if (stats.streak > stats.best) stats.best = stats.streak;
       used.add(playerKey(matchedPlayer)); saveUsed();
