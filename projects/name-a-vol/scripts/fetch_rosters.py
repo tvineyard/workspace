@@ -26,7 +26,10 @@ SPORT_PATH = f"/sports/{SPORT}/roster"
 
 OUT = ROOT / "data" / (f"rosters.full.json" if SPORT == "football" else f"rosters.{SPORT}.json")
 REPORT = ROOT / "data" / (f"fetch-report.json" if SPORT == "football" else f"fetch-report.{SPORT}.json")
-START_YEAR, END_YEAR = 1990, 2026
+# Basketball seasons are named by their opening year, so the current 2025-26
+# season is 2025; there is no 2026-27 roster yet.
+START_YEAR = 1990
+END_YEAR = 2026 if SPORT == "football" else 2025
 # A football roster runs 90-130; a basketball roster is 13-18. Using the football
 # threshold for basketball rejected every correct page.
 MIN_PLAYERS = 20 if SPORT == "football" else 8
