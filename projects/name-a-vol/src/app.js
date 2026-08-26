@@ -7,6 +7,22 @@
   // define the Daily pool — everyone gets the same puzzle regardless of what their browser
   // managed to fetch. Bake more seasons into the seed file and this pool grows on its own.
   const SEED_YEARS = ALL_YEARS.filter(y => Array.isArray(rosters[y]) && rosters[y].length >= 20);
+
+  // Player identity for the no-repeat rule is the normalized name.
+  //
+  // utsports publishes an athlete id in each bio URL, which looks like a better
+  // key, but those ids are not stable across seasons: Arian Foster is 14775 for
+  // 2004-2007 and 14267 for 2008, and A.J. Johnson changes id when the spelling
+  // changes. Keying on id would let the same player be used once per id, which is
+  // exactly the bug this rule exists to prevent. The normalized name merges both
+  // of those cases correctly. data/athlete-ids.json keeps the ids for reference.
+  function playerKey(name){return 'nm:'+normalize(name)}
+
+  // Players already answered correctly during this run. Cleared when the streak breaks.
+  let used = new Set();
+  try{const raw=JSON.parse(localStorage.getItem('nav_used')||'[]');if(Array.isArray(raw))used=new Set(raw)}catch{}
+  function saveUsed(){try{localStorage.setItem('nav_used',JSON.stringify([...used]))}catch{}}
+  function unusedIn(year){const r=rosters[year]||[];return r.filter(n=>!used.has(playerKey(n)))}
   const cacheVersion = 'v3';
   let mode = localStorage.getItem('nav_mode') || 'endless';
   let currentYear = null;
@@ -117,13 +133,23 @@
     if(n===total) indexStatus.innerHTML=`Player search: <strong>${playerIndex.length.toLocaleString()} names</strong> across all ${total} seasons.`;
     else if(indexStarted&&!done) indexStatus.innerHTML=`Looking for more seasons… <strong>${n}/${total}</strong> loaded so far.`;
     else indexStatus.innerHTML=`Playing <strong>${n} of ${total} seasons</strong> — searching ${playerIndex.length.toLocaleString()} Tennessee players.`;
+    if(used.size) indexStatus.innerHTML += ` <strong>${used.size}</strong> already used this run.`;
   }
 
   function levenshtein(a,b){const dp=Array.from({length:a.length+1},()=>Array(b.length+1).fill(0));for(let i=0;i<=a.length;i++)dp[i][0]=i;for(let j=0;j<=b.length;j++)dp[0][j]=j;for(let i=1;i<=a.length;i++)for(let j=1;j<=b.length;j++)dp[i][j]=Math.min(dp[i-1][j]+1,dp[i][j-1]+1,dp[i-1][j-1]+(a[i-1]===b[j-1]?0:1));return dp[a.length][b.length]}
   function matchGuess(guess,roster){const g=normalize(guess);if(!g||g.length<3)return null;for(const player of roster){const p=normalize(player);if(g===p)return player;const tolerance=p.length>=14?2:1;if(Math.abs(g.length-p.length)<=tolerance&&levenshtein(g,p)<=tolerance)return player}return null}
   function easternDateKey(){const s=new Intl.DateTimeFormat('en-CA',{timeZone:'America/New_York',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());return Number(s.replace(/-/g,''))}
   function seededDailyYear(){const pool=SEED_YEARS.length?SEED_YEARS:playableYears();return pool.length?pool[easternDateKey()%pool.length]:null}
-  function chooseYear(){if(mode==='daily')return seededDailyYear();const pool=playableYears();if(!pool.length)return null;const choices=pool.length>1?pool.filter(y=>y!==currentYear):pool;return choices[Math.floor(Math.random()*choices.length)]}
+  function chooseYear(){
+    if(mode==='daily')return seededDailyYear();
+    const pool=playableYears();
+    if(!pool.length)return null;
+    // Skip seasons whose whole roster has already been used, so a round is always winnable.
+    let open=pool.filter(y=>unusedIn(y).length>0);
+    if(!open.length){used=new Set();saveUsed();open=pool}
+    const choices=open.length>1?open.filter(y=>y!==currentYear):open;
+    return choices[Math.floor(Math.random()*choices.length)];
+  }
   function renderStats(){streakEl.textContent=stats.streak;scoreEl.textContent=stats.score;seasonCountEl.textContent=loadedSeasonCount()}
   function renderDots(){const wrap=$('#attempts');wrap.innerHTML='';for(let i=0;i<maxAttempts;i++){const d=document.createElement('div');d.className='dot'+(i<attempts?' used':'');wrap.appendChild(d)}}
   function closeSuggestions(){suggestionsEl.classList.remove('open');activeSuggestion=-1}
@@ -170,7 +196,7 @@
     }
     roundLoading=false;roundLoader.classList.remove('show');input.disabled=false;submitBtn.disabled=false;input.focus();
   }
-  function endRound(win,matchedPlayer=null){finished=true;input.disabled=true;closeSuggestions();const roster=rosters[currentYear];if(win){stats.streak++;stats.score+=Math.max(1,4-attempts);message.textContent=`${matchedPlayer}. That Vol rocked.`;message.className='message good'}else{stats.streak=0;const reveal=roster[Math.floor(Math.random()*roster.length)];message.textContent='Nope — three strikes.';message.className='message bad';answer.textContent=`One answer: ${reveal}`;answer.style.display='block'}localStorage.setItem('nav_streak',stats.streak);localStorage.setItem('nav_score',stats.score);renderStats();actions.style.display='flex'}
+  function endRound(win,matchedPlayer=null){finished=true;input.disabled=true;closeSuggestions();const roster=rosters[currentYear];if(win){stats.streak++;stats.score+=Math.max(1,4-attempts);used.add(playerKey(matchedPlayer));saveUsed();message.textContent=`${matchedPlayer}. That Vol rocked.`;message.className='message good'}else{stats.streak=0;const pool=unusedIn(currentYear);const from=pool.length?pool:roster;const reveal=from[Math.floor(Math.random()*from.length)];used=new Set();saveUsed();message.textContent='Nope — three strikes.';message.className='message bad';answer.textContent=`One answer: ${reveal}`;answer.style.display='block'}localStorage.setItem('nav_streak',stats.streak);localStorage.setItem('nav_score',stats.score);renderStats();updateIndexStatus();actions.style.display='flex'}
 
   input.addEventListener('focus',()=>{if(!indexStarted)preloadAllRosters();if(input.value.trim())renderSuggestions()});
   input.addEventListener('input',()=>{if(!indexStarted)preloadAllRosters();renderSuggestions()});
@@ -183,7 +209,12 @@
   suggestionsEl.addEventListener('mousedown',e=>{const b=e.target.closest('.suggestion');if(!b)return;e.preventDefault();selectSuggestion(Number(b.dataset.i))});
   document.addEventListener('click',e=>{if(!e.target.closest('.input-wrap'))closeSuggestions()});
 
-  form.addEventListener('submit',e=>{e.preventDefault();if(finished||roundLoading)return;const guess=input.value.trim();if(!guess)return;const matched=matchGuess(guess,rosters[currentYear]);attempts++;renderDots();if(matched){endRound(true,matched);return}if(attempts>=maxAttempts)endRound(false);else{message.textContent=`Not on the ${currentYear} roster. ${maxAttempts-attempts} guess${maxAttempts-attempts===1?'':'es'} left.`;message.className='message bad';input.select();renderSuggestions()}});
+  form.addEventListener('submit',e=>{e.preventDefault();if(finished||roundLoading)return;const guess=input.value.trim();if(!guess)return;const matched=matchGuess(guess,rosters[currentYear]);
+    if(matched&&used.has(playerKey(matched))){
+      message.textContent=`You already used ${matched} this run — name someone else.`;message.className='message bad';
+      input.select();renderSuggestions();return;
+    }
+    attempts++;renderDots();if(matched){endRound(true,matched);return}if(attempts>=maxAttempts)endRound(false);else{message.textContent=`Not on the ${currentYear} roster. ${maxAttempts-attempts} guess${maxAttempts-attempts===1?'':'es'} left.`;message.className='message bad';input.select();renderSuggestions()}});
   $('#nextBtn').addEventListener('click',startRound);
   $('#shareBtn').addEventListener('click',async()=>{const result=message.classList.contains('good')?'🟧':'⬛',text=`Name a Vol — ${currentYear}\n${result} ${attempts}/${maxAttempts}\nStreak: ${stats.streak}`;try{await navigator.clipboard.writeText(text);$('#shareBtn').textContent='Copied!';setTimeout(()=>$('#shareBtn').textContent='Share result',1200)}catch{alert(text)}});
   document.querySelectorAll('.mode-btn').forEach(btn=>btn.addEventListener('click',()=>{mode=btn.dataset.mode;localStorage.setItem('nav_mode',mode);document.querySelectorAll('.mode-btn').forEach(b=>b.classList.toggle('active',b.dataset.mode===mode));startRound()}));
