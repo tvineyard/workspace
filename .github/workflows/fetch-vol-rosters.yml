@@ -39,6 +39,13 @@ jobs:
           FRESH: '1'
         run: python scripts/fetch_rosters.py
 
+      # A FRESH scrape rewrites the roster file, which would silently drop the
+      # lettermen the roster pages omit. Re-merge them every run.
+      - name: Re-merge lettermen
+        if: always()
+        working-directory: projects/name-a-vol
+        run: python scripts/crosscheck_lettermen.py --merge || true
+
       - name: Summarize
         if: always()
         working-directory: projects/name-a-vol

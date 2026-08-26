@@ -16,6 +16,8 @@ rosters = json.loads(seed_js[seed_js.index('window.VOL_ROSTERS =') + len('window
 html = index
 html = re.sub(r'<link rel="stylesheet" href="assets/styles\.css(?:\?v=[a-f0-9]+)?">', lambda m: '<style>'+css+'</style>', html)
 html = re.sub(r'<script src="data/rosters\.seed\.js(?:\?v=[a-f0-9]+)?"></script>', lambda m: '<script>window.VOL_ROSTERS='+json.dumps(rosters, ensure_ascii=False)+';</script>', html)
+pos_js = (ROOT/'data'/'positions.js').read_text() if (ROOT/'data'/'positions.js').exists() else ''
+html = re.sub(r'<script src="data/positions\.js(?:\?v=[a-f0-9]+)?"></script>', lambda m: '<script>'+pos_js+'</script>', html)
 html = re.sub(r'<script src="src/app\.js(?:\?v=[a-f0-9]+)?"></script>', lambda m: '<script>'+js+'</script>', html)
 out = ROOT/'dist'/'name-a-vol-single.html'
 out.parent.mkdir(exist_ok=True)

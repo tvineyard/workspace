@@ -16,3 +16,11 @@ button.primary{border:0;background:var(--orange);color:white;border-radius:14px;
 .share-row button{border:1px solid var(--line);background:white;border-radius:12px;padding:9px 13px;font-weight:850;cursor:pointer}
 .share-row button:hover{border-color:var(--orange)}
 .share-hint{color:var(--muted);font-size:12px}
+
+/* Modes, found chips */
+.mode-row{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap}
+.mode-btn{border:1px solid var(--line);background:white;border-radius:999px;padding:8px 13px;font-weight:800;cursor:pointer;font-size:14px}
+.mode-btn.active{background:var(--ink);color:white;border-color:var(--ink)}
+.found-list{display:none;flex-wrap:wrap;gap:7px;margin-top:16px}
+.chip{background:#fff4e8;border:1px solid #ffd7ad;color:var(--ink);border-radius:999px;padding:6px 11px;font-size:13px;font-weight:800}
+.answer strong{color:var(--ink)}

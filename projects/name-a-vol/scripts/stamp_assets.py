@@ -13,7 +13,7 @@ import re
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
-ASSETS = ["assets/styles.css", "data/rosters.seed.js", "src/app.js"]
+ASSETS = ["assets/styles.css", "data/rosters.seed.js", "data/positions.js", "src/app.js"]
 
 
 def main():

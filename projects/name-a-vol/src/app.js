@@ -1,22 +1,28 @@
 (() => {
-  // Every roster is bundled in the page (data/rosters.seed.js), so nothing is
-  // fetched at runtime. window.VOL_ROSTERS is {sport: {season: [names]}}.
+  // Everything is bundled in the page, so nothing is fetched at runtime.
+  // window.VOL_ROSTERS   is {sport: {season: [names]}}
+  // window.VOL_POSITIONS is {sport: {season: {name: group}}}
   let DATA = window.VOL_ROSTERS || {};
-  // Tolerate the pre-multi-sport shape ({season: [names]}) in case a cached
-  // copy of either file is a version behind: a hard crash here would freeze the
-  // whole page rather than degrade.
+  // Tolerate the pre-multi-sport shape in case a cached copy of either file is a
+  // version behind: a hard crash here would freeze the page rather than degrade.
   if (Object.values(DATA).some(Array.isArray)) DATA = {football: DATA};
+  const POS = window.VOL_POSITIONS || {};
+  const PLABEL = window.VOL_POSITION_LABELS || {};
 
   const SPORTS = {
-    football:   {label: 'Football',   start: 1990, end: 2026, span: false, min: 20},
-    basketball: {label: 'Basketball', start: 1990, end: 2025, span: true,  min: 8},
+    football:   {label: 'Football',   start: 1990, end: 2026, span: false, min: 20, listFloor: 6},
+    basketball: {label: 'Basketball', start: 1990, end: 2025, span: true,  min: 8,  listFloor: 4},
   };
+  const MODES = {classic: 'Classic', position: 'By position', howmany: 'How many'};
 
   let sport = localStorage.getItem('nav_sport') || 'football';
   if (!SPORTS[sport] || !DATA[sport]) sport = Object.keys(SPORTS).find(s => DATA[s]) || 'football';
+  let mode = localStorage.getItem('nav_mode2') || 'classic';
+  if (!MODES[mode]) mode = 'classic';
 
   const cfg = () => SPORTS[sport];
   const rosters = () => DATA[sport] || {};
+  const positions = () => POS[sport] || {};
   const allYears = () => {
     const c = cfg();
     return Array.from({length: c.end - c.start + 1}, (_, i) => String(c.start + i));
@@ -25,19 +31,38 @@
   const displayYear = y => cfg().span ? `${y}-${String(Number(y) + 1).slice(-2)}` : y;
   const hasRoster = y => { const r = rosters()[y]; return Array.isArray(r) && r.length >= cfg().min; };
   const playableYears = () => allYears().filter(hasRoster);
+  const playersAt = (y, g) => {
+    const table = positions()[y] || {};
+    return (rosters()[y] || []).filter(n => table[n] === g);
+  };
+  // Season/position pairs holding at least `floor` players.
+  function pairs(floor) {
+    const out = [];
+    for (const y of playableYears()) {
+      const table = positions()[y];
+      if (!table) continue;
+      const counts = {};
+      Object.values(table).forEach(g => { counts[g] = (counts[g] || 0) + 1; });
+      for (const g of Object.keys(counts)) if (counts[g] >= floor) out.push([y, g]);
+    }
+    return out;
+  }
+  const groupName = (g, plural) => (PLABEL[g] || [g, g])[plural ? 1 : 0];
 
   const maxAttempts = 3;
-  const MIN_QUERY_LETTERS = 5;   // letters (spaces ignored) required before suggesting
+  const MIN_QUERY_LETTERS = 5;
 
-  let currentYear = null, attempts = 0, finished = false;
+  let currentYear = null, currentGroup = null;
+  let attempts = 0, finished = false, found = [];
   let activeSuggestion = -1, visibleSuggestions = [], playerIndex = [];
 
   const $ = s => document.querySelector(s);
-  const yearEl = $('#year'), input = $('#player'), form = $('#guessForm');
+  const promptEl = $('#prompt'), input = $('#player'), form = $('#guessForm');
   const message = $('#message'), answer = $('#answer'), actions = $('#actions');
-  const streakEl = $('#streak'), bestEl = $('#best'), scoreEl = $('#score');
-  const suggestionsEl = $('#suggestions'), submitBtn = $('#submitBtn');
-  const shareHint = $('#shareHint');
+  const foundEl = $('#foundList');
+  const eyebrowEl = $('#eyebrow'), helpEl = $('#help');
+  const t1v = $('#t1v'), t1l = $('#t1l'), t2v = $('#t2v'), t2l = $('#t2l'), t3v = $('#t3v'), t3l = $('#t3l');
+  const suggestionsEl = $('#suggestions'), submitBtn = $('#submitBtn'), shareHint = $('#shareHint');
 
   function normalize(s) {
     return String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
@@ -45,57 +70,34 @@
       .replace(/\b(jr|sr|ii|iii|iv)\b\.?/g, '')
       .replace(/[^a-z0-9]/g, ' ').replace(/\s+/g, ' ').trim();
   }
+  const escapeHtml = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
 
-  // ---- per-sport progress ---------------------------------------------------
+  // ---- progress, per sport --------------------------------------------------
   const key = k => `nav_${k}_${sport}`;
-  // streak: the run in progress. best: longest run ever, survives a loss.
-  // wins/rounds: lifetime totals, which give the score as a hit rate.
-  let stats = {streak: 0, best: 0, wins: 0, rounds: 0};
+  // streak/best/wins/rounds drive the round-based modes. listBest is the most
+  // players ever named in one How many round.
+  let stats = {streak: 0, best: 0, wins: 0, rounds: 0, listBest: 0};
   function loadStats() {
     const num = k => Number(localStorage.getItem(key(k)) || 0);
-    stats = {streak: num('streak'), best: num('best'), wins: num('wins'), rounds: num('rounds')};
+    stats = {streak: num('streak'), best: num('best'), wins: num('wins'),
+             rounds: num('rounds'), listBest: num('listBest')};
     if (stats.streak > stats.best) stats.best = stats.streak;
   }
-  function saveStats() {
-    ['streak', 'best', 'wins', 'rounds'].forEach(k => localStorage.setItem(key(k), stats[k]));
-  }
-  // Percentage of rounds won over the lifetime of play. Shown as a dash until a
-  // round has actually finished, so an untouched sport does not read as 0%.
-  const scorePct = () => stats.rounds ? Math.round(stats.wins / stats.rounds * 100) : null;
-  const scoreLabel = () => { const p = scorePct(); return p === null ? '—' : p + '%'; };
+  const saveStats = () => ['streak','best','wins','rounds','listBest']
+    .forEach(k => localStorage.setItem(key(k), stats[k]));
+  const scoreLabel = () => stats.rounds ? Math.round(stats.wins / stats.rounds * 100) + '%' : '—';
 
-  // Player identity for the no-repeat rule is the normalized name. utsports
-  // publishes an athlete id per bio URL, but those ids are not stable across
-  // seasons (Arian Foster is 14775 for 2004-2007 and 14267 for 2008), so keying
-  // on id would let the same player be used once per id - the exact bug this
-  // rule prevents. data/athlete-ids.json keeps the ids for reference.
   const playerKey = name => 'nm:' + normalize(name);
-
-  // Players already answered correctly this run. Cleared when the streak breaks.
   let used = new Set();
   function loadUsed() {
     used = new Set();
     try { const r = JSON.parse(localStorage.getItem(key('used')) || '[]'); if (Array.isArray(r)) used = new Set(r); } catch {}
   }
   const saveUsed = () => { try { localStorage.setItem(key('used'), JSON.stringify([...used])); } catch {} };
-  const unusedIn = y => (rosters()[y] || []).filter(n => !used.has(playerKey(n)));
-
-  // Results are shared by copying text and pasting it wherever you talk to your
-  // friends; a static page has no server to hold a shared board.
-  function shareText() {
-    const lines = [`Name a Vol — ${cfg().label}`];
-    // Include the round line only once a round is actually over, so the button
-    // still works mid-round when someone just wants to post their streak.
-    if (finished) {
-      const won = message.className.includes('good');
-      lines.push(`${displayYear(currentYear)} ` + (won ? `🟧 ${attempts}/${maxAttempts}` : '⬛ missed'));
-    }
-    lines.push(`Current streak: ${stats.streak}`);
-    lines.push(`Longest streak: ${stats.best}`);
-    if (stats.rounds) lines.push(`Score: ${scoreLabel()} (${stats.wins}/${stats.rounds})`);
-    lines.push(location.href.split('?')[0]);   // drop any cache-busting query
-    return lines.join('\n');
-  }
+  // The no-repeat rule belongs to the streak modes. How many is a single round
+  // about exhausting one position, so a player spent in an earlier run must not
+  // be locked out of it.
+  const usesNoRepeat = () => mode !== 'howmany';
 
   // ---- search index ---------------------------------------------------------
   function rebuildPlayerIndex() {
@@ -118,8 +120,8 @@
     return dp[a.length][b.length];
   }
   const tokensOf = s => normalize(s).split(' ').filter(Boolean);
-  // Typo tolerance scaled to length. Under five characters must be exact, so a
-  // short surname does not sweep up unrelated players.
+  // Tolerance scales with length; under five characters must be exact so a short
+  // surname does not sweep up unrelated players.
   function fuzzyEq(a, b) {
     if (a === b) return true;
     const n = Math.min(a.length, b.length);
@@ -127,10 +129,8 @@
     const tol = n >= 12 ? 2 : 1;
     return Math.abs(a.length - b.length) <= tol && levenshtein(a, b) <= tol;
   }
-  // The prompt asks for ANY player on the roster, so a surname landing on a real
-  // player is a correct answer even when several share it. Candidates rank by how
-  // exact the match is, and an unused player wins ties so a surname guess does not
-  // resolve onto someone already spent this run.
+  // A surname landing on a real player counts, since the prompt asks for anyone
+  // who fits. Candidates rank by exactness, and an unused player wins ties.
   function matchGuess(guess, roster) {
     const g = normalize(guess);
     if (!g || g.length < 3) return null;
@@ -148,23 +148,24 @@
     const tied = cands.filter(c => c.rank === cands[0].rank);
     return (tied.find(c => !used.has(playerKey(c.player))) || tied[0]).player;
   }
-
-  // ---- round flow -----------------------------------------------------------
-  function chooseYear() {
-    const pool = playableYears();
-    if (!pool.length) return null;
-    // Skip seasons whose whole roster is used, so a round is always winnable.
-    let open = pool.filter(y => unusedIn(y).length > 0);
-    if (!open.length) { used = new Set(); saveUsed(); open = pool; }
-    const choices = open.length > 1 ? open.filter(y => y !== currentYear) : open;
-    return choices[Math.floor(Math.random() * choices.length)];
+  // The set a guess is checked against, for the round in play.
+  function targetRoster() {
+    if (mode === 'classic') return rosters()[currentYear] || [];
+    const all = playersAt(currentYear, currentGroup);
+    return mode === 'howmany' ? all.filter(n => !found.includes(n)) : all;
   }
 
-  const escapeHtml = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
+  // ---- rendering ------------------------------------------------------------
   function renderStats() {
-    streakEl.textContent = stats.streak;
-    bestEl.textContent = stats.best;
-    scoreEl.textContent = scoreLabel();
+    if (mode === 'howmany') {
+      t1v.textContent = found.length;   t1l.textContent = 'Found';
+      t2v.textContent = stats.listBest; t2l.textContent = 'Best';
+      t3v.textContent = scoreLabel();   t3l.textContent = 'Score';
+    } else {
+      t1v.textContent = stats.streak;   t1l.textContent = 'Streak';
+      t2v.textContent = stats.best;     t2l.textContent = 'Longest';
+      t3v.textContent = scoreLabel();   t3l.textContent = 'Score';
+    }
   }
   function renderDots() {
     const wrap = $('#attempts'); wrap.innerHTML = '';
@@ -172,6 +173,27 @@
       const d = document.createElement('div');
       d.className = 'dot' + (i < attempts ? ' used' : '');
       wrap.appendChild(d);
+    }
+  }
+  function renderFound() {
+    if (!foundEl) return;
+    foundEl.innerHTML = found.map(n => `<span class="chip">${escapeHtml(n)}</span>`).join('');
+    foundEl.style.display = found.length ? 'flex' : 'none';
+  }
+  function renderPrompt() {
+    const y = displayYear(currentYear);
+    if (mode === 'classic') {
+      promptEl.innerHTML = `Who played for the <span class="year">${y}</span> Tennessee Volunteers?`;
+      eyebrowEl.textContent = 'Name one player';
+      helpEl.textContent = "Anyone on that season's roster counts. You get three guesses.";
+    } else if (mode === 'position') {
+      promptEl.innerHTML = `Name a ${escapeHtml(groupName(currentGroup))} from the <span class="year">${y}</span> Volunteers.`;
+      eyebrowEl.textContent = 'Name one player';
+      helpEl.textContent = `Only ${groupName(currentGroup, true)} count. You get three guesses.`;
+    } else {
+      promptEl.innerHTML = `How many <span class="year">${y}</span> ${escapeHtml(groupName(currentGroup, true))} can you name?`;
+      eyebrowEl.textContent = 'Name as many as you can';
+      helpEl.textContent = 'Keep going until three wrong guesses end the round.';
     }
   }
   const closeSuggestions = () => { suggestionsEl.classList.remove('open'); activeSuggestion = -1; };
@@ -209,8 +231,8 @@
       suggestionsEl.innerHTML = '<div class="no-match">No matching Tennessee player.</div>';
       suggestionsEl.classList.add('open'); return;
     }
-    // The name sits in one element because .suggestion is a flex container:
-    // bare text nodes around <mark> would each become a flex item and the spaces
+    // The name sits in one element because .suggestion is a flex container: bare
+    // text nodes around <mark> would each become a flex item and the spaces
     // between them would be stripped, rendering "Al Wilson" as "AlWilson".
     suggestionsEl.innerHTML = visibleSuggestions.map((p, i) =>
       `<button type="button" class="suggestion" data-i="${i}"><span class="s-name">${highlightName(p.name, q)}</span></button>`).join('');
@@ -229,55 +251,130 @@
     return true;
   }
 
+  // ---- rounds ---------------------------------------------------------------
+  const pick = arr => arr[Math.floor(Math.random() * arr.length)];
+
+  function chooseRound() {
+    if (mode === 'classic') {
+      const pool = playableYears();
+      if (!pool.length) return null;
+      let open = pool.filter(y => (rosters()[y] || []).some(n => !used.has(playerKey(n))));
+      if (!open.length) { used = new Set(); saveUsed(); open = pool; }
+      const choices = open.length > 1 ? open.filter(y => y !== currentYear) : open;
+      return {year: pick(choices), group: null};
+    }
+    if (mode === 'howmany') {
+      const all = pairs(cfg().listFloor);
+      if (!all.length) return null;
+      const choices = all.filter(([y, g]) => !(y === currentYear && g === currentGroup));
+      const [y, g] = pick(choices.length ? choices : all);
+      return {year: y, group: g};
+    }
+    // By position: only serve a pairing that still has someone unused.
+    let all = pairs(1).filter(([y, g]) => playersAt(y, g).some(n => !used.has(playerKey(n))));
+    if (!all.length) { used = new Set(); saveUsed(); all = pairs(1); }
+    if (!all.length) return null;
+    const choices = all.filter(([y, g]) => !(y === currentYear && g === currentGroup));
+    const [y, g] = pick(choices.length ? choices : all);
+    return {year: y, group: g};
+  }
+
   function startRound() {
-    const year = chooseYear();
-    if (!year) {
-      message.textContent = `No ${cfg().label.toLowerCase()} rosters are bundled.`;
+    const r = chooseRound();
+    if (!r) {
+      message.textContent = `No ${cfg().label.toLowerCase()} rounds available for this mode.`;
       message.className = 'message bad';
+      promptEl.textContent = '';
       return;
     }
-    currentYear = year; attempts = 0; finished = false;
-    yearEl.textContent = displayYear(currentYear);
+    currentYear = r.year; currentGroup = r.group;
+    attempts = 0; finished = false; found = [];
+    renderPrompt();
     input.value = ''; input.disabled = false; submitBtn.disabled = false;
     message.textContent = ''; message.className = 'message';
     answer.style.display = 'none'; answer.textContent = '';
     actions.style.display = 'none';
-    closeSuggestions(); renderDots();
+    closeSuggestions(); renderDots(); renderFound(); renderStats();
     input.focus();
   }
 
   function endRound(win, matchedPlayer = null) {
     finished = true; input.disabled = true; closeSuggestions();
-    const roster = rosters()[currentYear] || [];
-    stats.rounds++;
-    if (win) {
-      stats.wins++;
-      stats.streak++;
-      if (stats.streak > stats.best) stats.best = stats.streak;
-      used.add(playerKey(matchedPlayer)); saveUsed();
-      message.textContent = `${matchedPlayer}. That Vol rocked.`;
-      message.className = 'message good';
+
+    if (mode === 'howmany') {
+      const total = playersAt(currentYear, currentGroup).length;
+      if (found.length > stats.listBest) stats.listBest = found.length;
+      stats.rounds++;
+      if (found.length === total) stats.wins++;
+      const missed = playersAt(currentYear, currentGroup).filter(n => !found.includes(n));
+      message.textContent = `You named ${found.length} of ${total}.`;
+      message.className = 'message ' + (found.length === total ? 'good' : 'bad');
+      if (missed.length) {
+        answer.innerHTML = `<strong>You missed:</strong> ${missed.map(escapeHtml).join(', ')}`;
+        answer.style.display = 'block';
+      }
     } else {
-      stats.streak = 0;
-      const pool = unusedIn(currentYear), from = pool.length ? pool : roster;
-      const reveal = from[Math.floor(Math.random() * from.length)];
-      used = new Set(); saveUsed();
-      message.textContent = 'Nope — three strikes.';
-      message.className = 'message bad';
-      answer.textContent = `One answer: ${reveal}`;
-      answer.style.display = 'block';
+      const roster = mode === 'classic' ? (rosters()[currentYear] || []) : playersAt(currentYear, currentGroup);
+      stats.rounds++;
+      if (win) {
+        stats.wins++; stats.streak++;
+        if (stats.streak > stats.best) stats.best = stats.streak;
+        used.add(playerKey(matchedPlayer)); saveUsed();
+        message.textContent = `${matchedPlayer}. That Vol rocked.`;
+        message.className = 'message good';
+      } else {
+        stats.streak = 0;
+        const open = roster.filter(n => !used.has(playerKey(n)));
+        const from = open.length ? open : roster;
+        used = new Set(); saveUsed();
+        message.textContent = 'Nope — three strikes.';
+        message.className = 'message bad';
+        if (from.length) {
+          answer.textContent = `One answer: ${pick(from)}`;
+          answer.style.display = 'block';
+        }
+      }
     }
     saveStats(); renderStats();
     actions.style.display = 'flex';
   }
 
+  // ---- sharing --------------------------------------------------------------
+  function shareText() {
+    const lines = [`Name a Vol — ${cfg().label}`];
+    if (mode === 'howmany') {
+      const total = playersAt(currentYear, currentGroup).length;
+      lines.push(`${displayYear(currentYear)} ${groupName(currentGroup, true)}`);
+      lines.push(finished ? `Named ${found.length} of ${total}` : `Named ${found.length} so far`);
+      lines.push(`Best: ${stats.listBest}`);
+    } else {
+      if (finished) {
+        const won = message.className.includes('good');
+        lines.push(`${displayYear(currentYear)}` + (currentGroup ? ` ${groupName(currentGroup, true)}` : '') +
+                   ' ' + (won ? `🟧 ${attempts}/${maxAttempts}` : '⬛ missed'));
+      }
+      lines.push(`Current streak: ${stats.streak}`);
+      lines.push(`Longest streak: ${stats.best}`);
+    }
+    if (stats.rounds) lines.push(`Score: ${scoreLabel()} (${stats.wins}/${stats.rounds})`);
+    lines.push(location.href.split('?')[0]);
+    return lines.join('\n');
+  }
+
+  // ---- switching ------------------------------------------------------------
   function switchSport(next) {
     if (!SPORTS[next] || next === sport) return;
-    sport = next;
-    localStorage.setItem('nav_sport', sport);
+    sport = next; localStorage.setItem('nav_sport', sport);
     document.querySelectorAll('.sport-btn').forEach(b => b.classList.toggle('active', b.dataset.sport === sport));
-    loadStats(); loadUsed(); rebuildPlayerIndex(); renderStats();
-    currentYear = null;
+    loadStats(); loadUsed(); rebuildPlayerIndex();
+    currentYear = null; currentGroup = null;
+    startRound();
+  }
+  function switchMode(next) {
+    if (!MODES[next] || next === mode) return;
+    mode = next; localStorage.setItem('nav_mode2', mode);
+    document.querySelectorAll('.mode-btn').forEach(b => b.classList.toggle('active', b.dataset.mode === mode));
+    currentYear = null; currentGroup = null;
     startRound();
   }
 
@@ -302,48 +399,68 @@
     if (finished) return;
     const guess = input.value.trim();
     if (!guess) return;
-    const matched = matchGuess(guess, rosters()[currentYear] || []);
-    if (matched && used.has(playerKey(matched))) {
+    const matched = matchGuess(guess, targetRoster());
+
+    if (mode === 'howmany') {
+      if (matched) {
+        found.push(matched);
+        input.value = ''; renderFound(); renderStats(); closeSuggestions();
+        message.textContent = `${matched}. Keep going.`;
+        message.className = 'message good';
+        if (!targetRoster().length) endRound(true);
+        return;
+      }
+      // Naming someone already on your list should not cost a strike.
+      if (matchGuess(guess, playersAt(currentYear, currentGroup))) {
+        message.textContent = 'Already on your list — name someone else.';
+        message.className = 'message bad';
+        input.select(); return;
+      }
+      attempts++; renderDots();
+      if (attempts >= maxAttempts) { endRound(false); return; }
+      message.textContent = `Not a ${groupName(currentGroup)} that season. ${maxAttempts - attempts} left.`;
+      message.className = 'message bad';
+      input.select(); return;
+    }
+
+    if (matched && usesNoRepeat() && used.has(playerKey(matched))) {
       message.textContent = `You already used ${matched} this run — name someone else.`;
       message.className = 'message bad';
       input.select(); renderSuggestions(); return;
     }
     attempts++; renderDots();
     if (matched) { endRound(true, matched); return; }
-    if (attempts >= maxAttempts) endRound(false);
-    else {
-      const left = maxAttempts - attempts;
-      message.textContent = `Not on the ${displayYear(currentYear)} roster. ${left} guess${left === 1 ? '' : 'es'} left.`;
-      message.className = 'message bad';
-      input.select(); renderSuggestions();
-    }
+    if (attempts >= maxAttempts) { endRound(false); return; }
+    const left = maxAttempts - attempts;
+    message.textContent = mode === 'position'
+      ? `Not a ${groupName(currentGroup)} on that roster. ${left} guess${left === 1 ? '' : 'es'} left.`
+      : `Not on the ${displayYear(currentYear)} roster. ${left} guess${left === 1 ? '' : 'es'} left.`;
+    message.className = 'message bad';
+    input.select(); renderSuggestions();
   });
 
   $('#nextBtn').addEventListener('click', startRound);
   $('#shareBtn').addEventListener('click', async () => {
     const text = shareText();
-    const done = msg => {
+    const done = () => {
       $('#shareBtn').textContent = 'Copied — paste to share';
-      if (shareHint) shareHint.textContent = msg;
+      if (shareHint) shareHint.textContent = 'Paste it into your group chat to share.';
       setTimeout(() => {
-        $('#shareBtn').textContent = 'Copy streak';
+        $('#shareBtn').textContent = 'Copy result';
         if (shareHint) shareHint.textContent = '';
       }, 4000);
     };
-    try {
-      await navigator.clipboard.writeText(text);
-      done('Paste it into your group chat to share.');
-    } catch {
-      // Clipboard access can be refused; select the text so it can be copied by hand.
-      window.prompt('Copy this, then paste to share:', text);
-    }
+    try { await navigator.clipboard.writeText(text); done(); }
+    catch { window.prompt('Copy this, then paste to share:', text); }
   });
+  $('#doneBtn')?.addEventListener('click', () => { if (!finished) endRound(false); });
 
-  document.querySelectorAll('.sport-btn').forEach(btn =>
-    btn.addEventListener('click', () => switchSport(btn.dataset.sport)));
+  document.querySelectorAll('.sport-btn').forEach(b => b.addEventListener('click', () => switchSport(b.dataset.sport)));
+  document.querySelectorAll('.mode-btn').forEach(b => b.addEventListener('click', () => switchMode(b.dataset.mode)));
 
   // ---- boot -----------------------------------------------------------------
   document.querySelectorAll('.sport-btn').forEach(b => b.classList.toggle('active', b.dataset.sport === sport));
+  document.querySelectorAll('.mode-btn').forEach(b => b.classList.toggle('active', b.dataset.mode === mode));
   loadStats(); loadUsed(); rebuildPlayerIndex(); renderStats();
   startRound();
 })();
