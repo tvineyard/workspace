@@ -29,7 +29,6 @@
   const maxAttempts = 3;
   const MIN_QUERY_LETTERS = 5;   // letters (spaces ignored) required before suggesting
 
-  let mode = localStorage.getItem('nav_mode') || 'endless';
   let currentYear = null, attempts = 0, finished = false;
   let activeSuggestion = -1, visibleSuggestions = [], playerIndex = [];
 
@@ -151,16 +150,7 @@
   }
 
   // ---- round flow -----------------------------------------------------------
-  function easternDateKey() {
-    const s = new Intl.DateTimeFormat('en-CA', {timeZone: 'America/New_York', year: 'numeric', month: '2-digit', day: '2-digit'}).format(new Date());
-    return Number(s.replace(/-/g, ''));
-  }
-  function seededDailyYear() {
-    const pool = playableYears();
-    return pool.length ? pool[easternDateKey() % pool.length] : null;
-  }
   function chooseYear() {
-    if (mode === 'daily') return seededDailyYear();
     const pool = playableYears();
     if (!pool.length) return null;
     // Skip seasons whose whole roster is used, so a round is always winnable.
@@ -349,18 +339,11 @@
     }
   });
 
-  document.querySelectorAll('.mode-btn').forEach(btn => btn.addEventListener('click', () => {
-    mode = btn.dataset.mode;
-    localStorage.setItem('nav_mode', mode);
-    document.querySelectorAll('.mode-btn').forEach(b => b.classList.toggle('active', b.dataset.mode === mode));
-    startRound();
-  }));
   document.querySelectorAll('.sport-btn').forEach(btn =>
     btn.addEventListener('click', () => switchSport(btn.dataset.sport)));
 
   // ---- boot -----------------------------------------------------------------
   document.querySelectorAll('.sport-btn').forEach(b => b.classList.toggle('active', b.dataset.sport === sport));
-  document.querySelectorAll('.mode-btn').forEach(b => b.classList.toggle('active', b.dataset.mode === mode));
   loadStats(); loadUsed(); rebuildPlayerIndex(); renderStats();
   startRound();
 })();
