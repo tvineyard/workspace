@@ -1,0 +1,332 @@
+{
+  "1995": {
+    "attempts": [
+      {
+        "error": "HTTP 404",
+        "url": "https://utsports.com/sports/mens-basketball/roster/season/1995-96"
+      },
+      {
+        "bytes": 685956,
+        "found": 13,
+        "markers": {
+          "__next_data__": 0,
+          "full bio": 52,
+          "person__name": 0,
+          "roster-card": 0,
+          "roster/player": 0,
+          "s-person": 1063,
+          "sidearm-roster-player": 0
+        },
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 13,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "sample": " 1995-96 Men&#x27;s Basketball Roster - University of Tennessee Athletics Skip to main content Pause All Rotators All Rotators Playing Skip Ad Sports Baseball Schedule Roster News Men&#39;s Basketball Schedule Roster News Women&#39;s Basketball Schedule Roster News Cross Country Schedule Roster News Football Schedule Roster News Men&#39;s Golf Schedule Roster News Women&#39;s Golf Schedule Roster News Rowing Schedule Roster News Soccer Schedule Roster News Softball Schedule Roster News Swimming &amp; Diving Schedule Roster News Men&#39;s Tennis Schedule Roster News Women&#39;s Tennis Schedule ",
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/mens-basketball/roster/1995-96"
+      },
+      {
+        "bytes": 1193717,
+        "found": 17,
+        "markers": {
+          "__next_data__": 0,
+          "full bio": 148,
+          "person__name": 0,
+          "roster-card": 0,
+          "roster/player": 0,
+          "s-person": 2478,
+          "sidearm-roster-player": 0
+        },
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 17,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "sample": " 2026-27 Men&#x27;s Basketball Roster - University of Tennessee Athletics Skip to main content Pause All Rotators All Rotators Playing Skip Ad Sports Baseball Schedule Roster News Men&#39;s Basketball Schedule Roster News Women&#39;s Basketball Schedule Roster News Cross Country Schedule Roster News Football Schedule Roster News Men&#39;s Golf Schedule Roster News Women&#39;s Golf Schedule Roster News Rowing Schedule Roster News Soccer Schedule Roster News Softball Schedule Roster News Swimming &amp; Diving Schedule Roster News Men&#39;s Tennis Schedule Roster News Women&#39;s Tennis Schedule ",
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/mens-basketball/roster/season/1995"
+      },
+      {
+        "bytes": 512217,
+        "found": 0,
+        "markers": {
+          "__next_data__": 0,
+          "full bio": 0,
+          "person__name": 0,
+          "roster-card": 0,
+          "roster/player": 0,
+          "s-person": 10,
+          "sidearm-roster-player": 0
+        },
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 0,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "sample": " @season Men&#x27;s Basketball Roster - University of Tennessee Athletics Skip to main content Pause All Rotators All Rotators Playing Skip Ad Sports Baseball Schedule Roster News Men&#39;s Basketball Schedule Roster News Women&#39;s Basketball Schedule Roster News Cross Country Schedule Roster News Football Schedule Roster News Men&#39;s Golf Schedule Roster News Women&#39;s Golf Schedule Roster News Rowing Schedule Roster News Soccer Schedule Roster News Softball Schedule Roster News Swimming &amp; Diving Schedule Roster News Men&#39;s Tennis Schedule Roster News Women&#39;s Tennis Schedule ",
+        "strategy": "none",
+        "url": "https://utsports.com/sports/mens-basketball/roster/1995"
+      },
+      {
+        "bytes": 1193718,
+        "found": 17,
+        "markers": {
+          "__next_data__": 0,
+          "full bio": 148,
+          "person__name": 0,
+          "roster-card": 0,
+          "roster/player": 0,
+          "s-person": 2478,
+          "sidearm-roster-player": 0
+        },
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 17,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "sample": " 2026-27 Men&#x27;s Basketball Roster - University of Tennessee Athletics Skip to main content Pause All Rotators All Rotators Playing Skip Ad Sports Baseball Schedule Roster News Men&#39;s Basketball Schedule Roster News Women&#39;s Basketball Schedule Roster News Cross Country Schedule Roster News Football Schedule Roster News Men&#39;s Golf Schedule Roster News Women&#39;s Golf Schedule Roster News Rowing Schedule Roster News Soccer Schedule Roster News Softball Schedule Roster News Swimming &amp; Diving Schedule Roster News Men&#39;s Tennis Schedule Roster News Women&#39;s Tennis Schedule ",
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/mens-basketball/roster?season=1995"
+      },
+      {
+        "error": "HTTP Error 403: Forbidden",
+        "url": "jina"
+      }
+    ],
+    "source": null,
+    "strategy": null
+  },
+  "2010": {
+    "attempts": [
+      {
+        "error": "HTTP 404",
+        "url": "https://utsports.com/sports/mens-basketball/roster/season/2010-11"
+      },
+      {
+        "bytes": 947566,
+        "found": 17,
+        "markers": {
+          "__next_data__": 0,
+          "full bio": 118,
+          "person__name": 0,
+          "roster-card": 0,
+          "roster/player": 0,
+          "s-person": 1960,
+          "sidearm-roster-player": 0
+        },
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 17,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "sample": " 2010-11 Men&#x27;s Basketball Roster - University of Tennessee Athletics Skip to main content Pause All Rotators All Rotators Playing Skip Ad Sports Baseball Schedule Roster News Men&#39;s Basketball Schedule Roster News Women&#39;s Basketball Schedule Roster News Cross Country Schedule Roster News Football Schedule Roster News Men&#39;s Golf Schedule Roster News Women&#39;s Golf Schedule Roster News Rowing Schedule Roster News Soccer Schedule Roster News Softball Schedule Roster News Swimming &amp; Diving Schedule Roster News Men&#39;s Tennis Schedule Roster News Women&#39;s Tennis Schedule ",
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/mens-basketball/roster/2010-11"
+      },
+      {
+        "bytes": 1193717,
+        "found": 17,
+        "markers": {
+          "__next_data__": 0,
+          "full bio": 148,
+          "person__name": 0,
+          "roster-card": 0,
+          "roster/player": 0,
+          "s-person": 2478,
+          "sidearm-roster-player": 0
+        },
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 17,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "sample": " 2026-27 Men&#x27;s Basketball Roster - University of Tennessee Athletics Skip to main content Pause All Rotators All Rotators Playing Skip Ad Sports Baseball Schedule Roster News Men&#39;s Basketball Schedule Roster News Women&#39;s Basketball Schedule Roster News Cross Country Schedule Roster News Football Schedule Roster News Men&#39;s Golf Schedule Roster News Women&#39;s Golf Schedule Roster News Rowing Schedule Roster News Soccer Schedule Roster News Softball Schedule Roster News Swimming &amp; Diving Schedule Roster News Men&#39;s Tennis Schedule Roster News Women&#39;s Tennis Schedule ",
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/mens-basketball/roster/season/2010"
+      },
+      {
+        "bytes": 512218,
+        "found": 0,
+        "markers": {
+          "__next_data__": 0,
+          "full bio": 0,
+          "person__name": 0,
+          "roster-card": 0,
+          "roster/player": 0,
+          "s-person": 10,
+          "sidearm-roster-player": 0
+        },
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 0,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "sample": " @season Men&#x27;s Basketball Roster - University of Tennessee Athletics Skip to main content Pause All Rotators All Rotators Playing Skip Ad Sports Baseball Schedule Roster News Men&#39;s Basketball Schedule Roster News Women&#39;s Basketball Schedule Roster News Cross Country Schedule Roster News Football Schedule Roster News Men&#39;s Golf Schedule Roster News Women&#39;s Golf Schedule Roster News Rowing Schedule Roster News Soccer Schedule Roster News Softball Schedule Roster News Swimming &amp; Diving Schedule Roster News Men&#39;s Tennis Schedule Roster News Women&#39;s Tennis Schedule ",
+        "strategy": "none",
+        "url": "https://utsports.com/sports/mens-basketball/roster/2010"
+      },
+      {
+        "bytes": 1193717,
+        "found": 17,
+        "markers": {
+          "__next_data__": 0,
+          "full bio": 148,
+          "person__name": 0,
+          "roster-card": 0,
+          "roster/player": 0,
+          "s-person": 2478,
+          "sidearm-roster-player": 0
+        },
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 17,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "sample": " 2026-27 Men&#x27;s Basketball Roster - University of Tennessee Athletics Skip to main content Pause All Rotators All Rotators Playing Skip Ad Sports Baseball Schedule Roster News Men&#39;s Basketball Schedule Roster News Women&#39;s Basketball Schedule Roster News Cross Country Schedule Roster News Football Schedule Roster News Men&#39;s Golf Schedule Roster News Women&#39;s Golf Schedule Roster News Rowing Schedule Roster News Soccer Schedule Roster News Softball Schedule Roster News Swimming &amp; Diving Schedule Roster News Men&#39;s Tennis Schedule Roster News Women&#39;s Tennis Schedule ",
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/mens-basketball/roster?season=2010"
+      },
+      {
+        "error": "HTTP Error 403: Forbidden",
+        "url": "jina"
+      }
+    ],
+    "source": null,
+    "strategy": null
+  },
+  "2024": {
+    "attempts": [
+      {
+        "error": "HTTP 404",
+        "url": "https://utsports.com/sports/mens-basketball/roster/season/2024-25"
+      },
+      {
+        "bytes": 1176553,
+        "found": 14,
+        "markers": {
+          "__next_data__": 0,
+          "full bio": 135,
+          "person__name": 0,
+          "roster-card": 0,
+          "roster/player": 0,
+          "s-person": 2314,
+          "sidearm-roster-player": 0
+        },
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 14,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "sample": " Men&#x27;s Basketball Roster - University of Tennessee Athletics Skip to main content Pause All Rotators All Rotators Playing Skip Ad Sports Baseball Schedule Roster News Men&#39;s Basketball Schedule Roster News Women&#39;s Basketball Schedule Roster News Cross Country Schedule Roster News Football Schedule Roster News Men&#39;s Golf Schedule Roster News Women&#39;s Golf Schedule Roster News Rowing Schedule Roster News Soccer Schedule Roster News Softball Schedule Roster News Swimming &amp; Diving Schedule Roster News Men&#39;s Tennis Schedule Roster News Women&#39;s Tennis Schedule Roster N",
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/mens-basketball/roster/2024-25"
+      },
+      {
+        "bytes": 1193737,
+        "found": 17,
+        "markers": {
+          "__next_data__": 0,
+          "full bio": 148,
+          "person__name": 0,
+          "roster-card": 0,
+          "roster/player": 0,
+          "s-person": 2478,
+          "sidearm-roster-player": 0
+        },
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 17,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "sample": " 2026-27 Men&#x27;s Basketball Roster - University of Tennessee Athletics Skip to main content Pause All Rotators All Rotators Playing Skip Ad Sports Baseball Schedule Roster News Men&#39;s Basketball Schedule Roster News Women&#39;s Basketball Schedule Roster News Cross Country Schedule Roster News Football Schedule Roster News Men&#39;s Golf Schedule Roster News Women&#39;s Golf Schedule Roster News Rowing Schedule Roster News Soccer Schedule Roster News Softball Schedule Roster News Swimming &amp; Diving Schedule Roster News Men&#39;s Tennis Schedule Roster News Women&#39;s Tennis Schedule ",
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/mens-basketball/roster/season/2024"
+      },
+      {
+        "bytes": 512218,
+        "found": 0,
+        "markers": {
+          "__next_data__": 0,
+          "full bio": 0,
+          "person__name": 0,
+          "roster-card": 0,
+          "roster/player": 0,
+          "s-person": 10,
+          "sidearm-roster-player": 0
+        },
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 0,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "sample": " @season Men&#x27;s Basketball Roster - University of Tennessee Athletics Skip to main content Pause All Rotators All Rotators Playing Skip Ad Sports Baseball Schedule Roster News Men&#39;s Basketball Schedule Roster News Women&#39;s Basketball Schedule Roster News Cross Country Schedule Roster News Football Schedule Roster News Men&#39;s Golf Schedule Roster News Women&#39;s Golf Schedule Roster News Rowing Schedule Roster News Soccer Schedule Roster News Softball Schedule Roster News Swimming &amp; Diving Schedule Roster News Men&#39;s Tennis Schedule Roster News Women&#39;s Tennis Schedule ",
+        "strategy": "none",
+        "url": "https://utsports.com/sports/mens-basketball/roster/2024"
+      },
+      {
+        "bytes": 1193736,
+        "found": 17,
+        "markers": {
+          "__next_data__": 0,
+          "full bio": 148,
+          "person__name": 0,
+          "roster-card": 0,
+          "roster/player": 0,
+          "s-person": 2478,
+          "sidearm-roster-player": 0
+        },
+        "per_strategy": {
+          "aria_bio": 0,
+          "next_data": 0,
+          "player_links": 17,
+          "sidearm": 0,
+          "sr_roster": 0,
+          "table": 0
+        },
+        "sample": " 2026-27 Men&#x27;s Basketball Roster - University of Tennessee Athletics Skip to main content Pause All Rotators All Rotators Playing Skip Ad Sports Baseball Schedule Roster News Men&#39;s Basketball Schedule Roster News Women&#39;s Basketball Schedule Roster News Cross Country Schedule Roster News Football Schedule Roster News Men&#39;s Golf Schedule Roster News Women&#39;s Golf Schedule Roster News Rowing Schedule Roster News Soccer Schedule Roster News Softball Schedule Roster News Swimming &amp; Diving Schedule Roster News Men&#39;s Tennis Schedule Roster News Women&#39;s Tennis Schedule ",
+        "strategy": "player_links",
+        "url": "https://utsports.com/sports/mens-basketball/roster?season=2024"
+      },
+      {
+        "error": "HTTP Error 403: Forbidden",
+        "url": "jina"
+      }
+    ],
+    "source": null,
+    "strategy": null
+  }
+}
