@@ -1,0 +1,45 @@
+name: Deploy Pages
+
+# Publishes the repository as a static site. configure-pages with enablement:true
+# turns GitHub Pages on via the API if it is not already enabled, so no manual
+# repository setting is required.
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [claude/github-repo-setup-fk0u3k]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Enable and configure Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      - name: Package the site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      - name: Show URL
+        run: echo "Published at ${{ steps.deployment.outputs.page_url }}"
