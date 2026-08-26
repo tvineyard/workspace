@@ -34,7 +34,7 @@ button.primary{border:0;background:var(--orange);color:white;border-radius:14px;
 <header><div class="brand"><div class="badge">V</div><div><h1>Name a Vol</h1><div class="subbrand">Tennessee roster trivia</div></div></div><div class="stats"><div class="stat"><strong id="streak">0</strong><span>Streak</span></div><div class="stat"><strong id="best">0</strong><span>Longest</span></div><div class="stat"><strong id="score">—</strong><span>Score</span></div></div></header>
 <section class="card"><div class="topbar"></div><div class="content"><div class="sport-row"><button class="sport-btn" data-sport="football" type="button">Football</button><button class="sport-btn" data-sport="basketball" type="button">Basketball</button></div><div class="mode-row"><button class="mode-btn" data-mode="endless" type="button">Endless</button><button class="mode-btn" data-mode="daily" type="button">Daily</button></div><div class="eyebrow">Name one player</div><p class="prompt">Who played for the <span class="year" id="year">1998</span> Tennessee Volunteers?</p><div class="help">Any player on that season's roster counts. You get three guesses.</div>
 <form id="guessForm" autocomplete="off"><div class="input-wrap"><input id="player" type="text" placeholder="Name a player from this season…" aria-label="Player name" aria-autocomplete="list" aria-controls="suggestions"><span class="search-icon">⌕</span><div id="suggestions" class="suggestions" role="listbox"></div></div><button id="submitBtn" class="primary" type="submit">Submit</button></form>
-<div id="indexStatus" class="index-status"></div><div id="attempts" class="attempts" aria-label="Attempts"></div><div id="message" class="message" aria-live="polite"></div><div id="answer" class="answer"></div><div id="actions" class="actions"><button id="nextBtn" class="next" type="button">Next season</button></div>
+<div id="attempts" class="attempts" aria-label="Attempts"></div><div id="message" class="message" aria-live="polite"></div><div id="answer" class="answer"></div><div id="actions" class="actions"><button id="nextBtn" class="next" type="button">Next season</button></div>
 <div class="share-row"><button id="shareBtn" type="button">Copy streak</button><span id="shareHint" class="share-hint"></span></div></div></section>
 
 <details class="sources"><summary>How it works</summary><p>Name anyone who was on that season's roster. You get three guesses, and small spelling mistakes are fine — a last name on its own counts too.</p><p>Once you've used a player, he's spent for the rest of your run. Miss three times and the streak resets.</p><p>Football covers 1990&ndash;2026, basketball 1990&ndash;91 through 2025&ndash;26. Rosters come from the University of Tennessee Athletics archive.</p></details><div class="footer">Independent fan project. Not affiliated with or endorsed by the University of Tennessee, NCAA, or SEC.</div></main>
@@ -78,8 +78,7 @@ button.primary{border:0;background:var(--orange);color:white;border-radius:14px;
   const yearEl = $('#year'), input = $('#player'), form = $('#guessForm');
   const message = $('#message'), answer = $('#answer'), actions = $('#actions');
   const streakEl = $('#streak'), bestEl = $('#best'), scoreEl = $('#score');
-  const seasonCountEl = $('#seasonCount');
-  const suggestionsEl = $('#suggestions'), indexStatus = $('#indexStatus'), submitBtn = $('#submitBtn');
+  const suggestionsEl = $('#suggestions'), submitBtn = $('#submitBtn');
   const shareHint = $('#shareHint');
 
   function normalize(s) {
@@ -148,17 +147,6 @@ button.primary{border:0;background:var(--orange);color:white;border-radius:14px;
       if (k && !map.has(k)) map.set(k, {name});
     }));
     playerIndex = [...map.values()].sort((a, b) => a.name.localeCompare(b.name));
-  }
-
-  function updateIndexStatus() {
-    const n = playableYears().length, total = allYears().length;
-    if (seasonCountEl) seasonCountEl.textContent = n;
-    void total;
-    let html = n === total
-      ? `Player search: <strong>${playerIndex.length.toLocaleString()} names</strong> across all ${total} seasons.`
-      : `Playing <strong>${n} of ${total} seasons</strong> — searching ${playerIndex.length.toLocaleString()} players.`;
-    if (used.size) html += ` <strong>${used.size}</strong> already used this run.`;
-    indexStatus.innerHTML = html;
   }
 
   // ---- matching -------------------------------------------------------------
@@ -305,7 +293,7 @@ button.primary{border:0;background:var(--orange);color:white;border-radius:14px;
     message.textContent = ''; message.className = 'message';
     answer.style.display = 'none'; answer.textContent = '';
     actions.style.display = 'none';
-    closeSuggestions(); renderDots(); updateIndexStatus();
+    closeSuggestions(); renderDots();
     input.focus();
   }
 
@@ -330,7 +318,7 @@ button.primary{border:0;background:var(--orange);color:white;border-radius:14px;
       answer.textContent = `One answer: ${reveal}`;
       answer.style.display = 'block';
     }
-    saveStats(); renderStats(); updateIndexStatus();
+    saveStats(); renderStats();
     actions.style.display = 'flex';
   }
 

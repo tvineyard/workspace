@@ -37,8 +37,7 @@
   const yearEl = $('#year'), input = $('#player'), form = $('#guessForm');
   const message = $('#message'), answer = $('#answer'), actions = $('#actions');
   const streakEl = $('#streak'), bestEl = $('#best'), scoreEl = $('#score');
-  const seasonCountEl = $('#seasonCount');
-  const suggestionsEl = $('#suggestions'), indexStatus = $('#indexStatus'), submitBtn = $('#submitBtn');
+  const suggestionsEl = $('#suggestions'), submitBtn = $('#submitBtn');
   const shareHint = $('#shareHint');
 
   function normalize(s) {
@@ -107,17 +106,6 @@
       if (k && !map.has(k)) map.set(k, {name});
     }));
     playerIndex = [...map.values()].sort((a, b) => a.name.localeCompare(b.name));
-  }
-
-  function updateIndexStatus() {
-    const n = playableYears().length, total = allYears().length;
-    if (seasonCountEl) seasonCountEl.textContent = n;
-    void total;
-    let html = n === total
-      ? `Player search: <strong>${playerIndex.length.toLocaleString()} names</strong> across all ${total} seasons.`
-      : `Playing <strong>${n} of ${total} seasons</strong> — searching ${playerIndex.length.toLocaleString()} players.`;
-    if (used.size) html += ` <strong>${used.size}</strong> already used this run.`;
-    indexStatus.innerHTML = html;
   }
 
   // ---- matching -------------------------------------------------------------
@@ -264,7 +252,7 @@
     message.textContent = ''; message.className = 'message';
     answer.style.display = 'none'; answer.textContent = '';
     actions.style.display = 'none';
-    closeSuggestions(); renderDots(); updateIndexStatus();
+    closeSuggestions(); renderDots();
     input.focus();
   }
 
@@ -289,7 +277,7 @@
       answer.textContent = `One answer: ${reveal}`;
       answer.style.display = 'block';
     }
-    saveStats(); renderStats(); updateIndexStatus();
+    saveStats(); renderStats();
     actions.style.display = 'flex';
   }
 
