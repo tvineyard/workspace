@@ -307,9 +307,15 @@ def main():
     if vy:
         return verify([y.strip() for y in vy.split(",") if y.strip()])
     seed_path = ROOT / "data" / "rosters.seed.json"
-    rosters = json.loads(seed_path.read_text()) if seed_path.exists() else {}
-    if OUT.exists():
-        rosters.update({k: v for k, v in json.loads(OUT.read_text()).items() if len(v) >= MIN_PLAYERS})
+    if os.environ.get("FRESH"):
+        # Re-scrape every season from scratch, ignoring anything already bundled.
+        # Used after a parser change, when cached results can no longer be trusted.
+        rosters = {}
+        print("FRESH: re-fetching all seasons from source")
+    else:
+        rosters = json.loads(seed_path.read_text()) if seed_path.exists() else {}
+        if OUT.exists():
+            rosters.update({k: v for k, v in json.loads(OUT.read_text()).items() if len(v) >= MIN_PLAYERS})
 
     report = {}
     for year in range(START_YEAR, END_YEAR + 1):
