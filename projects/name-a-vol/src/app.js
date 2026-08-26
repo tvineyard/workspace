@@ -36,7 +36,7 @@
   const $ = s => document.querySelector(s);
   const yearEl = $('#year'), input = $('#player'), form = $('#guessForm');
   const message = $('#message'), answer = $('#answer'), actions = $('#actions');
-  const streakEl = $('#streak'), scoreEl = $('#score'), seasonCountEl = $('#seasonCount');
+  const streakEl = $('#streak'), bestEl = $('#best'), seasonCountEl = $('#seasonCount');
   const suggestionsEl = $('#suggestions'), indexStatus = $('#indexStatus'), submitBtn = $('#submitBtn');
   const shareHint = $('#shareHint');
 
@@ -49,16 +49,19 @@
 
   // ---- per-sport progress ---------------------------------------------------
   const key = k => `nav_${k}_${sport}`;
-  let stats = {streak: 0, score: 0};
+  // Current run, and the longest run ever reached in this sport. The longest
+  // survives a loss - that is the number worth bragging about.
+  let stats = {streak: 0, best: 0};
   function loadStats() {
     stats = {
       streak: Number(localStorage.getItem(key('streak')) || 0),
-      score:  Number(localStorage.getItem(key('score'))  || 0),
+      best:   Number(localStorage.getItem(key('best'))   || 0),
     };
+    if (stats.streak > stats.best) stats.best = stats.streak;
   }
   function saveStats() {
     localStorage.setItem(key('streak'), stats.streak);
-    localStorage.setItem(key('score'), stats.score);
+    localStorage.setItem(key('best'), stats.best);
   }
 
   // Player identity for the no-repeat rule is the normalized name. utsports
@@ -87,7 +90,8 @@
       const won = message.className.includes('good');
       lines.push(`${displayYear(currentYear)} ` + (won ? `🟧 ${attempts}/${maxAttempts}` : '⬛ missed'));
     }
-    lines.push(`Streak: ${stats.streak}`);
+    lines.push(`Current streak: ${stats.streak}`);
+    lines.push(`Longest streak: ${stats.best}`);
     lines.push(location.href.split('?')[0]);   // drop any cache-busting query
     return lines.join('\n');
   }
@@ -175,7 +179,7 @@
   }
 
   const escapeHtml = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
-  function renderStats() { streakEl.textContent = stats.streak; scoreEl.textContent = stats.score; }
+  function renderStats() { streakEl.textContent = stats.streak; bestEl.textContent = stats.best; }
   function renderDots() {
     const wrap = $('#attempts'); wrap.innerHTML = '';
     for (let i = 0; i < maxAttempts; i++) {
@@ -260,7 +264,8 @@
     finished = true; input.disabled = true; closeSuggestions();
     const roster = rosters()[currentYear] || [];
     if (win) {
-      stats.streak++; stats.score += Math.max(1, 4 - attempts);
+      stats.streak++;
+      if (stats.streak > stats.best) stats.best = stats.streak;
       used.add(playerKey(matchedPlayer)); saveUsed();
       message.textContent = `${matchedPlayer}. That Vol rocked.`;
       message.className = 'message good';

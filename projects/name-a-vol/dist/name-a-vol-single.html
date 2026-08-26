@@ -31,7 +31,7 @@ button.primary{border:0;background:var(--orange);color:white;border-radius:14px;
 </head>
 <body>
 <main class="shell">
-<header><div class="brand"><div class="badge">V</div><div><h1>Name a Vol</h1><div class="subbrand">Tennessee roster trivia</div></div></div><div class="stats"><div class="stat"><strong id="streak">0</strong><span>Streak</span></div><div class="stat"><strong id="score">0</strong><span>Score</span></div><div class="stat"><strong id="seasonCount">37</strong><span>Years</span></div></div></header>
+<header><div class="brand"><div class="badge">V</div><div><h1>Name a Vol</h1><div class="subbrand">Tennessee roster trivia</div></div></div><div class="stats"><div class="stat"><strong id="streak">0</strong><span>Streak</span></div><div class="stat"><strong id="best">0</strong><span>Longest</span></div><div class="stat"><strong id="seasonCount">37</strong><span>Years</span></div></div></header>
 <section class="card"><div class="topbar"></div><div class="content"><div class="sport-row"><button class="sport-btn" data-sport="football" type="button">Football</button><button class="sport-btn" data-sport="basketball" type="button">Basketball</button></div><div class="mode-row"><button class="mode-btn" data-mode="endless" type="button">Endless</button><button class="mode-btn" data-mode="daily" type="button">Daily</button></div><div class="eyebrow">Name one player</div><p class="prompt">Who played for the <span class="year" id="year">1998</span> Tennessee Volunteers?</p><div class="help">Any player on that season's roster counts. You get three guesses.</div>
 <form id="guessForm" autocomplete="off"><div class="input-wrap"><input id="player" type="text" placeholder="Name a player from this season…" aria-label="Player name" aria-autocomplete="list" aria-controls="suggestions"><span class="search-icon">⌕</span><div id="suggestions" class="suggestions" role="listbox"></div></div><button id="submitBtn" class="primary" type="submit">Submit</button></form>
 <div id="indexStatus" class="index-status"></div><div id="attempts" class="attempts" aria-label="Attempts"></div><div id="message" class="message" aria-live="polite"></div><div id="answer" class="answer"></div><div id="actions" class="actions"><button id="nextBtn" class="next" type="button">Next season</button></div>
@@ -77,7 +77,7 @@ button.primary{border:0;background:var(--orange);color:white;border-radius:14px;
   const $ = s => document.querySelector(s);
   const yearEl = $('#year'), input = $('#player'), form = $('#guessForm');
   const message = $('#message'), answer = $('#answer'), actions = $('#actions');
-  const streakEl = $('#streak'), scoreEl = $('#score'), seasonCountEl = $('#seasonCount');
+  const streakEl = $('#streak'), bestEl = $('#best'), seasonCountEl = $('#seasonCount');
   const suggestionsEl = $('#suggestions'), indexStatus = $('#indexStatus'), submitBtn = $('#submitBtn');
   const shareHint = $('#shareHint');
 
@@ -90,16 +90,19 @@ button.primary{border:0;background:var(--orange);color:white;border-radius:14px;
 
   // ---- per-sport progress ---------------------------------------------------
   const key = k => `nav_${k}_${sport}`;
-  let stats = {streak: 0, score: 0};
+  // Current run, and the longest run ever reached in this sport. The longest
+  // survives a loss - that is the number worth bragging about.
+  let stats = {streak: 0, best: 0};
   function loadStats() {
     stats = {
       streak: Number(localStorage.getItem(key('streak')) || 0),
-      score:  Number(localStorage.getItem(key('score'))  || 0),
+      best:   Number(localStorage.getItem(key('best'))   || 0),
     };
+    if (stats.streak > stats.best) stats.best = stats.streak;
   }
   function saveStats() {
     localStorage.setItem(key('streak'), stats.streak);
-    localStorage.setItem(key('score'), stats.score);
+    localStorage.setItem(key('best'), stats.best);
   }
 
   // Player identity for the no-repeat rule is the normalized name. utsports
@@ -128,7 +131,8 @@ button.primary{border:0;background:var(--orange);color:white;border-radius:14px;
       const won = message.className.includes('good');
       lines.push(`${displayYear(currentYear)} ` + (won ? `🟧 ${attempts}/${maxAttempts}` : '⬛ missed'));
     }
-    lines.push(`Streak: ${stats.streak}`);
+    lines.push(`Current streak: ${stats.streak}`);
+    lines.push(`Longest streak: ${stats.best}`);
     lines.push(location.href.split('?')[0]);   // drop any cache-busting query
     return lines.join('\n');
   }
@@ -216,7 +220,7 @@ button.primary{border:0;background:var(--orange);color:white;border-radius:14px;
   }
 
   const escapeHtml = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
-  function renderStats() { streakEl.textContent = stats.streak; scoreEl.textContent = stats.score; }
+  function renderStats() { streakEl.textContent = stats.streak; bestEl.textContent = stats.best; }
   function renderDots() {
     const wrap = $('#attempts'); wrap.innerHTML = '';
     for (let i = 0; i < maxAttempts; i++) {
@@ -301,7 +305,8 @@ button.primary{border:0;background:var(--orange);color:white;border-radius:14px;
     finished = true; input.disabled = true; closeSuggestions();
     const roster = rosters()[currentYear] || [];
     if (win) {
-      stats.streak++; stats.score += Math.max(1, 4 - attempts);
+      stats.streak++;
+      if (stats.streak > stats.best) stats.best = stats.streak;
       used.add(playerKey(matchedPlayer)); saveUsed();
       message.textContent = `${matchedPlayer}. That Vol rocked.`;
       message.className = 'message good';
