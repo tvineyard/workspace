@@ -317,10 +317,11 @@ def fetch_year(year, log):
 def verify(years):
     """Re-fetch specific seasons and dump them for eyeball/diff checking."""
     OUT.parent.mkdir(parents=True, exist_ok=True)
-    got = {}
+    got, diag = {}, {}
     for y in years:
         names, meta = fetch_year(int(y), print)
         got[str(y)] = sorted(names)
+        diag[str(y)] = meta
         print(f"\n===== {y}: {len(names)} via {meta.get('strategy')} <- {meta.get('source')}")
         for a in meta.get("attempts", []):
             print(f"   try {a.get('url')}")
@@ -338,6 +339,9 @@ def verify(years):
             print(f"   ... and {len(names)-18} more")
     (ROOT / "data" / "rosters.verify.json").write_text(
         json.dumps(got, indent=2, ensure_ascii=False, sort_keys=True) + "\n")
+    # Also persist the per-URL attempts; CI log tails truncate, a committed file does not.
+    (ROOT / "data" / "verify-report.json").write_text(
+        json.dumps(diag, indent=2, ensure_ascii=False, sort_keys=True) + "\n")
     return 0
 
 
