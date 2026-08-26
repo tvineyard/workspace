@@ -322,11 +322,15 @@ def verify(years):
         names, meta = fetch_year(int(y), print)
         got[str(y)] = sorted(names)
         print(f"\n===== {y}: {len(names)} via {meta.get('strategy')} <- {meta.get('source')}")
-        try:
-            for line in sample_hrefs(get(str(meta.get("source")))):
-                print("   href " + line)
-        except Exception as exc:
-            print("   (href sample unavailable:", exc, ")")
+        for a in meta.get("attempts", []):
+            print(f"   try {a.get('url')}")
+            print(f"       {'error=' + str(a.get('error')) if a.get('error') else 'bytes=' + str(a.get('bytes')) + ' found=' + str(a.get('found')) + ' ' + str(a.get('per_strategy'))}")
+        if meta.get("source"):
+            try:
+                for line in sample_hrefs(get(str(meta.get("source")))):
+                    print("   href " + line)
+            except Exception as exc:
+                print("   (href sample unavailable:", exc, ")")
         shown = sorted(names)[:18]
         for i in range(0, len(shown), 6):
             print("   " + " | ".join(shown[i:i+6]))
