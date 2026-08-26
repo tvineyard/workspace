@@ -146,6 +146,7 @@ STAFF_HREF = re.compile(r"(coach|staff|administration|directory|support)", re.I)
 
 ATHLETE_ID = re.compile(r"/roster/(?:season/\d{4}/)?[a-z0-9][a-z0-9\-.']*/(\d+)", re.I)
 IDS = {}   # year -> {athlete_id: name}, filled as pages are parsed
+POSITIONS = {}   # year -> {name: position}
 
 
 def s_player_ids(doc, year=None):
@@ -178,6 +179,33 @@ def s_player_links(doc):
         if plausible(txt):
             names.append(txt)
     return names
+
+
+def s_player_positions(doc):
+    """Map player name -> position, read from the person cards.
+
+    Each card renders as: name in an <h3>, then a bio-stats block laid out as
+    "Position <value> Academic Year <value> Height ...". Taking a forward window
+    from each player link and reading the first name and first Position in it
+    keeps a card's own values together, since both appear before the next card.
+    """
+    out = {}
+    for m in re.finditer(r'<a[^>]+href="([^"]+)"[^>]*>', doc, re.I):
+        href = m.group(1)
+        if STAFF_HREF.search(href) or not PLAYER_HREF.search(href):
+            continue
+        chunk = doc[m.start():m.start() + 2500]
+        nm = re.search(r"<h3[^>]*>([^<]+)</h3>", chunk)
+        if not nm:
+            continue
+        name = clean(nm.group(1))
+        if not plausible(name) or name in out:
+            continue
+        text = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " | ", chunk))
+        pos = re.search(r"Position \| ([A-Za-z/]{1,5}) \|", text)
+        if pos:
+            out[name] = pos.group(1).strip().upper()
+    return out
 
 
 def sample_player_markup(doc, limit=4, window=500):
@@ -320,6 +348,9 @@ def fetch_year(year, log):
             ids = s_player_ids(doc)
             if ids:
                 IDS[str(year)] = ids
+            pos = s_player_positions(doc)
+            if pos:
+                POSITIONS[str(year)] = pos
             return names, {"source": url, "strategy": strat, "attempts": attempts,
                            "ids_captured": len(ids)}
         # Keep a sample of the page so the parser can be corrected next run.
@@ -421,6 +452,8 @@ def main():
             report[key] = {"status": "failed", "count": 0, **meta}
         OUT.write_text(json.dumps(rosters, indent=2, ensure_ascii=False, sort_keys=True) + "\n")
         REPORT.write_text(json.dumps(report, indent=2, ensure_ascii=False, sort_keys=True) + "\n")
+        (ROOT / "data" / f"positions.{SPORT}.json").write_text(
+            json.dumps(POSITIONS, indent=2, ensure_ascii=False, sort_keys=True) + "\n")
         (ROOT / "data" / ("athlete-ids.json" if SPORT == "football" else f"athlete-ids.{SPORT}.json")).write_text(
             json.dumps(IDS, indent=2, ensure_ascii=False, sort_keys=True) + "\n")
         time.sleep(1.0)
