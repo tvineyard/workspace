@@ -191,10 +191,13 @@ def sample_player_markup(doc, limit=4, window=500):
         href = m.group(1)
         if STAFF_HREF.search(href) or not PLAYER_HREF.search(href):
             continue
-        start = max(0, m.start() - window)
-        chunk = doc[start:m.end() + window]
-        chunk = re.sub(r"\s+", " ", chunk)
-        out.append(chunk)
+        # Position sits in the bio-stats block after the name link, so take a
+        # generous window forward and reduce it to plain text.
+        chunk = doc[m.end():m.end() + 1600]
+        stats = re.search(r'bio-stats[^>]*>(.*)', chunk, re.S)
+        text = re.sub(r"<[^>]+>", " | ", stats.group(1) if stats else chunk)
+        text = re.sub(r"\s*\|\s*(\|\s*)+", " | ", re.sub(r"\s+", " ", text))
+        out.append(text[:260])
         if len(out) >= limit:
             break
     return out
