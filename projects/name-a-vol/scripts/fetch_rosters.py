@@ -234,6 +234,7 @@ def fetch_year(year, log):
 
 
 def main():
+    OUT.parent.mkdir(parents=True, exist_ok=True)
     seed_path = ROOT / "data" / "rosters.seed.json"
     rosters = json.loads(seed_path.read_text()) if seed_path.exists() else {}
     if OUT.exists():

@@ -10,24 +10,38 @@ A clean-room fan game inspired by the general “name a player from a given team
 - Three guesses per round
 - Endless and Daily modes
 - Streak and score persist in `localStorage`
+- The game only asks about seasons whose roster it actually has, so a round never dead-ends
 - Typing in the player box starts autocomplete across the **combined all-season player index**
 - Suggestions show player names only, never seasons, so autocomplete does not reveal the answer
+- Daily is keyed to Eastern Time and drawn from the bundled seasons, so everyone gets the same puzzle
 - Keyboard navigation: Up/Down + Enter; click/touch works
 - Minor typo tolerance on submitted guesses
 
 ## Important roster-data status
 
-The game recognizes 37 seasons, but the version handed off here physically bundles **six seed rosters**: 1998, 2001, 2004, 2007, 2015, and 2022. The app fetches the other official UT rosters at runtime through Jina Reader, parses the public UT Athletics roster page, and caches each result in browser `localStorage`.
+The game recognizes 37 seasons (1990-2026) but currently bundles **six**: 1998, 2001, 2004,
+2007, 2015 and 2022. Those six are the ones it will actually serve.
 
-To make the project completely self-contained, run:
+Seasons that are not bundled are attempted in the background from the UT Athletics roster
+archive and cached in `localStorage`. That path is best-effort - it depends on a third-party
+reader endpoint and on UT still publishing a page for that year - so it is treated purely as a
+bonus. A season that arrives joins the Endless rotation and the player search; a season that
+never arrives is simply never asked about.
+
+Historical rosters do not change, so the real fix is to bundle all 37 once:
 
 ```bash
-python scripts/fetch_all_rosters.py
-python scripts/validate_rosters.py
-python scripts/build_single_file.py
+python scripts/fetch_rosters.py      # needs open internet; writes data/rosters.full.json
+python scripts/validate_rosters.py   # checks all 37 seasons are present and sane
+python scripts/build_single_file.py  # rebuilds dist/name-a-vol-single.html
 ```
 
-That creates `data/rosters.full.json` and rebuilds the standalone HTML with all available roster data embedded.
+`scripts/fetch_rosters.py` tries several parsing strategies against utsports.com, falls back to
+the Jina Reader proxy, and prints diagnostics for any season it cannot parse. The workflow at
+`.github/workflows/fetch-vol-rosters.yml` runs it on GitHub Actions and commits the result.
+
+Once `data/rosters.full.json` covers all 37 seasons, regenerate `data/rosters.seed.js` from it.
+The Daily pool is defined by whatever is bundled, so it widens to all 37 automatically.
 
 ## Run locally
 
